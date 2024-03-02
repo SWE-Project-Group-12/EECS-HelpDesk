@@ -1,7 +1,6 @@
 from .createTicket import createTicket
 from .findPersonalTickets import findPersonalTickets
 from .deleteTicket import deleteTicket
-from .viewStatus import viewStatus
 from .listAllECs import listAllECs
 from .listAllTechnicalFaults import listAllTechnicalFaults
 from .updateEC import updateEC
