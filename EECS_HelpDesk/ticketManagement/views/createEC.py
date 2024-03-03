@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 
-def createTicket(request, username):
+def createEC(request, username):
     """ Displays the form to create a ticket for the student. """
 
     # Note that this view is most likely to be split into "createEC" and "createTechnicalFault".
@@ -22,4 +22,4 @@ def createTicket(request, username):
     # If the form is valid, store the ticket.
     # If not valid, return with an error message.
 
-    return render(request, "createTicket.html")
+    return render(request, "createEC.html")

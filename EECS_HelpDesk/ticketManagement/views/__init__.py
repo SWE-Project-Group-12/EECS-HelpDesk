@@ -1,4 +1,5 @@
-from .createTicket import createTicket
+from .createEC import createEC
+from .createTechnicalFault import createTechnicalFault
 from .findPersonalTickets import findPersonalTickets
 from .deleteTicket import deleteTicket
 from .listAllECs import listAllECs
