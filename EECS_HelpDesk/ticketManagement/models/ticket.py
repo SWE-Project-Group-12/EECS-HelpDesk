@@ -7,16 +7,18 @@ class Ticket(models.Model):
 
     UPDATED = "UPDATED"
     VOID = "VOIDED"
+    PENDING = "PENDING"
 
     STATUS_CHOICES = {
 		UPDATED: "Updated",
 		VOID: "Void",
+        PENDING: "Pending",
 	}
 
 
     title = models.CharField(max_length=100)
     description = models.TextField()
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=PENDING)
     dateCreated = models.DateField(auto_now_add=True)
     # add username field 
 
