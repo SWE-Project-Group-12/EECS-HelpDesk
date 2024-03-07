@@ -1,7 +1,18 @@
 from django.db import models
+from .ticket import Ticket
 
 
-class TechnicalFault:
+class TechnicalFault(Ticket):
     # Standard Model. Inherits from the Model Ticket.
     # Used to store Technical Faults.
-    pass
+    ITL = "ITL"
+    ITS = "ITS"
+    Library = "Library"
+
+    LOCATION_CHOICES = {
+        ITL: "ITL",
+        ITS: "ITS",
+        Library: "Library",
+    }
+
+    location = models.CharField(max_length=10, choices=LOCATION_CHOICES)

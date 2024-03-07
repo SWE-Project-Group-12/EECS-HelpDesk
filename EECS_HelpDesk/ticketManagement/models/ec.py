@@ -1,7 +1,9 @@
 from django.db import models
+from .ticket import Ticket
 
 
-class EC:
+class EC(Ticket):
     # Standard Model. Inherits from the Model Ticket.
     # Used to store ECs.
-    pass
+    module = models.CharField(max_length=100)
+    component = models.CharField(max_length=100)
