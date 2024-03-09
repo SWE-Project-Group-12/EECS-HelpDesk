@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "home",
+    "login",
+    "ticketManagement",
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.dirname(BASE_DIR / "home/templates"),
+            os.path.dirname(BASE_DIR / "login/templates"),
+            os.path.dirname(BASE_DIR / "ticketManagement/templates"),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -120,7 +122,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    os.path.dirname(BASE_DIR / "home/static")
+    os.path.dirname(BASE_DIR / "login/static"),
+    os.path.dirname(BASE_DIR / "ticketManagement/static"),
 ]
 
 # Default primary key field type
