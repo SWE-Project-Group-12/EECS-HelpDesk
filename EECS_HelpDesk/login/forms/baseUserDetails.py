@@ -18,6 +18,8 @@ class BaseUserDetails(forms.Form):
                                          "1 capital letter \n"
                                          "1 number")
 
+    class Meta:
+        abstract = True
 
 
 
