@@ -12,7 +12,7 @@ class BaseTicketDetails(forms.Form):
 	}
 
     title = forms.CharField(max_length=100, required=True)
-    description = forms.CharField(widget=forms.Textarea)
+    description = forms.CharField(widget=forms.Textarea, required=True)
 
     status = forms.ChoiceField(
         choices=STATUS_CHOICES,
@@ -23,7 +23,7 @@ class BaseTicketDetails(forms.Form):
     )
 
     dateCreated = forms.DateField(disabled=True)
-    # username not sure what to do here because this is a foreign key field
+    username = forms.CharField(max_length=10, min_length=7, required=True)
 
     class Meta: 
         abstract = True
