@@ -23,7 +23,7 @@ class BaseTicketDetails(forms.Form):
     )
 
     dateCreated = forms.DateField(disabled=True)
-    username = forms.CharField(max_length=10, min_length=7, required=True)
+    username = forms.CharField(max_length=10, min_length=7, required=True, widget=forms.HiddenInput)
 
     class Meta: 
         abstract = True
