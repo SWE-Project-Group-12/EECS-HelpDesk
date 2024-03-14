@@ -95,6 +95,6 @@ class createTechnicalFault(FormView):
                 location = form.cleaned_data['location']
             )
             TechFault_ticket.save()
-            return HttpResponseRedirect("/listAllTechnicalFaults")
+            return HttpResponseRedirect("/listAllTechnicalFaults") # Should render a success HTML page instead of a straight redirect.
 
         return render(request, self.template_name, {"form" : form})

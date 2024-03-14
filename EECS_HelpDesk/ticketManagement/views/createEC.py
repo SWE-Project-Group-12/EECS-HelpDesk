@@ -97,7 +97,7 @@ class createEC(FormView):
                 component = form.cleaned_data["component"]
             )
             EC_ticket.save()
-            return HttpResponseRedirect("/listAllECs")
+            return HttpResponseRedirect("/listAllECs") 
 
         return render(request, self.template_name, {"form" : form})
         
