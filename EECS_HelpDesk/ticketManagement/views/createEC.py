@@ -27,6 +27,10 @@ def createEC(request, username):
     # If not valid, return with an error message.
 
 
+    if request.session.get("username") is None:
+        return HttpResponseRedirect("/login")
+
+
     student = Student.objects.filter(username=username)
 
     # validating to see if student exists in model
@@ -38,7 +42,7 @@ def createEC(request, username):
         form = ECForm(request.POST)
 
         if form.is_valid():
-            EC_ticket = EC(
+            EC_ticket = EC.objects.create(
                 title = form.cleaned_data["title"],
                 description = form.cleaned_data["description"],
                 # status = form.cleaned_data["status"],             # pls look at baseTicketDetails for why i did this
