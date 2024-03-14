@@ -1,5 +1,8 @@
 from django.shortcuts import render
-
+from django.http import HttpResponseRedirect
+from ticketManagement.forms import TechnicalFaultForm
+from ticketManagement.models import TechnicalFault
+from login.models import Student
 
 def createTechnicalFault(request, username):
     """ Displays the form to create a ticket for the student. """
@@ -22,4 +25,30 @@ def createTechnicalFault(request, username):
     # If the form is valid, store the ticket.
     # If not valid, return with an error message.
 
-    return render(request, "createTechnicalFault.html")
+
+    student = Student.objects.filter(username=username)
+
+    # validating to see if student exists in model
+    # comment the code below to see the actual page
+    if len(student) <= 0:
+        return HttpResponseRedirect("/listAllTechnicalFaults")
+
+    if request.method == "POST":
+        form = TechnicalFaultForm(request.POST)
+
+        if form.is_valid():
+            TechFault_ticket = TechnicalFault(
+                title = form.cleaned_data["title"],
+                description = form.cleaned_data["description"],
+                # status = form.cleaned_data["status"],             # pls look at baseTicketDetails for why i did this
+                # dateCreated = form.cleaned_data["dateCreated"],   # pls look at baseTicketDetails for why i did this
+                username = Student.objects.get(username=username),  # form says needs to be of Student instance
+                location = form.cleaned_data['location']
+            )
+            TechFault_ticket.save()
+            return HttpResponseRedirect("/listAllTechnicalFaults")
+
+    else:
+        form = TechnicalFaultForm()
+
+    return render(request, "createTechnicalFault.html", {"form" : form})

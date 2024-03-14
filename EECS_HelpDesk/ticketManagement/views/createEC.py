@@ -1,4 +1,8 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from ticketManagement.forms import ECForm
+from ticketManagement.models import EC
+from login.models import Student
 
 
 def createEC(request, username):
@@ -22,4 +26,31 @@ def createEC(request, username):
     # If the form is valid, store the ticket.
     # If not valid, return with an error message.
 
-    return render(request, "createEC.html")
+
+    student = Student.objects.filter(username=username)
+
+    # validating to see if student exists in model
+    # comment the code below to see the actual page
+    if len(student) <= 0:
+        return HttpResponseRedirect("/listAllECs")
+
+    if request.method == "POST":
+        form = ECForm(request.POST)
+
+        if form.is_valid():
+            EC_ticket = EC(
+                title = form.cleaned_data["title"],
+                description = form.cleaned_data["description"],
+                # status = form.cleaned_data["status"],             # pls look at baseTicketDetails for why i did this
+                # dateCreated = form.cleaned_data["dateCreated"],   # pls look at baseTicketDetails for why i did this
+                username = Student.objects.get(username=username),  # form says needs to be of Student instance
+                module = form.cleaned_data["module"],
+                component = form.cleaned_data["component"]
+            )
+            EC_ticket.save()
+            return HttpResponseRedirect("/listAllECs")
+
+    else:
+        form = ECForm()
+
+    return render(request, "createEC.html", {"form" : form})
