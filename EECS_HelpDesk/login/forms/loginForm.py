@@ -1,7 +1,7 @@
 from django.forms import Form
-import baseUserDetails
+from .baseUserDetails import BaseUserDetails
 
-class LoginForm(baseUserDetails):
+class LoginForm(BaseUserDetails):
     # Standard Form. Inherits from BaseUserDetails.
     # Used for logging in and authentication.
     class Meta:
