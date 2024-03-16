@@ -20,7 +20,3 @@ class BaseUserDetails(forms.Form):
 
     class Meta:
         abstract = True
-
-
-
-
