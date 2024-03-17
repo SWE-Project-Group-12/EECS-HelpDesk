@@ -1,16 +1,65 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views import View
+from ..forms import LoginForm 
+from ..models import TechnicalFaultHandler, Student, ECHandler, Admin 
 
 
-def login(request):
-    """ Displays the login page if the user is not currently authenticated. """
+class login(View):
 
-    # If the request method is GET:
-    # Check that the user is not authenticated.
-    # If the user is already authenticated, redirect to a different URL.
+    def get(self, request):
+        if 'user' in request.session:
 
-    # If the request method is POST:
-    # Take the details from the form and query the database.
-    # If there are, redirect to a URL where authentication is required.
-    # If there aren't, display an error message.
+            pk = request.session['user']
 
-    return render(request, "login.html")
+            for UserModel in [TechnicalFaultHandler, Student, ECHandler, Admin]:
+                    user = self.get_user(UserModel, pk = pk)
+                    if user is not None:
+                        break
+
+            redirect_url = self.get_redirect_url(user)
+
+            return redirect(redirect_url)
+
+        form = LoginForm()
+        return render(request, "login.html", {'form': form})
+
+    def post(self, request):
+        form = LoginForm(request.POST)
+
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            user = None
+
+            for UserModel in [TechnicalFaultHandler, Student, ECHandler, Admin]:
+                user = self.get_user(UserModel, username = username, password = password)
+                if user is not None:
+                    break
+
+            if user is None:
+                return render(request, "login.html", {'form': form, 'error_message': 'Invalid username or password.'})
+
+            request.session['user'] = user.pk
+
+            redirect_url = self.get_redirect_url(user)
+
+            return redirect(redirect_url)
+
+        return render(request, "login.html", {'form': form, 'error_message': 'Invalid username or password.'})
+    
+    def get_redirect_url(self, user):
+        if isinstance(user, Student):
+            username = user.username
+            redirect_url = '/findPersonalTickets/{}'.format(str(username)) 
+        else:
+            redirect_url = '/listAllECs'
+        
+        return redirect_url
+
+    def get_user(self, model, **kwargs):
+        try:
+            user = model.objects.get(**kwargs)
+        except model.DoesNotExist:
+            user = None
+        return user
