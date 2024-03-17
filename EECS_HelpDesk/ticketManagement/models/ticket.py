@@ -20,6 +20,7 @@ class Ticket(models.Model):
     description = models.TextField()
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=PENDING)
     dateCreated = models.DateField(auto_now_add=True)
+    status_update_reason = models.CharField(max_length=150, default="")
     username = models.ForeignKey(to="login.Student", on_delete=models.CASCADE)
 
 
