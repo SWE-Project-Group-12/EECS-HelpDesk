@@ -1,12 +1,12 @@
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django import forms
-import baseUserDetails
+from .baseUserDetails import BaseUserDetails
 from django.core.exceptions import ValidationError
 # Used for djangos translation of texts
 from django.utils.translation import gettext_lazy as simpletranslate
 
-class CreateUserForm(baseUserDetails):
+class CreateUserForm(BaseUserDetails):
     # Inherits from BaseUserDetails Form.
     # Form is used to create new users.
 
@@ -62,5 +62,3 @@ class CreateUserForm(baseUserDetails):
     class Meta:
         model = User
         fields = ['name', 'surname', 'username', 'password']
-
-
