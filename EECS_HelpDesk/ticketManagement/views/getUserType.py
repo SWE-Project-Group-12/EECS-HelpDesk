@@ -1,6 +1,7 @@
 from django.apps import apps
 
 def getUserType(username):
+    # helper function that returs the User Type when passed a username
     Student = apps.get_model("login", "Student")
     Admin = apps.get_model("login", "Admin")
     ECHandler = apps.get_model("login", "ECHandler")
