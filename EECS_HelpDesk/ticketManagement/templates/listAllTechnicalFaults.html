@@ -6,5 +6,31 @@
 </head>
 <body>
     <h1> List All Technical Faults </h1>
+    {% if technical_fault_list %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fault in technical_fault_list %}
+                    <tr>
+                        <td>{{ fault.username }}</td>
+                        <td>{{ fault.title }}</td>
+                        <td>{{ fault.status }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="3">No technical faults found.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No technical faults found.</p>
+    {% endif %}
 </body>
 </html>

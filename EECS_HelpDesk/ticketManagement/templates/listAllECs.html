@@ -6,5 +6,27 @@
 </head>
 <body>
   <h1> List All ECs </h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Title</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ec in ec_list %}
+        <tr>
+          <td>{{ ec.username }}</td>
+          <td>{{ ec.title }}</td>
+          <td>{{ ec.status }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="3">No ECs found.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </body>
 </html>
