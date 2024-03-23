@@ -19,7 +19,7 @@ from django.views.generic import ListView
 from ticketManagement.models import Ticket
 from . import getUserType
 
-class FindPersonalTickets(ListView):
+class findPersonalTickets(ListView):
     model = Ticket
     template_name = 'findPersonalTickets.html'
     context_object_name = 'tickets'
