@@ -1,7 +1,10 @@
-from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
+from django.views import View
 
+class logout(View):
 
-def logout(request):
-    """ Logs the user out. """
-    pass
-    pass
+    def get(self, request):
+        if 'user' in request.session:
+            del request.session['user']
+        
+        return redirect('Login')
