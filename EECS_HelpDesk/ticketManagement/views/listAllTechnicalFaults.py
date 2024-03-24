@@ -19,7 +19,7 @@ from ticketManagement.models import TechnicalFault
 from . import getUserType
 
 # Similar to the ListAllECs class, create a ListAllTechnicalFaults class
-class ListAllTechnicalFaults(ListView):
+class listAllTechnicalFaults(ListView):
     model = TechnicalFault
     template_name = 'listAllTechnicalFaults.html'
     context_object_name = 'technical_fault_list'

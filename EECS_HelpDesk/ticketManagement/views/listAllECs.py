@@ -25,7 +25,7 @@ from django.views.generic import ListView
 # Import the getUserType function
 from . import getUserType
 
-class ListAllECs(ListView):
+class listAllECs(ListView):
     model = EC
     template_name = 'listAllECs.html'
     context_object_name = 'ec_list'
