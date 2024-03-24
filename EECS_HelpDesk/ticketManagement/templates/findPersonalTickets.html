@@ -1,26 +1,58 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Personal Tickets</title>
+  <meta charset="UTF-8">
+  <title>{% block title %}My Tickets{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <h1> List Of Personal Tickets </h1>
-    {% if tickets %}
-        <ul>
-        {% for ticket in tickets %}
-            <li>
-                {{ ticket.title }} - {{ ticket.description }}
-                {% if ticket.status == 'Open' %}
-                    <span style="color: red;">(Open)</span>
-                {% elif ticket.status == 'Closed' %}
-                    <span style="color: green;">(Closed)</span>
-                {% endif %}
-            </li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>You don't have any tickets.</p>
-    {% endif %}
+  <div class="container">
+    <header>
+      <h1>Welcome, {{ username }}!</h1>
+    </header>
+
+    <main>
+      {% block content %}
+      <h1>My Tickets</h1>
+
+      {% if tickets %}
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ticket in tickets %}
+            <tr> 
+                <td>{{ ticket.title }}</td> 
+                <td>{{ ticket.description }}</td> 
+                <td> 
+                {% if ticket.status == 'PENDING' %} 
+                    <span style="color: orange;"> {{ ticket.status }} </span> 
+                {% elif ticket.status == 'VOID' %} 
+                    <span style="color: red;"> 
+                {{ ticket.status }} </span> {% elif ticket.status == 'UPDATED' %}   
+                    <span style="color: green;"> {{ ticket.status }} </span> 
+                {% else %} {{ ticket.status }} {% endif %} </td> 
+                <td>{{ ticket.dateCreated }}</td> 
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p>No tickets found.</p>
+      {% endif %}
+
+      {% endblock %}
+    </main>
+
+    <footer>
+    </footer>
+  </div>
 </body>
 </html>

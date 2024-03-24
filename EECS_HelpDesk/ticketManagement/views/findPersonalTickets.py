@@ -28,7 +28,6 @@ class FindPersonalTickets(ListView):
         """
         Override the dispatch method to check if the user is authenticated and of type Student.
         """
-
         # Check if the user is authenticated.
         if request.session.get("user") is None:
             return redirect('/login')
@@ -56,10 +55,25 @@ class FindPersonalTickets(ListView):
             queryset = queryset.filter(pk=self.request.session.get("user"))
         return queryset
 
+    # def get_context_data(self, **kwargs):
+    #     """
+    #     Override the get_context_data method to add the username variable to the context.
+    #     """
+    #     context = super().get_context_data(**kwargs)
+    #     context['username'] = self.request.session.get("user")
+    #     return context
+
     def get_context_data(self, **kwargs):
-        """
-        Override the get_context_data method to add the username variable to the context.
-        """
         context = super().get_context_data(**kwargs)
         context['username'] = self.request.session.get("user")
+
+        context['tickets'] = [
+            {
+                'title': ticket.title,
+                'description': ticket.description,
+                'status': ticket.status,
+                'dateCreated': ticket.dateCreated,
+            } for ticket in context['tickets']
+        ]
+
         return context

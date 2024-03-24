@@ -110,7 +110,7 @@ class createEC(FormView):
                 # dateCreated = form.cleaned_data["dateCreated"],   # pls look at baseTicketDetails for why i did this
                 username = Student.objects.get(username=username),  # form says needs to be of Student instance
                 module = form.cleaned_data["module"],
-                component = form.cleaned_data["component"]
+                component = form.cleaned_data["component"],
             )
             EC_ticket.save()
             return HttpResponseRedirect("/findPersonalTickets/" + username) 
