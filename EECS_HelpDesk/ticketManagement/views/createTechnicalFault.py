@@ -69,7 +69,10 @@ class createTechnicalFault(FormView):
     def get(self, request, username):
         form = self.form_class()
 
-        if request.session.get("username") is None:
+        if request.session.get("user") is None:
+            return HttpResponseRedirect("/login")
+        
+        if request.session.get("user") != username:
             return HttpResponseRedirect("/login")
 
         student = Student.objects.filter(username=username)
@@ -84,6 +87,20 @@ class createTechnicalFault(FormView):
 
     def post(self, request, username):
         form = self.form_class(request.POST)
+
+        if request.session.get("user") is None:
+            return HttpResponseRedirect("/login")
+        
+        if request.session.get("user") != username:
+            return HttpResponseRedirect("/login")
+
+        student = Student.objects.filter(username=username)
+
+        # validating to see if student exists in model
+        # comment the code below to see the actual page
+        if len(student) <= 0:
+            return HttpResponseRedirect("/listAllTechnicalFaults")
+
 
         if form.is_valid():
             TechFault_ticket = TechnicalFault.objects.create(
