@@ -10,17 +10,16 @@ from django.apps import apps
 class createUser(CreateView):
     """ Displays the form to create a new user. Only Admins can access this page. """
     template_name = 'createUser.html'
-    success_url = '/listEC'
+    success_url = '/listAllECs'
 
     # If the request method is GET:
     # Check that the user is authenticated.
     # Check that the logged in user is of type Admin.
     def get(self, request):
-        username = request.session.get("username")
+        username = request.session.get("user")
         print("Username!: ", username)
-        Admin = apps.get_model("login", "Admin")
 
-        if request.session.get("username") is None:
+        if username is None:
             print("Not logged in")
             return HttpResponseRedirect("/login")
         elif len(Admin.objects.filter(pk=username)) == 1:
@@ -81,11 +80,11 @@ class createUser(CreateView):
                     password=password
                 )
 
-            messages.add_message(request, messages.SUCCESS, 'Created User Successfully')
-            return render(request, self.success_url)
+            messages.add_message(request, messages.SUCCESS, 'Created User Successfully') # No need if we're going to do a success message template. Remove.
+            return HttpResponseRedirect(self.success_url) # Redirected to "/listAllECs" but this needs to be a success message. Leave it for now.
 
         else:
-            messages.add_message(request, messages.ERROR, 'User Creation Unsuccessful')
+            messages.add_message(request, messages.ERROR, 'User Creation Unsuccessful') # No need if we're going to do a success message template. Remove.
 
         return render(request, self.template_name, {"CreateUserForm": CreateUserForm})
 
