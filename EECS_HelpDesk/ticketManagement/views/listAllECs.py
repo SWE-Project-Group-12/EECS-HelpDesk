@@ -23,9 +23,9 @@ from ticketManagement.models import EC
 from django.views.generic import ListView
 
 # Import the getUserType function
-from . import getUserType
+from .getUserType import getUserType
 
-class listAllECs(ListView):
+class ListAllECs(ListView):
     model = EC
     template_name = 'listAllECs.html'
     context_object_name = 'ec_list'
@@ -37,12 +37,14 @@ class listAllECs(ListView):
         """
 
         # Check if the user is authenticated.
-        if not getUserType(request.user.username):
-            return redirect('login')
+        if request.session.get("user") is None:
+            return redirect('/login')
+
+        username = request.session.get("user")
 
         # Check if the user is of type EC Handler or is of type Admin.
-        if not (request.user.is_ec_handler or request.user.is_admin):
-            return redirect('login')
+        if not (getUserType(username) == "ECHandler" or getUserType(username) == "Admin"):
+            return redirect('/login')
 
         return super().dispatch(request, *args, **kwargs)
 
@@ -53,8 +55,9 @@ class listAllECs(ListView):
         """
         # Get all ECs from the database.
         queryset = super().get_queryset()
-        if not self.request.user.is_ec_handler and not self.request.user.is_admin:
-            queryset = queryset.filter(username=self.request.user)
+        username = self.request.session.get("user")
+        if not (getUserType(username) == "ECHandler" or getUserType(username) == "Admin"):
+            queryset = queryset.filter(pk=username)
         return queryset
 
 # maps variable names to python objects
@@ -63,5 +66,5 @@ class listAllECs(ListView):
         Override the get_context_data method to add the username variable to the context.
         """
         context = super().get_context_data(**kwargs)
-        context['username'] = self.request.user.username
+        context['username'] = self.request.session.get("user")
         return context

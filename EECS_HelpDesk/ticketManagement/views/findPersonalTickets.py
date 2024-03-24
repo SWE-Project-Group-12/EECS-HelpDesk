@@ -16,11 +16,11 @@
 
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
-from ticketManagement.models import Ticket
-from . import getUserType
+from ticketManagement.models import EC
+from .getUserType import getUserType
 
-class findPersonalTickets(ListView):
-    model = Ticket
+class FindPersonalTickets(ListView):
+    model = EC
     template_name = 'findPersonalTickets.html'
     context_object_name = 'tickets'
 
@@ -30,20 +30,19 @@ class findPersonalTickets(ListView):
         """
 
         # Check if the user is authenticated.
-        if not request.user.is_authenticated:
-            return redirect('login')
+        if request.session.get("user") is None:
+            return redirect('/login')
 
         # Check if the user is of type Student.
-        if getUserType(request.user.username) != 'Student':
-            return redirect('login')
+        if getUserType(request.session.get("user")) != 'Student':
+            return redirect('/login')
 
         # Get the username from the URL.
         username = kwargs['username']
 
         # Check if the user is requesting their own tickets.
-        if username != request.user.username:
-            # redirects to login page but should be error page instead?
-            return redirect('error_page')
+        if username != request.session.get("user"):
+            return redirect('/login')
 
         return super().dispatch(request, *args, **kwargs)
 
@@ -53,8 +52,8 @@ class findPersonalTickets(ListView):
         """
         # Get all tickets from the database.
         queryset = super().get_queryset()
-        if getUserType(self.request.user.username) != 'Student':
-            queryset = queryset.filter(username=self.request.user)
+        if getUserType(self.request.session.get("user")) != 'Student':
+            queryset = queryset.filter(pk=self.request.session.get("user"))
         return queryset
 
     def get_context_data(self, **kwargs):
@@ -62,5 +61,5 @@ class findPersonalTickets(ListView):
         Override the get_context_data method to add the username variable to the context.
         """
         context = super().get_context_data(**kwargs)
-        context['username'] = self.request.user.username
+        context['username'] = self.request.session.get("user")
         return context

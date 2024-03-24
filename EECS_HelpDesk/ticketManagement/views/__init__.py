@@ -8,3 +8,4 @@ from .updateEC import updateEC
 from .updateTechnicalFault import updateTechnicalFault
 from .viewECDetails import viewECDetails
 from .viewTechnicalFaultDetails import viewTechnicalFaultDetails
+from .getUserType import getUserType

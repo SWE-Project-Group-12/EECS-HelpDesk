@@ -16,10 +16,10 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from ticketManagement.models import TechnicalFault
-from . import getUserType
+from .getUserType import getUserType
 
 # Similar to the ListAllECs class, create a ListAllTechnicalFaults class
-class listAllTechnicalFaults(ListView):
+class ListAllTechnicalFaults(ListView):
     model = TechnicalFault
     template_name = 'listAllTechnicalFaults.html'
     context_object_name = 'technical_fault_list'
@@ -30,12 +30,13 @@ class listAllTechnicalFaults(ListView):
         """
 
         # Check if the user is authenticated.
-        if not getUserType(request.user.username):
-            return redirect('login')
+        if request.session.get("user") is None:
+            return redirect('/login')
 
+        username = request.session.get("user")
         # Check if the user is of type Technical Fault Handler or is of type Admin.
-        if not (request.user.is_technical_fault_handler or request.user.is_admin):
-            return redirect('login')
+        if not (getUserType(username) == "TechnicalFaultHandler" or getUserType(username) == "Admin"):
+            return redirect('/login')
 
         return super().dispatch(request, *args, **kwargs)
 
@@ -45,8 +46,9 @@ class listAllTechnicalFaults(ListView):
         """
         # Get all Technical Faults from the database.
         queryset = super().get_queryset()
-        if not self.request.user.is_technical_fault_handler and not self.request.user.is_admin:
-            queryset = queryset.filter(username=self.request.user)
+        username = self.request.session.get("user")
+        if not (getUserType(username) == "TechnicalFaultHandler" or getUserType(username) == "Admin"):
+            queryset = queryset.filter(pk=username)
         return queryset
 
     def get_context_data(self, **kwargs):
@@ -54,5 +56,5 @@ class listAllTechnicalFaults(ListView):
         Override the get_context_data method to add the username variable to the context.
         """
         context = super().get_context_data(**kwargs)
-        context['username'] = self.request.user.username
+        context['username'] = self.request.session.get("user")
         return context
