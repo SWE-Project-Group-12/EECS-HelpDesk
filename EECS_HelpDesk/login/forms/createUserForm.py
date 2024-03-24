@@ -6,12 +6,19 @@ from django.core.exceptions import ValidationError
 # Used for djangos translation of texts
 from django.utils.translation import gettext_lazy as simpletranslate
 
+USER_TYPES = {
+    "Student": "Student",
+    "ECHandler": "Extenuating Circumstances Handler",
+    "TechHandler": "Technical Fault Handler"
+}
+
 class CreateUserForm(BaseUserDetails):
     # Inherits from BaseUserDetails Form.
     # Form is used to create new users.
 
     name = forms.CharField(min_length=4, max_length=25)
     surname = forms.CharField(max_length=25)
+    user_type = forms.ChoiceField(widget=forms.RadioSelect, choices=USER_TYPES)
 
     def clean_name(self):
         name_data = self.cleaned_data['name']
@@ -58,6 +65,11 @@ class CreateUserForm(BaseUserDetails):
             return ValidationError(simpletranslate("Please add a number", code='invalid'))
 
         return password_data
+
+    # Added to ensure it is included when accessing cleaned data in the view, it will be included
+    def clean_user_type(self):
+        selected_user_type = self.cleaned_data['user_type']
+        return selected_user_type
 
     class Meta:
         model = User
