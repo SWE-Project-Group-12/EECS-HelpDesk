@@ -52,6 +52,10 @@ class login(View):
         if isinstance(user, Student):
             username = user.username
             redirect_url = '/findPersonalTickets/{}'.format(str(username)) 
+
+        elif isinstance(user, TechnicalFaultHandler):
+            username = user.username
+            redirect_url = '/listAllTechnicalFaults'
         else:
             redirect_url = '/listAllECs'
         
