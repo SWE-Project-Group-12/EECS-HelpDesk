@@ -29,7 +29,7 @@ class CreateUserForm(BaseUserDetails):
                 number = True
 
         if number:
-            return ValidationError(simpletranslate("Please do not include numbers in your name field"), code='invalid')
+            raise ValidationError(simpletranslate("Please do not include numbers in your name field"), code='invalid')
 
         return name_data
 
@@ -42,7 +42,7 @@ class CreateUserForm(BaseUserDetails):
                 number = True
 
         if number:
-            return ValidationError(simpletranslate("Please do not include numbers in your surname field"), code='invalid')
+            raise ValidationError(simpletranslate("Please do not include numbers in your surname field"), code='invalid')
 
         return surname_data
 
@@ -60,9 +60,9 @@ class CreateUserForm(BaseUserDetails):
                 number = True
 
         if not capital_letter:
-            return ValidationError(simpletranslate("Please add a capital letter"), code='invalid')
+            raise ValidationError(simpletranslate("Please add a capital letter"), code='invalid')
         if not number:
-            return ValidationError(simpletranslate("Please add a number", code='invalid'))
+            raise ValidationError(simpletranslate("Please add a number", code='invalid'))
 
         return password_data
 
