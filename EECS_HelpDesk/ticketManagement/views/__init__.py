@@ -9,3 +9,5 @@ from .updateTechnicalFault import updateTechnicalFault
 from .viewECDetails import viewECDetails
 from .viewTechnicalFaultDetails import viewTechnicalFaultDetails
 from .getUserType import getUserType
+from .manageTechnicalFault import manageTechnicalFault
+from .manageEC import manageEC

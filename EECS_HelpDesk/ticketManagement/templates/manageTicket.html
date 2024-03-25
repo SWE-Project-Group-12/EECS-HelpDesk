@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Ticket</title>
+    {% for ticketDetail in ticketDetails %}
+    <h2>Managing TicketID: {{ticketDetail.id}}</h2>
+   
+    <p>Title: {{ticketDetail.title}}</p>
+    {% endfor %}
+</head>
+<body>
+    
+</body>
+</html>
