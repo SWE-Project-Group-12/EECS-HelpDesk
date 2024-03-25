@@ -40,7 +40,7 @@ class manageTicket(View):
             return HttpResponseRedirect("/login")
         username = request.session.get("user")
 
-        if getUserType not in self.authorised_users:
+        if getUserType(username) not in self.authorised_users:
             return("/login")
         
         ticketID = kwargs["ticketID"]
@@ -51,7 +51,7 @@ class manageTicket(View):
         status_decision = request.POST.get("status_decision","")
         # if status_decision not in STATUS_CHOICEs:
         #     return HttpResponseRedirect("/manage"+ self.ticket_type)
-        ticket = self.model.objects.get(ticketID=ticketID)
+        ticket = self.model.objects.get(pk=ticketID)
         ticket.status = status_decision
         ticket.save()
         
