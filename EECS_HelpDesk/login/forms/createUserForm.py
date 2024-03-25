@@ -9,7 +9,8 @@ from django.utils.translation import gettext_lazy as simpletranslate
 USER_TYPES = {
     "Student": "Student",
     "ECHandler": "Extenuating Circumstances Handler",
-    "TechHandler": "Technical Fault Handler"
+    "TechHandler": "Technical Fault Handler",
+    "Admin": "Admin"
 }
 
 class CreateUserForm(BaseUserDetails):
@@ -69,6 +70,9 @@ class CreateUserForm(BaseUserDetails):
     # Added to ensure it is included when accessing cleaned data in the view, it will be included
     def clean_user_type(self):
         selected_user_type = self.cleaned_data['user_type']
+        if selected_user_type not in USER_TYPES.keys:
+            raise ValidationError(simpletranslate("Please select an appropriate option"), code='invalid')
+
         return selected_user_type
 
     class Meta:

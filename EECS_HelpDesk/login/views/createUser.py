@@ -57,32 +57,62 @@ class createUser(CreateView):
             print(surname)
             print(user_type)
 
+            success = False
+
             # Talk with group. Bad to hardcode, should use enums or maybe django has a feature?
             if user_type == "Student":
-                User = Student.objects.create(
-                    name=name,
-                    username=username,
-                    surname=surname,
-                    password=password
-                )
+                if len(Student.objects.filter(pk=username)) == 1:
+                    messages.add_message(request, messages.ERROR,
+                                         'Username already exists')  # No need if we're going to do a success message template. Remove.
+                else:
+                    User = Student.objects.create(
+                        name=name,
+                        username=username,
+                        surname=surname,
+                        password=password
+                    )
+                    success = True
             elif user_type == "ECHandler":
-                User = ECHandler.objects.create(
-                    name=name,
-                    username=username,
-                    surname=surname,
-                    password=password
-                )
+                if len(ECHandler.objects.filter(pk=username)) == 1:
+                    messages.add_message(request, messages.ERROR,
+                                         'Username already exists')  # No need if we're going to do a success message template. Remove.
+                else:
+                    User = ECHandler.objects.create(
+                        name=name,
+                        username=username,
+                        surname=surname,
+                        password=password
+                    )
+                    success = True
             elif user_type == "TechHandler":
-                User = TechnicalFaultHandler.objects.create(
-                    name=name,
-                    username=username,
-                    surname=surname,
-                    password=password
-                )
+                if len(TechnicalFaultHandler.objects.filter(pk=username)) == 1:
+                    messages.add_message(request, messages.ERROR,
+                                         'Username already exists')  # No need if we're going to do a success message template. Remove.
+                else:
+                    User = TechnicalFaultHandler.objects.create(
+                        name=name,
+                        username=username,
+                        surname=surname,
+                        password=password
+                    )
+                    success = True
+            elif user_type == "Admin":
+                if len(Admin.objects.filter(pk=username)) == 1:
+                    messages.add_message(request, messages.ERROR,
+                                         'Username already exists')  # No need if we're going to do a success message template. Remove.
+                else:
+                    User = Admin.objects.create(
+                        name=name,
+                        username=username,
+                        surname=surname,
+                        password=password
+                    )
+                    success = True
 
-            messages.add_message(request, messages.SUCCESS, 'Created User Successfully') # No need if we're going to do a success message template. Remove.
-            return HttpResponseRedirect(self.success_url) # Redirected to "/listAllECs" but this needs to be a success message. Leave it for now.
-
+            if success:
+                return HttpResponseRedirect(self.success_url) # Redirected to "/listAllECs" but this needs to be a success message. Leave it for now.
+            else:
+                return HttpResponseRedirect("/createUser")
         else:
             messages.add_message(request, messages.ERROR, 'User Creation Unsuccessful') # No need if we're going to do a success message template. Remove.
 
