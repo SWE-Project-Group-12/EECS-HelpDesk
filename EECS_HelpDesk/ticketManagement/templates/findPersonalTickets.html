@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>{% block title %}My Tickets{% endblock %}</title>
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <!-- <link rel="stylesheet" href="{% static 'css/styles.css' %}"> -->
 </head>
+
 <body>
   <div class="container">
     <header>
@@ -14,45 +16,87 @@
 
     <main>
       {% block content %}
-      <h1>My Tickets</h1>
+      <h1>My ECs</h1>
 
-      {% if tickets %}
-        <table>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Description</th>
-              <th>Status</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for ticket in tickets %}
-            <tr> 
-                <td>{{ ticket.title }}</td> 
-                <td>{{ ticket.description }}</td> 
-                <td> 
-                {% if ticket.status == 'PENDING' %} 
-                    <span style="color: orange;"> {{ ticket.status }} </span> 
-                {% elif ticket.status == 'VOID' %} 
-                    <span style="color: red;"> 
-                {{ ticket.status }} </span> {% elif ticket.status == 'UPDATED' %}   
-                    <span style="color: green;"> {{ ticket.status }} </span> 
-                {% else %} {{ ticket.status }} {% endif %} </td> 
-                <td>{{ ticket.dateCreated }}</td> 
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+      {% if ECs %}
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ticket in ECs %}
+          <tr>
+            <td>{{ ticket.title }}</td>
+            <td>{{ ticket.description }}</td>
+            <td>
+              {% if ticket.status == 'PENDING' %}
+              <span style="color: orange;"> {{ ticket.status }} </span>
+              {% elif ticket.status == 'VOID' %}
+              <span style="color: red;">
+                {{ ticket.status }} </span> {% elif ticket.status == 'UPDATED' %}
+              <span style="color: green;"> {{ ticket.status }} </span>
+              {% else %} {{ ticket.status }} {% endif %}
+            </td>
+            <td>{{ ticket.dateCreated }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
       {% else %}
-        <p>No tickets found.</p>
+      <p>No ECs found.</p>
       {% endif %}
 
       {% endblock %}
+
+
+      {% block content2 %}
+      <h1>My Technical Faults</h1>
+
+      {% if techFaults %}
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for techFault in techFaults %}
+          <tr>
+            <td>{{ techFault.title }}</td>
+            <td>{{ techFault.description }}</td>
+            <td>
+              {% if techFault.status == 'PENDING' %}
+              <span style="color: orange;"> {{ techFault.status }} </span>
+              {% elif techFault.status == 'VOID' %}
+              <span style="color: red;">
+                {{ techFault.status }} </span> {% elif techFault.status == 'UPDATED' %}
+              <span style="color: green;"> {{ techFault.status }} </span>
+              {% else %} {{ techFault.status }} {% endif %}
+            </td>
+            <td>{{ techFault.dateCreated }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p>No technical faults found.</p>
+      {% endif %}
+
+      {% endblock %}
+
     </main>
 
     <footer>
     </footer>
   </div>
 </body>
+
 </html>

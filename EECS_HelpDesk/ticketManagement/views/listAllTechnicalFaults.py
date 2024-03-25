@@ -57,4 +57,13 @@ class ListAllTechnicalFaults(ListView):
         """
         context = super().get_context_data(**kwargs)
         context['username'] = self.request.session.get("user")
+        context['technical_fault_list'] = [
+            {
+                'username': ticket.username,
+                'title': ticket.title,
+                'description': ticket.description,
+                'status': ticket.status,
+                'dateCreated': ticket.dateCreated,
+            } for ticket in context['technical_fault_list']
+        ]
         return context

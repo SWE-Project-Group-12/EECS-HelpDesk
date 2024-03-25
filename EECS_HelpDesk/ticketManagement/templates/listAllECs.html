@@ -11,22 +11,31 @@
       <tr>
         <th>Username</th>
         <th>Title</th>
+        <th>Description</th>
         <th>Status</th>
+        <th>Date</th>
       </tr>
     </thead>
     <tbody>
       {% for ec in ec_list %}
         <tr>
-          <td>{{ ec.username }}</td>
+          <td>{{ ec.username.username }}</td>
           <td>{{ ec.title }}</td>
-          <td>{{ ec.status }}</td>
-        </tr>
-      {% empty %}
-        <tr>
-          <td colspan="3">No ECs found.</td>
-        </tr>
-      {% endfor %}
-    </tbody>
+          <td>{{ ec.description }}</td>
+          <td> {% if ec.status == 'PENDING' %} 
+            <span style="color: orange;"> {{ ec.status }} </span> 
+            {% elif ec.status == 'VOID' %} <span style="color: red;"> {{ ec.status }} 
+            </span> {% elif ec.status == 'UPDATED' %} <span style="color: green;"> 
+              {{ ec.status }} </span> {% else %} {{ ec.status }} {% endif %} 
+          </td> 
+          <td>{{ ec.dateCreated }}</td>
+        </tr> 
+        {% empty %} 
+        <tr> 
+          <td colspan="5">No ECs found.</td> 
+        </tr> 
+        {% endfor %} 
+    </tbody> 
   </table>
 </body>
 </html>
