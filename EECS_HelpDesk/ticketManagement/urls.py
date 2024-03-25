@@ -14,4 +14,6 @@ urlpatterns = [
     path("updateTechnicalFault/<int:ticketID>", views.updateTechnicalFault, name="Update Technical Fault"),
     path("viewECDetails/<int:ticketID>", views.viewECDetails, name="View EC Details"),
     path("viewTechnicalFaultDetails/<int:ticketID>", views.viewTechnicalFaultDetails, name="View Technical Fault Details"),
+    path("manageTechnicalFault/<int:ticketID>", views.manageTechnicalFault.as_view(), name="Manage Technical Fault"),
+    path("manageEC/<int:ticketID>", views.manageEC.as_view(), name="Manage EC")
 ]
