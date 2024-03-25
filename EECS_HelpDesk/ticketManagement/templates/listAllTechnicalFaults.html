@@ -12,25 +12,33 @@
                 <tr>
                     <th>Username</th>
                     <th>Title</th>
+                    <th>Description</th>
                     <th>Status</th>
+                    <th>Date</th>
                 </tr>
             </thead>
             <tbody>
                 {% for fault in technical_fault_list %}
                     <tr>
-                        <td>{{ fault.username }}</td>
+                        <td>{{ fault.username.username }}</td>
                         <td>{{ fault.title }}</td>
-                        <td>{{ fault.status }}</td>
-                    </tr>
-                {% empty %}
-                    <tr>
-                        <td colspan="3">No technical faults found.</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p>No technical faults found.</p>
-    {% endif %}
-</body>
+                        <td>{{ fault.description }}</td>
+                        <td> {% if fault.status == 'PENDING' %} 
+                            <span style="color: orange;"> {{ fault.status }} </span> 
+                            {% elif fault.status == 'VOID' %} 
+                            <span style="color: red;"> {{ fault.status }} </span> 
+                            {% elif fault.status == 'UPDATED' %} 
+                            <span style="color: green;"> {{ fault.status }} </span> 
+                            {% else %} {{ fault.status }} {% endif %} 
+                        </td> 
+                        <td>{{ fault.dateCreated}}</td> 
+                    </tr> {% empty %} 
+                    <tr> 
+                        <td colspan="3">No technical faults found.</td> 
+                    </tr> {% endfor %} 
+            </tbody> 
+        </table> {% else %} 
+        <p>No technical faults found.</p> 
+        {% endif %} 
+</body> 
 </html>

@@ -1,21 +1,21 @@
-from django.shortcuts import render
+# from django.shortcuts import render
 
 
-# def listAllECs(request):
-#     """ Displays all ECs for EC Handlers and Admins to track and update. """
+# # def listAllECs(request):
+# #     """ Displays all ECs for EC Handlers and Admins to track and update. """
 
-#     # Check if the user is authenticated.
-#     # If the user is not authenticated, redirect to the login page.
-#     # Check if the user is of type EC Handler or is of type Admin.
-#     # If not, redirect to a page they're allowed to visit.
-#     # Get all ECs from the database.
+# #     # Check if the user is authenticated.
+# #     # If the user is not authenticated, redirect to the login page.
+# #     # Check if the user is of type EC Handler or is of type Admin.
+# #     # If not, redirect to a page they're allowed to visit.
+# #     # Get all ECs from the database.
 
-#     return render(request, "listAllECs.html")
-#___________________________________________________________________________________________________
+# #     return render(request, "listAllECs.html")
+# #___________________________________________________________________________________________________
 
-# class based view
-# kwargs = keyword arguements dictionary that maps keywords names to corresponding values
-# By using **kwargs, you can ensure that your view can accept any additional keyword arguments without causing an error.
+# # class based view
+# # kwargs = keyword arguements dictionary that maps keywords names to corresponding values
+# # By using **kwargs, you can ensure that your view can accept any additional keyword arguments without causing an error.
 
 from django.shortcuts import render, redirect
 from django.apps import apps
@@ -33,17 +33,16 @@ class ListAllECs(ListView):
 # dispatch method used when request made to a view
     def dispatch(self, request, *args, **kwargs):
         """
-        Override the dispatch method to check if the user is authenticated and of type EC Handler or Admin.
+        Override the dispatch method to check if the user is authenticated and of type Student, EC Handler or Admin.
         """
-
         # Check if the user is authenticated.
         if request.session.get("user") is None:
             return redirect('/login')
 
         username = request.session.get("user")
 
-        # Check if the user is of type EC Handler or is of type Admin.
-        if not (getUserType(username) == "ECHandler" or getUserType(username) == "Admin"):
+        # Check if the user is of type Student, EC Handler or Admin.
+        if not (getUserType(username) == "Student" or getUserType(username) == "ECHandler" or getUserType(username) == "Admin"):
             return redirect('/login')
 
         return super().dispatch(request, *args, **kwargs)
@@ -57,7 +56,7 @@ class ListAllECs(ListView):
         queryset = super().get_queryset()
         username = self.request.session.get("user")
         if not (getUserType(username) == "ECHandler" or getUserType(username) == "Admin"):
-            queryset = queryset.filter(pk=username)
+            queryset = queryset.filter(username=username)
         return queryset
 
 # maps variable names to python objects
@@ -67,4 +66,13 @@ class ListAllECs(ListView):
         """
         context = super().get_context_data(**kwargs)
         context['username'] = self.request.session.get("user")
+        context['ec_list'] = [
+            {
+                'username': ec.username,
+                'title': ec.title,
+                'description': ec.description,
+                'status': ec.status,
+                'dateCreated': ec.dateCreated,
+            } for ec in context['ec_list']
+        ]
         return context
