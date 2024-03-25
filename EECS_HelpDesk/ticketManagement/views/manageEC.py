@@ -5,4 +5,4 @@ class manageEC(manageTicket):
     template_name = "manageEC.html"
     model = EC
     ticket_type = "EC"
-    authorised_users = ["Admin", "Student", "ECHandler"]
+    authorised_users = ["Admin","ECHandler"]
