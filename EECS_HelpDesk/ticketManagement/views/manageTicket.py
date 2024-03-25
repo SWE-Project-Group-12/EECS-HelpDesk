@@ -28,7 +28,7 @@ class manageTicket(View):
                 return HttpResponseRedirect("/listAllTechnicalFaults")
     
         ticketID = kwargs["ticketID"] #sets ticketID to the ticketID value passed as an argument
-        
+        print(ticketID)
         ticketDetails = self.model.objects.filter(pk=ticketID).values() #gets the ticket details for the ticket with the ticketID from above
             
 
@@ -48,10 +48,15 @@ class manageTicket(View):
 
         if len(ticket) != 1:
             return HttpResponseRedirect("/listAll" +self.ticket_type.replace(" ", "") + "s")
-        status_decision = request.POST.get("status_decision")
+        status_decision = request.POST.get("status_decision","")
+        # if status_decision not in STATUS_CHOICEs:
+        #     return HttpResponseRedirect("/manage"+ self.ticket_type)
+        ticket = self.model.objects.get(ticketID=ticketID)
+        ticket.status = status_decision
+        ticket.save()
         
         
-        return render(request, self.template_name)
+        return render(request,"manageTicketResult.html", {"ticketID" : ticketID})
 
 
 
