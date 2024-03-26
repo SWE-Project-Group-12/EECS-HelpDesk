@@ -24,6 +24,19 @@ class login(View):
         return render(request, "login.html", {'form': form})
 
     def post(self, request):
+        if 'user' in request.session:
+
+            pk = request.session['user']
+
+            for UserModel in [TechnicalFaultHandler, Student, ECHandler, Admin]:
+                    user = self.get_user(UserModel, pk = pk)
+                    if user is not None:
+                        break
+
+            redirect_url = self.get_redirect_url(user)
+
+            return redirect(redirect_url)
+
         form = LoginForm(request.POST)
 
         if form.is_valid():
