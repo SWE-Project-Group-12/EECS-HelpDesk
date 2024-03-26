@@ -5,11 +5,13 @@ from django.contrib import messages
 from ..forms.createUserForm import CreateUserForm
 from login.models import Admin, User, ECHandler, TechnicalFaultHandler, Student
 from django.apps import apps
-# from ...ticketManagement.views.getUserType import getUserType
+from .getUserType import getUserType
+
 
 class createUser(CreateView):
     """ Displays the form to create a new user. Only Admins can access this page. """
     template_name = 'createUser.html'
+    success_template_name = "successMessage.html"
     success_url = '/listAllECs'
 
     # If the request method is GET:
@@ -17,20 +19,15 @@ class createUser(CreateView):
     # Check that the logged in user is of type Admin.
     def get(self, request):
         username = request.session.get("user")
-        print("Username!: ", username)
 
         if username is None:
-            print("Not logged in")
             return HttpResponseRedirect("/login")
         elif len(Admin.objects.filter(pk=username)) == 1:
-            print(Admin.__name__)
             return render(request, "createUser.html", {"CreateUserForm": CreateUserForm})
         else:
-            # CHANGE THIS LATER :)
-            print("Not an Admin, get out of here!")
             return HttpResponseRedirect("/login")
 
-        return render(request, "createUser.html", {"CreateUserForm": CreateUserForm})
+        return render(request, "createUser.html", {"CreateUserForm": CreateUserForm, "userType": getUserType(username)})
 
     # If the request method is POST:
     # Check that the user is authenticated and is of type Admin.
@@ -38,11 +35,18 @@ class createUser(CreateView):
     # If valid, store the details and return a success message.
     # If invalid, return with an error message.
     def post(self, request):
+
+        if username is None:
+            return HttpResponseRedirect("/login")
+        elif len(Admin.objects.filter(pk=username)) == 1:
+            return render(request, "createUser.html", {"CreateUserForm": CreateUserForm})
+        else:
+            return HttpResponseRedirect("/login")
+
         f = CreateUserForm(request.POST)
 
         # Validates the details
         if f.is_valid():
-            print("Form cleaned data: ", f.cleaned_data)
             cleaned_f = f.cleaned_data
             username = cleaned_f["username"]
             password = cleaned_f["password"]
@@ -50,16 +54,37 @@ class createUser(CreateView):
             surname = cleaned_f["surname"]
             user_type = cleaned_f["user_type"]
 
-            print("POST REQUEST!")
-            print(username)
-            print(password)
-            print(name)
-            print(surname)
-            print(user_type)
-
             success = False
 
-            # Talk with group. Bad to hardcode, should use enums or maybe django has a feature?
+            models_list = [Student, ECHandler, TechnicalFaultHandler, Student]
+            for userType in models_list:
+                if user_type == userType:
+                    if len(userType.objects.filter(pk=username)) == 1:
+                        f.add_error("username": "Username already exists,")
+
+                    else:
+                        success = True
+                        userType.objects.create(
+                            name=name,
+                            username=username,
+                            surname=surname,
+                            password=password
+                        )
+
+        if success:
+            return render(request, self.success_template_name, {"username": username, "ticketType": self.ticket_type, "userType": getUserType(username), "message": user_type + " Created."})
+
+        else:
+            return HttpResponseRedirect("/createUser")
+
+
+        return render(request, self.template_name, {"CreateUserForm": CreateUserForm, "userType": getUserType(username)})
+
+
+
+
+
+"""
             if user_type == "Student":
                 if len(Student.objects.filter(pk=username)) == 1:
                     messages.add_message(request, messages.ERROR,
@@ -108,14 +133,4 @@ class createUser(CreateView):
                         password=password
                     )
                     success = True
-
-            if success:
-                return HttpResponseRedirect(self.success_url) # Redirected to "/listAllECs" but this needs to be a success message. Leave it for now.
-            else:
-                return HttpResponseRedirect("/createUser")
-        else:
-            messages.add_message(request, messages.ERROR, 'User Creation Unsuccessful') # No need if we're going to do a success message template. Remove.
-
-        return render(request, self.template_name, {"CreateUserForm": CreateUserForm})
-
-
+                """
