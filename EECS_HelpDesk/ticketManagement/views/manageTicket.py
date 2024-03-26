@@ -56,7 +56,7 @@ class manageTicket(View):
         ticket.save()
         message = "Ticket ID: " + str(ticketID) + "Updated Successfully" 
         
-        return render(request,"successMessage.html", {"ticketID" : ticketID, "message" : message, "userType": getUserType(username\)})
+        return render(request,"successMessage.html", {"ticketID" : ticketID, "message" : message, "userType": getUserType(username)})
 
 
 
