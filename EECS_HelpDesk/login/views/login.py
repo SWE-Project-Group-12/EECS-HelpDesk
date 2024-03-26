@@ -44,22 +44,21 @@ class login(View):
             password = form.cleaned_data['password']
 
             user = None
+            success = False
 
             for UserModel in [TechnicalFaultHandler, Student, ECHandler, Admin]:
-                user = self.get_user(UserModel, username = username, password = password)
-                if user is not None:
-                    break
+                if self.get_user(UserModel, username = username, password = password) is not None:
+                    user = self.get_user(UserModel, username = username, password = password)
+                    success = True
 
-            if user is None:
-                return render(request, "login.html", {'form': form, 'error_message': 'Invalid username or password.'})
+            if success:
+                request.session['user'] = user.pk
+                redirect_url = self.get_redirect_url(user)
+                return redirect(redirect_url)
 
-            request.session['user'] = user.pk
+        form.add_error("password", "Invalid username and password combination.")
 
-            redirect_url = self.get_redirect_url(user)
-
-            return redirect(redirect_url)
-
-        return render(request, "login.html", {'form': form, 'error_message': 'Invalid username or password.'})
+        return render(request, "login.html", {'form': form})
     
     def get_redirect_url(self, user):
         if isinstance(user, Student):
