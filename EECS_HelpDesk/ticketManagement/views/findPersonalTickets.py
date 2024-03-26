@@ -45,4 +45,4 @@ class FindPersonalTickets(ListView):
         ECs = EC.objects.filter(username=username)
         techFault = TechnicalFault.objects.filter(username=username)
 
-        return render(request, self.template_name, {"ECs" : ECs, "techFaults" : techFault, "username" : self.request.session.get("user"), "userType" : getUserType})
+        return render(request, self.template_name, {"ECs" : ECs, "techFaults" : techFault, "username" : self.request.session.get("user"), "userType" : getUserType(username)})
