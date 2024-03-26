@@ -4,5 +4,5 @@ from .manageTicket import manageTicket
 class manageTechnicalFault(manageTicket):
     template_name = "manageTechnicalFault.html"
     model = TechnicalFault
-    ticket_type = "Technical Fault"
+    ticket_type = "TechnicalFault"
     authorised_users = ["Admin", "TechnicalFaultHandler"]

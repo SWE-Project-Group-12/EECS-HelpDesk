@@ -2,6 +2,6 @@
     {% csrf_token %}
     <label for="reason">Reason for the Update of Status</label>
     <textarea name="reason"></textarea>
-    <input type="submit" name="status_decision" value="Update">
-    <input type="submit" name="status_decision" value="Void">
+    <button type="submit" name="status_decision" value="UPDATED">Accept</button>
+    <button type="submit" name="status_decision" value="VOID">Reject</button>
 </form>
