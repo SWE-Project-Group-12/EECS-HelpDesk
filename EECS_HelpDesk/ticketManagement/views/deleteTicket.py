@@ -1,15 +1,26 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.views.generic import DeleteView
+from .getUserType import getUserType
 
 
-def deleteTicket(request, username, ticketID):
-    """ Deletes a ticket for a student. """
+class DeleteTicketView(DeleteView):
+    template_name = "successMessage.html"
+    model = None
+    ticket_type = None
 
-    # Check the user is authenticated.
-    # If the user is not authenticated, redirect to the login page.
-    # Check the user is of type Student.
-    # If the user is not of type Student, redirect to a page they're allowed to visit.
-    # Check that the ticket is stored in the database (query via ticketID and username).
-    # If the ticket is found, remove from the database and return a "ticket deleted" message.
-    # If the ticket is not found, return an error message.
+    def get(self, request, *args, **kwargs):
+        if request.session.get("user") is None:
+            return HttpResponseRedirect("/login")
 
-    return render(request, "deleteTicket.html")
+        username = request.session.get("user")
+        if getUserType(username) != "Student":
+            return HttpResponseRedirect("/login")
+
+        if username != kwargs['username']:
+            return HttpResponseRedirect("/findPersonalTickets/" + username)
+
+        ticketID = kwargs['ticketID']
+        self.model.objects.filter(pk=ticketID).delete()
+
+        return render(request, self.template_name, {"username": username, "ticketType": self.ticket_type, "userType": getUserType(username), "message": self.ticket_type + " Removed."})
