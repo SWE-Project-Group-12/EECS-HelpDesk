@@ -54,9 +54,9 @@ class manageTicket(View):
         ticket = self.model.objects.get(pk=ticketID)
         ticket.status = status_decision
         ticket.save()
+        message = "Ticket ID: " + str(ticketID) + "Updated Successfully" 
         
-        
-        return render(request,"manageTicketResult.html", {"ticketID" : ticketID})
+        return render(request,"successMessage.html", {"ticketID" : ticketID, "message" : message})
 
 
 
