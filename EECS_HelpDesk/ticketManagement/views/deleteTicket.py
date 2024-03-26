@@ -20,7 +20,12 @@ class DeleteTicketView(DeleteView):
         if username != kwargs['username']:
             return HttpResponseRedirect("/findPersonalTickets/" + username)
 
-        ticketID = kwargs['ticketID']
-        self.model.objects.filter(pk=ticketID).delete()
+        message = self.ticket_type + " Deleted."
 
-        return render(request, self.template_name, {"username": username, "ticketType": self.ticket_type, "userType": getUserType(username), "message": self.ticket_type + " Removed."})
+        ticketID = kwargs['ticketID']
+        if len(self.model.objects.filter(pk=ticketID)) <= 0:
+            message = self.ticket_type + " with ID " + str(ticketID) + " was not found."
+        else:
+            self.model.objects.filter(pk=ticketID).delete()
+
+        return render(request, self.template_name, {"username": username, "ticketType": self.ticket_type, "userType": getUserType(username), "message": message})
