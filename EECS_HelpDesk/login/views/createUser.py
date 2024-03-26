@@ -34,12 +34,14 @@ class createUser(CreateView):
     # If invalid, return with an error message.
     def post(self, request):
 
+        username = request.session.get("user")
         if username is None:
             return HttpResponseRedirect("/login")
         elif len(Admin.objects.filter(pk=username)) != 1:
             return HttpResponseRedirect("/login")
 
         f = CreateUserForm(request.POST)
+        success = False
 
         # Validates the details
         if f.is_valid():
@@ -50,83 +52,24 @@ class createUser(CreateView):
             surname = cleaned_f["surname"]
             user_type = cleaned_f["user_type"]
 
-            success = False
-
-            models_list = [Student, ECHandler, TechnicalFaultHandler, Student]
+            models_list = [Student, ECHandler, TechnicalFaultHandler, Admin]
             for userType in models_list:
-                if user_type == userType:
+                if user_type == userType.__name__:
                     if len(userType.objects.filter(pk=username)) == 1:
-                        f.add_error("username", "Username already exists,")
+                        f.add_error("username", "Username already exists.")
 
                     else:
-                        success = True
-                        userType.objects.create(
+                        newUser = userType.objects.create(
                             name=name,
                             username=username,
                             surname=surname,
                             password=password
                         )
+                        newUser.save()
+                        success = True
 
         if success:
-            return render(request, self.success_template_name, {"username": username, "ticketType": self.ticket_type, "userType": getUserType(username), "message": user_type + " Created."})
-
-        else:
-            return HttpResponseRedirect("/createUser")
+            return render(request, self.success_template_name, {"username": username, "userType": getUserType(username), "message": user_type + " Created."})
 
 
-        return render(request, self.template_name, {"CreateUserForm": CreateUserForm, "userType": getUserType(username)})
-
-
-
-
-
-"""
-            if user_type == "Student":
-                if len(Student.objects.filter(pk=username)) == 1:
-                    messages.add_message(request, messages.ERROR,
-                                         'Username already exists')  # No need if we're going to do a success message template. Remove.
-                else:
-                    User = Student.objects.create(
-                        name=name,
-                        username=username,
-                        surname=surname,
-                        password=password
-                    )
-                    success = True
-            elif user_type == "ECHandler":
-                if len(ECHandler.objects.filter(pk=username)) == 1:
-                    messages.add_message(request, messages.ERROR,
-                                         'Username already exists')  # No need if we're going to do a success message template. Remove.
-                else:
-                    User = ECHandler.objects.create(
-                        name=name,
-                        username=username,
-                        surname=surname,
-                        password=password
-                    )
-                    success = True
-            elif user_type == "TechHandler":
-                if len(TechnicalFaultHandler.objects.filter(pk=username)) == 1:
-                    messages.add_message(request, messages.ERROR,
-                                         'Username already exists')  # No need if we're going to do a success message template. Remove.
-                else:
-                    User = TechnicalFaultHandler.objects.create(
-                        name=name,
-                        username=username,
-                        surname=surname,
-                        password=password
-                    )
-                    success = True
-            elif user_type == "Admin":
-                if len(Admin.objects.filter(pk=username)) == 1:
-                    messages.add_message(request, messages.ERROR,
-                                         'Username already exists')  # No need if we're going to do a success message template. Remove.
-                else:
-                    User = Admin.objects.create(
-                        name=name,
-                        username=username,
-                        surname=surname,
-                        password=password
-                    )
-                    success = True
-                """
+        return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(username)})
