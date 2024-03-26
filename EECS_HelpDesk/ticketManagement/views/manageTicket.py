@@ -50,7 +50,6 @@ class manageTicket(View):
             return HttpResponseRedirect("/listAll" +self.ticket_type.replace(" ", "") + "s")
         status_decision = request.POST.get("status_decision","")
         if status_decision not in STATUS_CHOICES:
-            
             return HttpResponseRedirect("/manage"+ self.ticket_type + "/"+ str(ticketID))
         ticket = self.model.objects.get(pk=ticketID)
         ticket.status = status_decision
