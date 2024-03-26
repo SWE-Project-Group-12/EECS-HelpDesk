@@ -44,7 +44,9 @@
             </td>
             <td>{{ ticket.dateCreated }}</td>
             <td>
-              <a href="/deleteEC/{{username}}/{{ticket.id}}">Delete EC</a>
+              <form action="/deleteEC/{{username}}/{{ticket.id}}" method="get">
+                <button onclick="confirmDelete(event)">Delete EC</button>
+              </form>
             </td>
           </tr>
           {% endfor %}
@@ -86,7 +88,9 @@
             </td>
             <td>{{ techFault.dateCreated }}</td>
             <td>
-              <a href="/deleteTechnicalFault/{{username}}/{{techFault.id}}">Delete Technical Fault</a>
+              <form action="/deleteTechnicalFault/{{username}}/{{techFault.id}}" method="get">
+                <button onclick="confirmDelete(event)">Delete Technical Fault</button>
+              </form>
             </td>
           </tr>
           {% endfor %}
@@ -102,6 +106,15 @@
 
     <footer>
     </footer>
+    <script>
+      function confirmDelete(event) {
+        event.preventDefault()
+
+        if (confirm("Are you sure you want to delete this ticket?")) {
+          event.target.parentElement.submit()
+        }
+      }
+    </script>
   </div>
 </body>
 
