@@ -28,8 +28,10 @@ class manageTicket(View):
                 return HttpResponseRedirect("/listAllTechnicalFaults")
     
         ticketID = kwargs["ticketID"] #sets ticketID to the ticketID value passed as an argument
-        print(ticketID)
         ticketDetails = self.model.objects.filter(pk=ticketID).values() #gets the ticket details for the ticket with the ticketID from above
+
+        if len(ticketDetails) <= 0:
+            return render(request, "successMessage.html", {"message": self.ticket_type + " with Ticket ID " + str(ticketID) + " does not exist."})
             
 
         return render(request, self.template_name , {"ticketDetails": ticketDetails, "ticketID" : ticketID, "userType" : getUserType(username), "STATUS_CHOICES" : STATUS_CHOICES.keys()})
@@ -57,7 +59,3 @@ class manageTicket(View):
         message = "Ticket ID: " + str(ticketID) + "Updated Successfully" 
         
         return render(request,"successMessage.html", {"ticketID" : ticketID, "message" : message, "userType": getUserType(username)})
-
-
-
-
