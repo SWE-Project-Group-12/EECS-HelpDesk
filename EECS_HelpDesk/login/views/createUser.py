@@ -22,9 +22,7 @@ class createUser(CreateView):
 
         if username is None:
             return HttpResponseRedirect("/login")
-        elif len(Admin.objects.filter(pk=username)) == 1:
-            return render(request, "createUser.html", {"CreateUserForm": CreateUserForm})
-        else:
+        elif len(Admin.objects.filter(pk=username)) != 1:
             return HttpResponseRedirect("/login")
 
         return render(request, "createUser.html", {"CreateUserForm": CreateUserForm, "userType": getUserType(username)})
@@ -38,9 +36,7 @@ class createUser(CreateView):
 
         if username is None:
             return HttpResponseRedirect("/login")
-        elif len(Admin.objects.filter(pk=username)) == 1:
-            return render(request, "createUser.html", {"CreateUserForm": CreateUserForm})
-        else:
+        elif len(Admin.objects.filter(pk=username)) != 1:
             return HttpResponseRedirect("/login")
 
         f = CreateUserForm(request.POST)
