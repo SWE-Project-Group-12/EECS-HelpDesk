@@ -3,6 +3,7 @@ from .createTechnicalFault import createTechnicalFault
 from .findPersonalTickets import FindPersonalTickets
 from .deleteEC import DeleteECView
 from .deleteTechnicalFault import DeleteTechnicalFaultView
+from .deleteTicket import DeleteTicketView
 from .listAllECs import ListAllECs
 from .listAllTechnicalFaults import ListAllTechnicalFaults
 from .getUserType import getUserType

@@ -1,4 +1,4 @@
-from . import DeleteTicketView
+from .deleteTicket import DeleteTicketView
 from ..models import EC
 
 
