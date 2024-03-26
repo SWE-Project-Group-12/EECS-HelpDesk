@@ -65,7 +65,7 @@ from .getUserType import getUserType
 # class based version
 class createTechnicalFault(FormView):
     template_name = "createTechnicalFault.html"
-    succes_template_name = "successMessage.html"
+    success_template_name = "successMessage.html"
     form_class = TechnicalFaultForm
 
     def get(self, request, username):
