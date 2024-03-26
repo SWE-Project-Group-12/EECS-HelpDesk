@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponseRedirect
 from .getUserType import getUserType
-
+from ..models import STATUS_CHOICES
 
 class manageTicket(View):
     template_name="manageTicket.html"
@@ -49,8 +49,8 @@ class manageTicket(View):
         if len(ticket) != 1:
             return HttpResponseRedirect("/listAll" +self.ticket_type.replace(" ", "") + "s")
         status_decision = request.POST.get("status_decision","")
-        # if status_decision not in STATUS_CHOICEs:
-        #     return HttpResponseRedirect("/manage"+ self.ticket_type)
+        if status_decision not in STATUS_CHOICES:
+            return HttpResponseRedirect("/manage"+ self.ticket_type)
         ticket = self.model.objects.get(pk=ticketID)
         ticket.status = status_decision
         ticket.save()

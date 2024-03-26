@@ -1,20 +1,17 @@
 from django.db import models
 
+UPDATED = "UPDATED"
+VOID = "VOIDED"
+PENDING = "PENDING"
 
-class Ticket(models.Model):
-    # Abstract Model (See https://docs.djangoproject.com/en/5.0/topics/db/models/#model-inheritance).
-    # Contains the common attributes for ECs and Technical Faults.
-
-    UPDATED = "UPDATED"
-    VOID = "VOIDED"
-    PENDING = "PENDING"
-
-    STATUS_CHOICES = {
+STATUS_CHOICES = {
 		UPDATED: "Updated",
 		VOID: "Void",
         PENDING: "Pending",
 	}
-
+class Ticket(models.Model):
+    # Abstract Model (See https://docs.djangoproject.com/en/5.0/topics/db/models/#model-inheritance).
+    # Contains the common attributes for ECs and Technical Faults.
 
     title = models.CharField(max_length=100)
     description = models.TextField()
