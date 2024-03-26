@@ -32,7 +32,7 @@ class manageTicket(View):
         ticketDetails = self.model.objects.filter(pk=ticketID).values() #gets the ticket details for the ticket with the ticketID from above
             
 
-        return render(request, self.template_name , {"ticketDetails": ticketDetails, "ticketID" : ticketID, "userType" : getUserType})
+        return render(request, self.template_name , {"ticketDetails": ticketDetails, "ticketID" : ticketID, "userType" : getUserType, "STATUS_CHOICES" : STATUS_CHOICES.keys()})
 
     def post(self, request, *args, **kwargs):
 
@@ -50,7 +50,7 @@ class manageTicket(View):
             return HttpResponseRedirect("/listAll" +self.ticket_type.replace(" ", "") + "s")
         status_decision = request.POST.get("status_decision","")
         if status_decision not in STATUS_CHOICES:
-            return HttpResponseRedirect("/manage"+ self.ticket_type)
+            return HttpResponseRedirect("/manage"+ self.ticket_type + "/"+ str(ticketID))
         ticket = self.model.objects.get(pk=ticketID)
         ticket.status = status_decision
         ticket.save()
