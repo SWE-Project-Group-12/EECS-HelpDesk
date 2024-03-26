@@ -32,6 +32,7 @@
                             {% else %} {{ fault.status }} {% endif %} 
                         </td> 
                         <td>{{ fault.dateCreated}}</td> 
+                        <td><a href="/manageTechnicalFault/{{fault.ticketID}}">Manage Technical Fault</a></td>
                     </tr> {% empty %} 
                     <tr> 
                         <td colspan="3">No technical faults found.</td> 

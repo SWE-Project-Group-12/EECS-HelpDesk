@@ -54,6 +54,10 @@ class ListAllECs(ListView):
         """
         # Get all ECs from the database.
         queryset = super().get_queryset()
+
+        if self.request.session.get("user") is None:
+            return redirect('/login')
+        
         username = self.request.session.get("user")
         if not (getUserType(username) == "ECHandler" or getUserType(username) == "Admin"):
             queryset = queryset.filter(username=username)
@@ -69,6 +73,7 @@ class ListAllECs(ListView):
         context['userType'] = getUserType(self.request.session.get('user'))
         context['ec_list'] = [
             {
+                "ticketID": ec.id,
                 'username': ec.username,
                 'title': ec.title,
                 'description': ec.description,

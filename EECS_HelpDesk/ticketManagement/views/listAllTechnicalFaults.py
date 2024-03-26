@@ -46,6 +46,10 @@ class ListAllTechnicalFaults(ListView):
         """
         # Get all Technical Faults from the database.
         queryset = super().get_queryset()
+
+        if self.request.session.get("user") is None:
+            return redirect('/login')
+
         username = self.request.session.get("user")
         if not (getUserType(username) == "TechnicalFaultHandler" or getUserType(username) == "Admin"):
             queryset = queryset.filter(pk=username)
@@ -60,6 +64,7 @@ class ListAllTechnicalFaults(ListView):
         context['userType'] = getUserType(self.request.session.get('user'))
         context['technical_fault_list'] = [
             {
+                "ticketID": ticket.id,
                 'username': ticket.username,
                 'title': ticket.title,
                 'description': ticket.description,

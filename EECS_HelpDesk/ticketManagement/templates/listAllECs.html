@@ -29,6 +29,7 @@
               {{ ec.status }} </span> {% else %} {{ ec.status }} {% endif %} 
           </td> 
           <td>{{ ec.dateCreated }}</td>
+          <td><a href="/manageEC/{{ec.ticketID}}">Manage Technical Fault</a></td>
         </tr> 
         {% empty %} 
         <tr> 
