@@ -4,6 +4,7 @@ from ticketManagement.forms import ECForm
 from ticketManagement.models import EC
 from login.models import Student
 from django.views.generic.edit  import FormView
+from .getUserType import getUserType
 
 
 # def createEC(request, username):
@@ -67,6 +68,7 @@ from django.views.generic.edit  import FormView
 class createEC(FormView):
     template_name = "createEC.html"
     form_class = ECForm
+    success_template_name = "successMessage.html"
 
     def get(self, request, username):
         form = self.form_class()
@@ -84,21 +86,20 @@ class createEC(FormView):
         if len(student) <= 0:
             return HttpResponseRedirect("/listAllECs")
 
-        return render(request, self.template_name, {"form": form})
+        return render(request, self.template_name, {"form": form, "userType": getUserType(username)})
 
     def post(self, request, username):
         form = self.form_class(request.POST)
 
         if request.session.get("user") is None:
             return HttpResponseRedirect("/login")
-
-        student = Student.objects.filter(username=username)
         
         if request.session.get("user") != username:
             return HttpResponseRedirect("/login")
 
         # validating to see if student exists in model
         # comment the code below to see the actual page
+        student = Student.objects.filter(username=username)
         if len(student) <= 0:
             return HttpResponseRedirect("/listAllECs")
 
@@ -113,7 +114,8 @@ class createEC(FormView):
                 component = form.cleaned_data["component"],
             )
             EC_ticket.save()
-            return HttpResponseRedirect("/findPersonalTickets/" + username) 
 
-        return render(request, self.template_name, {"form" : form})
+            return render(request, self.success_template_name, {"username": username, "userType": getUserType(username), "message": "EC Saved."})
+
+        return render(request, self.template_name, {"form" : form, "userType": getUserType(username)})
         

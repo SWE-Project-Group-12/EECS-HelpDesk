@@ -4,6 +4,7 @@ from ticketManagement.forms import TechnicalFaultForm
 from ticketManagement.models import TechnicalFault
 from login.models import Student
 from django.views.generic.edit  import FormView
+from .getUserType import getUserType
 
 # def createTechnicalFault(request, username):
 #     """ Displays the form to create a ticket for the student. """
@@ -64,6 +65,7 @@ from django.views.generic.edit  import FormView
 # class based version
 class createTechnicalFault(FormView):
     template_name = "createTechnicalFault.html"
+    succes_template_name = "successMessage.html"
     form_class = TechnicalFaultForm
 
     def get(self, request, username):
@@ -82,7 +84,7 @@ class createTechnicalFault(FormView):
         if len(student) <= 0:
             return HttpResponseRedirect("/listAllTechnicalFaults")
 
-        return render(request, self.template_name, {"form": form})
+        return render(request, self.template_name, {"form": form, "userType": getUserType(username)})
 
 
     def post(self, request, username):
@@ -112,6 +114,7 @@ class createTechnicalFault(FormView):
                 location = form.cleaned_data['location']
             )
             TechFault_ticket.save()
-            return HttpResponseRedirect("/findPersonalTickets/" + username) # Should render a success HTML page instead of a straight redirect.
 
-        return render(request, self.template_name, {"form" : form})
+            return render(request, self.success_template_name, {"username": username, "userType": getUserType(username), "message": "Technical Fault Saved."})
+
+        return render(request, self.template_name, {"form" : form, "userType": getUserType(username)})
