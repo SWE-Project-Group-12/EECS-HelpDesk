@@ -43,6 +43,9 @@
               {% else %} {{ ticket.status }} {% endif %}
             </td>
             <td>{{ ticket.dateCreated }}</td>
+            <td>
+              <a href="/deleteEC/{{username}}/{{ticket.id}}">Delete EC</a>
+            </td>
           </tr>
           {% endfor %}
         </tbody>
@@ -82,6 +85,9 @@
               {% else %} {{ techFault.status }} {% endif %}
             </td>
             <td>{{ techFault.dateCreated }}</td>
+            <td>
+              <a href="/deleteTechnicalFault/{{username}}/{{techFault.id}}">Delete Technical Fault</a>
+            </td>
           </tr>
           {% endfor %}
         </tbody>
