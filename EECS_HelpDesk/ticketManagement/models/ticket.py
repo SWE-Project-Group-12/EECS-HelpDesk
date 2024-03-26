@@ -1,7 +1,7 @@
 from django.db import models
 
 UPDATED = "UPDATED"
-VOID = "VOIDED"
+VOID = "VOID"
 PENDING = "PENDING"
 
 STATUS_CHOICES = {
