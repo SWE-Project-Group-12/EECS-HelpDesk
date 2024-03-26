@@ -33,7 +33,7 @@ class ListAllECs(ListView):
 # dispatch method used when request made to a view
     def dispatch(self, request, *args, **kwargs):
         """
-        Override the dispatch method to check if the user is authenticated and of type Student, EC Handler or Admin.
+        Override the dispatch method to check if the user is authenticated and of type EC Handler or Admin.
         """
         # Check if the user is authenticated.
         if request.session.get("user") is None:
@@ -41,8 +41,8 @@ class ListAllECs(ListView):
 
         username = request.session.get("user")
 
-        # Check if the user is of type Student, EC Handler or Admin.
-        if not (getUserType(username) == "Student" or getUserType(username) == "ECHandler" or getUserType(username) == "Admin"):
+        # Check if the user is of type EC Handler or Admin.
+        if not (getUserType(username) == "ECHandler" or getUserType(username) == "Admin"):
             return redirect('/login')
 
         return super().dispatch(request, *args, **kwargs)

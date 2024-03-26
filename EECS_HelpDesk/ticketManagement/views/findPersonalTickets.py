@@ -24,7 +24,6 @@ from django.http import HttpResponseRedirect
 
 
 class FindPersonalTickets(ListView):
-    model = EC
     template_name = 'findPersonalTickets.html'
     context_object_name = 'tickets'
 
@@ -100,4 +99,4 @@ class FindPersonalTickets(ListView):
         ECs = EC.objects.filter(username=username)
         techFault = TechnicalFault.objects.filter(username=username)
 
-        return render(request, self.template_name, {"ECs" : ECs, "techFaults" : techFault, "username" : self.request.session.get("user")})
+        return render(request, self.template_name, {"ECs" : ECs, "techFaults" : techFault, "username" : self.request.session.get("user"), "userType" : getUserType})
