@@ -60,7 +60,7 @@ class createUser(CreateView):
             for userType in models_list:
                 if user_type == userType:
                     if len(userType.objects.filter(pk=username)) == 1:
-                        f.add_error("username": "Username already exists,")
+                        f.add_error("username", "Username already exists,")
 
                     else:
                         success = True
