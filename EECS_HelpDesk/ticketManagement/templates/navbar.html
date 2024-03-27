@@ -12,12 +12,14 @@
             {% endif %}
 
             {% if userType == 'Student' %}
+            <li><a href="{% url 'CreateEC' username=username %}">Create EC</a></li>
+            <li><a href="{% url 'CreateTechnicalFault' username=username %}">Create Technical Fault</a></li>
             <li><a href="{% url 'FindPersonalTickets' username=username %}">Find Personal Tickets</a></li> 
 
             {% endif %}
 
             
-            <li><a href="{% url 'Logout' %}">logout</a></li>
+            <li><a href="{% url 'Logout' %}">Log Out</a></li>
         </ul>
     </nav>
 </header>
