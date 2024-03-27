@@ -45,6 +45,11 @@
             </td>
             <td>{{ ticket.dateCreated }}</td>
             <td>
+              <form action="/viewECDetails/{{username}}/{{ticket.id}}" method="get">
+                <button>View EC</button>
+              </form>
+            </td>
+            <td>
               <form action="/deleteEC/{{username}}/{{ticket.id}}" method="get">
                 <button onclick="confirmDelete(event)">Delete EC</button>
               </form>
@@ -88,6 +93,11 @@
               {% else %} {{ techFault.status }} {% endif %}
             </td>
             <td>{{ techFault.dateCreated }}</td>
+            <td>
+              <form action="/viewTechnicalFaultDetails/{{username}}/{{techFault.id}}" method="get">
+                <button>View Technical Fault</button>
+              </form>
+            </td>
             <td>
               <form action="/deleteTechnicalFault/{{username}}/{{techFault.id}}" method="get">
                 <button onclick="confirmDelete(event)">Delete Technical Fault</button>

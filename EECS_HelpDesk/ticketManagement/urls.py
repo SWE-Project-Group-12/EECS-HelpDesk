@@ -10,5 +10,7 @@ urlpatterns = [
     path("listAllECs", views.ListAllECs.as_view(), name="ListECs"),
     path("listAllTechnicalFaults", views.ListAllTechnicalFaults.as_view(), name="ListTechnicalFaults"),
     path("manageTechnicalFault/<int:ticketID>", views.manageTechnicalFault.as_view(), name="ManageTechnicalFault"),
-    path("manageEC/<int:ticketID>", views.manageEC.as_view(), name="ManageEC")
+    path("manageEC/<int:ticketID>", views.manageEC.as_view(), name="ManageEC"),
+    path("viewECDetails/<str:username>/<int:ticketID>", views.viewECDetails.as_view(), name="ViewECDetails"),
+    path("viewTechnicalFaultDetails/<str:username>/<int:ticketID>", views.viewTechnicalFaultDetails.as_view(), name="ViewTechnicalFaultDetails"),
 ]
