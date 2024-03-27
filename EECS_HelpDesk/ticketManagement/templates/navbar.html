@@ -1,0 +1,23 @@
+<header>
+    <nav>
+        <ul id="navoptions">
+            {% if userType == 'Admin' and userType != 'Student'%}
+            <li><a href="{% url 'Create New User' %}">Create new User</a></li> 
+            {% endif %}
+            {% if userType != 'TechnicalFaultHandler' and userType != 'Student' %}
+            <li><a href="{% url 'ListECs' %}">List All ECs</a></li> 
+            {% endif %}
+            {% if userType != 'ECHandler' and userType != 'Student' %}
+            <li><a href="{% url 'ListTechnicalFaults' %}">List All Technical Faults</a></li> 
+            {% endif %}
+
+            {% if userType == 'Student' %}
+            <li><a href="{% url 'FindPersonalTickets' username=username %}">Find Personal Tickets</a></li> 
+
+            {% endif %}
+
+            
+            <li><a href="{% url 'Logout' %}">logout</a></li>
+        </ul>
+    </nav>
+</header>
