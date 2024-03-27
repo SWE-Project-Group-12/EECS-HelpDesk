@@ -31,10 +31,10 @@ class manageTicket(View):
         ticketDetails = self.model.objects.filter(pk=ticketID).values() #gets the ticket details for the ticket with the ticketID from above
 
         if len(ticketDetails) <= 0:
-            return render(request, "successMessage.html", {"message": self.ticket_type + " with Ticket ID " + str(ticketID) + " does not exist."})
+            return render(request, "successMessage.html", {"message": self.ticket_type + " with Ticket ID " + str(ticketID) + " does not exist.", "username": username})
             
 
-        return render(request, self.template_name , {"ticketDetails": ticketDetails, "ticketID" : ticketID, "userType" : getUserType(username), "STATUS_CHOICES" : STATUS_CHOICES.keys()})
+        return render(request, self.template_name , {"ticketDetails": ticketDetails, "ticketID" : ticketID, "userType" : getUserType(username), "STATUS_CHOICES" : STATUS_CHOICES.keys(), "username": username})
 
     def post(self, request, *args, **kwargs):
 
@@ -56,6 +56,6 @@ class manageTicket(View):
         ticket = self.model.objects.get(pk=ticketID)
         ticket.status = status_decision
         ticket.save()
-        message = "Ticket ID: " + str(ticketID) + "Updated Successfully" 
+        message = "Ticket ID: " + str(ticketID) + " Updated Successfully" 
         
-        return render(request,"successMessage.html", {"ticketID" : ticketID, "message" : message, "userType": getUserType(username)})
+        return render(request,"successMessage.html", {"ticketID" : ticketID, "message" : message, "userType": getUserType(username), "username": username})

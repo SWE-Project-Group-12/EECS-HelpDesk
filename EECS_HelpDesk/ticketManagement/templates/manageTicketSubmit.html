@@ -2,6 +2,8 @@
     {% csrf_token %}
     <label for="reason">Reason for the Update of Status</label>
     <textarea name="reason"></textarea>
-    <button type="submit" name="status_decision" value="UPDATED">Accept</button>
-    <button type="submit" name="status_decision" value="VOID">Reject</button>
+
+    {% for choice in STATUS_CHOICES %}
+        <input type="submit" name="status_decision" value="{{choice}}" />
+    {% endfor %}
 </form>

@@ -25,7 +25,7 @@ class createUser(CreateView):
         elif len(Admin.objects.filter(pk=username)) != 1:
             return HttpResponseRedirect("/login")
 
-        return render(request, "createUser.html", {"CreateUserForm": CreateUserForm, "userType": getUserType(username)})
+        return render(request, "createUser.html", {"CreateUserForm": CreateUserForm, "userType": getUserType(username), "username": username})
 
     # If the request method is POST:
     # Check that the user is authenticated and is of type Admin.
@@ -72,4 +72,4 @@ class createUser(CreateView):
             return render(request, self.success_template_name, {"username": username, "userType": getUserType(username), "message": user_type + " Created."})
 
 
-        return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(username)})
+        return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(username), "username": username})

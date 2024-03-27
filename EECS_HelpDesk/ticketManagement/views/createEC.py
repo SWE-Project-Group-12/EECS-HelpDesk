@@ -86,7 +86,7 @@ class createEC(FormView):
         if len(student) <= 0:
             return HttpResponseRedirect("/listAllECs")
 
-        return render(request, self.template_name, {"form": form, "userType": getUserType(username)})
+        return render(request, self.template_name, {"username": username,"form": form, "userType": getUserType(username)})
 
     def post(self, request, username):
         form = self.form_class(request.POST)
@@ -117,5 +117,5 @@ class createEC(FormView):
 
             return render(request, self.success_template_name, {"username": username, "userType": getUserType(username), "message": "EC Saved."})
 
-        return render(request, self.template_name, {"form" : form, "userType": getUserType(username)})
+        return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "username": username})
         
