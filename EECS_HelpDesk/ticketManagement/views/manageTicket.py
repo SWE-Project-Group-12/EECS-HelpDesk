@@ -55,6 +55,7 @@ class manageTicket(View):
             return HttpResponseRedirect("/manage"+ self.ticket_type + "/"+ str(ticketID))
         ticket = self.model.objects.get(pk=ticketID)
         ticket.status = status_decision
+        ticket.status_update_reason = request.POST.get("reason", "")
         ticket.save()
         message = "Ticket ID: " + str(ticketID) + " Updated Successfully" 
         
