@@ -9,7 +9,7 @@ from django.utils.translation import gettext_lazy as simpletranslate
 USER_TYPES = {
     "Student": "Student",
     "ECHandler": "Extenuating Circumstances Handler",
-    "TechHandler": "Technical Fault Handler",
+    "TechnicalFaultHandler": "Technical Fault Handler",
     "Admin": "Admin"
 }
 

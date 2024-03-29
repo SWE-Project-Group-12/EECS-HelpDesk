@@ -2,10 +2,11 @@ from django.http import HttpResponseRedirect
 from django.views.generic.edit import CreateView
 from django.shortcuts import render
 from django.contrib import messages
-from ..forms.createUserForm import CreateUserForm
+from ..forms.createUserForm import CreateUserForm, USER_TYPES
 from login.models import Admin, User, ECHandler, TechnicalFaultHandler, Student
 from django.apps import apps
 from .getUserType import getUserType
+import bcrypt
 
 
 class createUser(CreateView):
@@ -63,13 +64,13 @@ class createUser(CreateView):
                             name=name,
                             username=username,
                             surname=surname,
-                            password=password
+                            password=bcrypt.hashpw(str(password).encode("utf-8"), bcrypt.gensalt()).decode("utf-8"),
                         )
                         newUser.save()
                         success = True
 
         if success:
-            return render(request, self.success_template_name, {"username": username, "userType": getUserType(username), "message": user_type + " Created."})
+            return render(request, self.success_template_name, {"username": request.session.get("user"), "userType": getUserType(request.session.get("user")), "message": USER_TYPES[user_type] + " Created."})
 
 
-        return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(username), "username": username})
+        return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user")})

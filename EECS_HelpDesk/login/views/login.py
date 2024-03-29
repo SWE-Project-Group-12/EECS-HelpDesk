@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from ..forms import LoginForm 
-from ..models import TechnicalFaultHandler, Student, ECHandler, Admin 
+from ..models import TechnicalFaultHandler, Student, ECHandler, Admin
+import bcrypt
 
 
 class login(View):
@@ -47,9 +48,10 @@ class login(View):
             success = False
 
             for UserModel in [TechnicalFaultHandler, Student, ECHandler, Admin]:
-                if self.get_user(UserModel, username = username, password = password) is not None:
-                    user = self.get_user(UserModel, username = username, password = password)
-                    success = True
+                if self.get_user(UserModel, username = username) is not None:
+                    user = self.get_user(UserModel, username = username)
+                    if bcrypt.checkpw(password.encode("utf-8"), str(user.password).encode("utf-8")):
+                        success = True
 
             if success:
                 request.session['user'] = user.pk
