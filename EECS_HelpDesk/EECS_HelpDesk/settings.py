@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "login",
     "ticketManagement",
+    "serviceStatus",
 ]
 
 MIDDLEWARE = [
@@ -59,6 +60,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.dirname(BASE_DIR / "login/templates"),
             os.path.dirname(BASE_DIR / "ticketManagement/templates"),
+            os.path.dirname(BASE_DIR / "serviceStatus/templates"),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -124,6 +126,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.dirname(BASE_DIR / "login/static"),
     os.path.dirname(BASE_DIR / "ticketManagement/static"),
+    os.path.dirname(BASE_DIR / "serviceStatus/static"),
 ]
 
 # Default primary key field type
