@@ -3,10 +3,10 @@
         
        
         <ul id="navoptions">
+            <li><a href="{% url 'viewServiceStatus' %}">View Service Status</a></li> 
             {% if userType == None %}
             <li><a href="{% url 'Login' %}">Login</a></li>
             {% else %}
-            <li><a href="{% url 'viewServiceStatus' %}">View Service Status</a></li> 
             {% if userType == 'Admin' and userType != 'Student'%}
             <li><a href="{% url 'Create New User' %}">Create New User</a></li> 
             {% endif %}
