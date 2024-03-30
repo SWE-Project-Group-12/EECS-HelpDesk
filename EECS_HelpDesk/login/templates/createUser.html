@@ -3,14 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Create New User</title>
+    <link rel="stylesheet" href="../static/css/a.css">
+    <!-- ARE WE USING THIS?, the usual django way -->
+    <!--  load static  -->
+    <!-- <link rel="stylesheet" href=' static polls/style.cc '> -->
 </head>
 <body>
-    <h1> Create New User </h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ CreateUserForm }}
-        <input type="submit" value="Submit">
-    </form>
+    {% include 'navbar.html' %}
+    <div class="create-user-container">
+
+        <form method="post" class="create-user-form">
+            {% csrf_token %}
+            <div class="create-title-container">
+                <h1 class="create-title"> Enter Details </h1>
+                <hr>
+            </div>
+
+            <div class="cu-firstname-field">
+                <h3>First Name</h3>
+                {{ CreateUserForm.name }}
+            </div>
+            <div class="cu-surname-field">
+                <h3>Surname</h3>
+                {{ CreateUserForm.surname }}
+            </div>
+            <div class="cu-username-field">
+                <h3>Username</h3>
+                {{ CreateUserForm.username }}
+            </div>
+            <div class="cu-password-field">
+                <h3>Password</h3>
+                {{ CreateUserForm.password }}
+            </div>
+            <div class="cu-userType-field">
+                <h3>Account Type: </h3>
+                {{ CreateUserForm.user_type }}
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
 
     {% if messages %}
     <ul class="messages">

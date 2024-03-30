@@ -1,0 +1,33 @@
+/* As a reset */
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+.create-user-container {
+    background-color: #D9D9D9;
+    color: #0D3273;
+    padding: 1em;
+}
+
+.create-title {
+    margin: 0;
+}
+
+.create-user-form {
+    border: solid 5px red;
+    background-color: #ffffff;
+    padding: 1em;
+}
+
+.create-title-container {
+    text-align: center;
+}
+
+.create-title-container hr {
+    width: 80%;
+}
+
+.create-user-form input[type=text], .create-user-form input[type=password] {
+    border: none;
+    border-bottom: 2px solid #0D3273;
+}
