@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>View Service Status</title>
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+    
+    <h1> Current EECS Service Status</h1>
+
+    {% csrf_token %}
+ 
+    {% if services %}
+
+    {% for service in services %}
+
+    <p class="service_name">{{service.service_name}}</p>
+    <p class="service_status">{{service.status}}</p>
+    {% if service.status_description %}
+    <p class="status_description">{{service.status_description}}</p>
+    {%endif%}
+
+    {% endfor %}
+
+    {% else %}
+
+    <h2>Your system has no added any services yet, please check back later</h2>
+
+    {% endif %}
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Service Status</title>
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+    
+    <h1> Edit Service Status: {{service_name}} </h1>
+
+    <form action="" method="post">
+        {% csrf_token %}
+ 
+        {{form.status.label}}
+        {{form.status}}
+        {{form.status_description.label}}
+        {{form.status_description}}
+
+       
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>
