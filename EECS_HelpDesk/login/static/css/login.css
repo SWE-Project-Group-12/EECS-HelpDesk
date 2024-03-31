@@ -1,79 +1,81 @@
-/* login.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
-/* Navbar styling */
 .navbar {
     background-color: #0D3273;
     color: #D9D9D9;
     padding: 20px;
 }
 
-/* Body styling */
 body {
     background-color: #D9D9D9;
     margin: 0;
     padding: 0;
+    font-family: "Inter", sans-serif;
 }
 
-/* Login form container */
 .login-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    padding-top: 15%;
 }
 
-/* Login form styling */
 .login-form {
-    width: 50%;
     background-color: white;
-    padding: 20px;
+    margin: 10%;
+    padding: 10%;
+    width: auto;
+    height: auto;
 }
 
-/* CSS */
-/* Form field styling */
-#id_username,
-#id_password {
-    width: 62.5%;
-    /* Take full width */
-    margin-left: 12.5%;
-    padding: 10px;
-    /* Add padding */
+
+.form-label {
+    color: #0D3273;
+    margin-bottom: 5px;
+    font-size: medium;
+}
+
+.form-title {
+    color: #0D3273;
+    padding: 5px;
+    text-align: center;
+    border-bottom: 2px solid #0D3273;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
     border: none;
-    /* Remove border */
-    background-color: #0D3273;
-    /* Set background color */
-    color: white;
-    /* Set text color */
+    border-bottom: 2px solid #0D3273;
+    background-color: none;
+    color: #0D3273;
+    outline: none;
 }
 
-
-
-/* Button styling */
 .login-form button {
-    width: 50%;
-    padding: 10px;
-    margin-top: 10px;
-    margin-left: 50%;
+    width: 35%;
+    margin-left: 65%;
     background-color: #0D3273;
     color: white;
     border: none;
     cursor: pointer;
 }
 
-/* Button hover effect */
 .login-form button:hover {
     background-color: #00549F;
 }
 
-/* Image container styling */
 .image-container {
     width: 45%;
     height: auto;
 }
 
-/* Adjust image size */
 .image-container img {
     max-width: 100%;
     height: auto;
+}
+
+.image-container h1 {
+    color: #0D3273;
 }
