@@ -12,12 +12,6 @@ h1 {
     border-bottom: 2px solid #0D3273;
 }
 
-.navbar {
-    background-color: #0D3273;
-    color: #D9D9D9;
-    padding: 20px;
-}
-
 .container {
     display: flex;
     justify-content: center;

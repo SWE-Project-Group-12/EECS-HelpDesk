@@ -10,9 +10,7 @@
 </head>
 
 <body>
-    <div class="navbar">
-        {% include 'navbar.html' %}
-    </div>
+    {% include 'navbar.html' %}
     <div class="container">
         <div class="ticket-details">
             <h1>View {{ticketType}} Details</h1>
@@ -35,7 +33,7 @@
                 <span class="ticket-detail-value">{{value}}</span>
                 {% if value == "Pending" or value == "Resolved" or value == "Rejected" %}
                 <div class="status-circle {{value}}">
-                    
+
                 </div>
                 {% endif %}
             </div>
