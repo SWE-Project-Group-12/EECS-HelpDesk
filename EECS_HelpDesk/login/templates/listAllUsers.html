@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List All User</title>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <h1> List All User </h1>
+    
+
+    <div class="students">
+        {% for student in students %}
+        <div class="student">
+            <p>{{student.username}}</p>
+            <a href="{% url 'manageUser' usernametomanage=student.username %}"><button>Edit Student</button></a>
+        
+        </div>
+        {% endfor %}
+
+    </div>
+    <div class="admins">
+        {% for admin in admins %}
+        <div class="admin">
+            <p>{{admin.username}}</p>
+            <a href="{% url 'manageUser' usernametomanage=admin.username %}"><button>Edit Admin</button></a>
+           
+        </div>
+        {% endfor %}
+
+    </div>
+    <div class="echandlers">
+        {% for echandler in echandlers %}
+        <div class="echandlers">
+            <p>{{echandler.username}}</p>
+            <a href="{% url 'manageUser' usernametomanage=echandler.username %}"><button>Edit ECHandler</button></a>
+            
+        </div>
+        {% endfor %}
+
+    </div>
+    <div class="technicalfaulthandlers">
+        {% for technicalfaulthandler in technicalfaulthandlers %}
+        <div class="technicalfaulthandler">
+            <p>{{technicalfaulthandler.username}}</p>
+            <a href="{% url 'manageUser' usernametomanage=technicalfaulthandler.username %}"><button>Edit Technical Fault Handler</button></a>
+           
+        </div>
+        {% endfor %}
+
+    </div>
+</body>
+</html>

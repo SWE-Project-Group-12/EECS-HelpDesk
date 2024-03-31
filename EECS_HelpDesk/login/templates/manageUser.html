@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage User: {{usernametomanage}}</title>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <h1> Manage User: {{usernametomanage}} </h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="username">
+            <!-- This fields wont be editable -->
+            {{form.username.label}}
+            {{form.username}}
+        </div>
+        <div class="name">
+            {{form.name.label}}
+            {{form.name.help_text}}
+            {{form.name}}
+        </div>
+        <div class="surname">
+            {{form.surname.label}}
+            {{form.surname.help_text}}
+            {{form.surname}}
+        </div>
+        <div class="password">
+        
+            {{form.password.as_hidden}}
+        </div>
+
+        <div class="user_type">
+          
+            
+            {{form.user_type.as_hidden}}
+        </div>
+        <input type="submit" value="Submit Changes">
+    </form>
+
+  
+</body>
+</html>
