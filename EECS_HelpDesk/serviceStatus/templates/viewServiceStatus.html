@@ -21,7 +21,10 @@
     <p class="service_status">{{service.status}}</p>
     {% if service.status_description %}
     <p class="status_description">{{service.status_description}}</p>
-    {%endif%}
+    {% endif %}
+    {% if userType == 'Admin' %}
+    <a href="{% url 'editServiceStatus' service_name=service.service_name %}"><button>Manage Status</button></a>
+    {% endif %}
 
     {% endfor %}
 
