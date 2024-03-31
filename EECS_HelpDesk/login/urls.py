@@ -6,5 +6,7 @@ urlpatterns = [
     path("", views.base, name="Base"),
     path("login", views.login.as_view(), name="Login"),
     path("createUser", views.createUser.as_view(), name="Create New User"),
-    path("logout", views.logout.as_view(), name="Logout")
+    path("logout", views.logout.as_view(), name="Logout"),
+    path("listAllUsers", views.listAllUsers.as_view(), name="listAllUsers"),
+    path("manageUser/<str:usernametomanage>", views.manageUser.as_view(), name="manageUser")
 ]
