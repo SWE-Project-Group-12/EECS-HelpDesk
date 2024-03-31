@@ -1,21 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 
 <head>
     <meta charset="UTF-8">
     <title>Create EC</title>
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/c.css' %}">
 </head>
 
 <body>
     {% include 'navbar.html' %}
-    
-    <h1> Create EC </h1>
+    <div class="createEcContainer">
 
-    <form action="" method="post">
-        {% csrf_token %}
-        {{form.as_p }}
-        <input type="submit" value="Submit">
-    </form>
+        <div class="createEcForm">
+
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="formFields">
+                    <h2>Title</h2><div class="title">{{form.title}}</div>
+                    <h2>Description</h2><div class="description">{{form.description}}</div>
+                    <h2>Module</h2><div class="module">{{form.module}}</div>
+                    <h2>Component</h2><div class="component">{{form.component}}</div>
+                </div>
+                <input class= 'button' type="submit" value="Submit">
+            </form>
+        </div>
+
+        <div class="createEcInfo">
+            <h2 align = 'center'><u>Length Limit</h2></u></h2>
+            <h2>Title:</h2><h3>⠀⠀Max Length 100 Characters</h3>
+            <h2>Module:</h2><h3>⠀⠀Max Length 100 Characters</h3>
+            <h2>Component:</h2><h3>⠀⠀Max Length 100 Characters</h3>
+        </div>
+    </div>
 </body>
 
 </html>
