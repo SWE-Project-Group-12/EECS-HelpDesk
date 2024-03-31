@@ -16,31 +16,39 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; /* Use min-height to ensure it covers at least the full viewport height */
+    padding: 20px; /* Add padding for spacing */
 }
 
 .ticket-details {
     background-color: white;
-    padding: 20px;
+    padding: 30px; /* Increase padding for more space */
     text-align: left;
+    max-width: 800px; /* Limit the maximum width of the details */
+    width: 90%; /* Adjust width as needed */
+    margin: 0 auto; /* Center the details horizontally */
 }
 
 .ticket-detail {
-    margin-bottom: 10px;
+    margin-bottom: 20px; /* Increase margin for spacing between detail items */
 }
 
 .ticket-detail-label {
     font-weight: bold;
+    font-size: x-large;
 }
 
 .ticket-detail-value {
-    margin-left: 10px;
+    margin-left: 15px; /* Increase margin for spacing between label and value */
+    font-size: larger;
 }
 
 .ticket-detail-response {
     font-style: italic;
     color: #0D3273;
+    font-size: larger;
 }
+
 
 .status-circle {
     width: 15px;
