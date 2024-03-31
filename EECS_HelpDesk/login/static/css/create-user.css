@@ -1,0 +1,145 @@
+/* As a reset */
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+  font-size: 22px;
+}
+
+body {
+    font-family: Inter, serif;
+}
+
+
+.create-user-container {
+    position: relative;
+    background-color: #D9D9D9;
+    color: #0D3273;
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.create-title {
+    margin: 0;
+}
+
+.create-user-form {
+    background-color: #ffffff;
+    padding: 1em;
+    flex: 4;
+    position: relative;
+}
+
+.create-title-container {
+    text-align: center;
+}
+
+.create-title-container hr {
+    min-width: 50px;
+    max-width: 25%;
+    border-bottom: 3px solid #0D3273;
+    margin-top: 0;
+}
+
+.create-tooltips hr {
+    max-width: 45%;
+    border-bottom: 3px solid #0D3273;
+    margin-top: 0;
+}
+
+.create-user-form input[type=text], .create-user-form input[type=password] {
+    border: none;
+    border-bottom: 3px solid #0D3273;
+    margin-left: 0.6em;
+    margin-top: 0.2em;
+}
+
+.cu-firstname-field, .cu-surname-field, .cu-username-field, .cu-password-field {
+    margin-bottom: 0.8em;
+}
+
+.cu-firstname-field {
+    margin-top: 1rem;
+}
+
+.create-tooltips {
+    background-color: #ffffff;
+    text-align: center;
+    padding: 1.2em;
+    flex: 2;
+}
+
+.cu-userType-field-container {
+    margin-top: 1em;
+}
+
+.cu-account-button {
+    display: inline-block;
+    background-image: url("../images/arrow.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 75px;
+    height: 40px;
+}
+
+.account-type-header {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+}
+
+#id_user_type {
+    display: none;
+    background-color: white;
+    min-width: 160px;
+    z-index: 1;
+    font-size: 20px;
+}
+
+/* Selects the id_user_type div which is within the container when the container is hovered  */
+/*.cu-userType-field-container:hover #id_user_type {
+    display: block;
+}*/
+
+.required-text {
+    font-size: 14px;
+    color: red;
+}
+
+.tooltipX {
+    text-align: left;
+    padding-left: 1em;
+}
+
+.tooltipX ul li {
+    font-size: 18px;
+}
+
+.tooltipX ul {
+    padding-left: 1em;
+}
+
+.tooltipX:first-of-type {
+    margin-top: 1rem;
+}
+
+.submit-button {
+    background-color: #0D3273;
+    position: absolute;
+    /* Change when time isnt tight */
+    right: 20px;
+    bottom: 20px;
+    border: none;
+    color: #ffffff;
+    text-align: center;
+    font-size: 18px;
+    padding: 0.5em 1.5em;
+    border-radius: 12px;
+}

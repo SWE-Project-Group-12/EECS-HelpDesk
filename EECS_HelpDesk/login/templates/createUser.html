@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Create New User</title>
-    <link rel="stylesheet" href="../static/css/a.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/create-user.css">
     <!-- ARE WE USING THIS?, the usual django way -->
     <!--  load static  -->
     <!-- <link rel="stylesheet" href=' static polls/style.cc '> -->
@@ -11,36 +14,69 @@
 <body>
     {% include 'navbar.html' %}
     <div class="create-user-container">
-
         <form method="post" class="create-user-form">
             {% csrf_token %}
             <div class="create-title-container">
-                <h1 class="create-title"> Enter Details </h1>
+                <h2 class="create-title"> Enter Details </h2>
                 <hr>
             </div>
-
             <div class="cu-firstname-field">
-                <h3>First Name</h3>
+                <h3>First Name <span class="required-text">*Required</span></h3>
                 {{ CreateUserForm.name }}
             </div>
             <div class="cu-surname-field">
-                <h3>Surname</h3>
+                <h3>Surname  <span class="required-text">*Required</span></h3>
                 {{ CreateUserForm.surname }}
             </div>
             <div class="cu-username-field">
-                <h3>Username</h3>
+                <h3>Username  <span class="required-text">*Required</span></h3>
                 {{ CreateUserForm.username }}
             </div>
             <div class="cu-password-field">
-                <h3>Password</h3>
+                <h3>Password  <span class="required-text">*Required</span></h3>
                 {{ CreateUserForm.password }}
             </div>
-            <div class="cu-userType-field">
-                <h3>Account Type: </h3>
+            <div class="cu-userType-field-container">
+                <div class="account-type-header">
+                    <h3>Account Type: <span class="required-text">*Required</span></h3>
+                    <a href="#" class="cu-account-button"></a>
+                </div>
                 {{ CreateUserForm.user_type }}
             </div>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" class="submit-button">
         </form>
+        <div class="create-tooltips">
+            <h2>Requirements:</h2>
+            <hr>
+            <div class="tooltipX">
+                <h3>First Name: </h3>
+                <ul>
+                    <li>Min Length - 4 characters</li>
+                    <li>Max Length - 25 characters</li>
+                </ul>
+            </div>
+            <div class="tooltipX">
+                <h3>Surname: </h3>
+                <ul>
+                    <li>Max Length - 25 characters</li>
+                </ul>
+            </div>
+            <div class="tooltipX">
+                <h3>Username: </h3>
+                <ul>
+                    <li>Min Length - 7 characters</li>
+                    <li>Max Length - 10 characters</li>
+                </ul>
+            </div>
+            <div class="tooltipX">
+                <h3>Password: </h3>
+                <ul>
+                    <li>Min Length - 8 characters</li>
+                    <li>1 capital letter</li>
+                    <li>1 number</li>
+                </ul>
+            </div>
+        </div>
     </div>
 
 
@@ -52,4 +88,5 @@
     </ul>
     {% endif %}
 </body>
+<script src="../static/js/create-user.js"></script>
 </html>
