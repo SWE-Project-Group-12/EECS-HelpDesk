@@ -1,8 +1,12 @@
+{% load static %}
 <header>
-    <nav>
+    <nav class = 'navContainer'>
+        <div class = 'navImage'>
+            <img src="{% static 'img/QMLogo.png' %}" alt="QM Logo">
+        </div>
         
        
-        <ul id="navoptions">
+        <ul class="navOptions">
             <li><a href="{% url 'viewServiceStatus' %}">View Service Status</a></li> 
             {% if userType == None %}
             <li><a href="{% url 'Login' %}">Login</a></li>
@@ -23,7 +27,7 @@
             <li><a href="{% url 'FindPersonalTickets' username=username %}">Find Personal Tickets</a></li> 
 
             {% endif %}
-            <li><a href="{% url 'Logout' %}">Log Out</a></li>
+            <li id = 'logout'><a href="{% url 'Logout' %}">Log Out</a></li>
            
             {% endif %}
 
