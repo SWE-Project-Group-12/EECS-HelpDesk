@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Manage User: {{usernametomanage}}</title>
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/listAndManageUsers.css' %}">
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="manageUserContainer">
+        <h1 align = 'center'> Manage User: {{usernametomanage}} </h1>
+
+        <form class='manageUserForm' action="" method="post">
+            {% csrf_token %}
+
+            <div class="topBorder"></div>
+
+            <div class="username" id="manageUserSection">
+                <!-- This fields wont be editable -->
+                {{form.username.label}}:
+                {{form.username}}
+            </div>
+
+            <div class="topBorder"></div>
+
+            <div class="name" id="manageUserSection">
+                {{form.name.label}}:
+                {{form.name.help_text}}
+                {{form.name}}
+            </div>
+
+            <div class="topBorder"></div>
+
+            <div class="surname" id="manageUserSection">
+                {{form.surname.label}}:
+                {{form.surname.help_text}}
+                {{form.surname}}
+            </div>
+
+            <div class="password">
+            
+                {{form.password.as_hidden}}
+            </div>
+
+            <div class="user_type">
+            
+                
+                {{form.user_type.as_hidden}}
+            </div>
+
+            <div class="topBorder"></div>
+            <input id ='button' type="submit" value="Submit Changes">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>List All User</title>
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/listAndManageUsers.css' %}">
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+    
+    <div class ="listAllUsersContainer">
+        <h1 align = 'center'> List All Users </h1>
+        <div class="topBorder"></div>
+        
+        <div class="students">
+            <h2>Students</h2>
+            {% for student in students %}
+            <div class="student" id = 'account'>
+                <p>{{student.username}}</p>
+                <a href="{% url 'manageUser' usernametomanage=student.username %}"><button>Edit Student</button></a>
+            
+            </div>
+            {% endfor %}
+
+        </div>
+
+        <div class="topBorder"></div>
+
+        <div class="admins">
+            <h2>Admins</h2>
+            {% for admin in admins %}
+            <div class="admin" id = 'account'>
+                <p>{{admin.username}}</p>
+                <a href="{% url 'manageUser' usernametomanage=admin.username %}"><button>Edit Admin</button></a>
+            
+            </div>
+            {% endfor %}
+
+        </div>
+
+        <div class="topBorder"></div>
+
+        <div class="echandlers">
+            <h2>EC Handlers</h2>
+            {% for echandler in echandlers %}
+            <div class="echandlers" id = 'account'>
+                <p>{{echandler.username}}</p>
+                <a href="{% url 'manageUser' usernametomanage=echandler.username %}"><button>Edit ECHandler</button></a>
+                
+            </div>
+            {% endfor %}
+
+        </div>
+
+        <div class="topBorder"></div>
+
+        <div class="technicalfaulthandlers">
+            <h2>Tech Fault Handlers</h2>
+            {% for technicalfaulthandler in technicalfaulthandlers %}
+            <div class="technicalfaulthandler" id = 'account'>
+                <p>{{technicalfaulthandler.username}}</p>
+                <a href="{% url 'manageUser' usernametomanage=technicalfaulthandler.username %}"><button>Edit Technical Fault Handler</button></a>
+            
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</body>
+</html>

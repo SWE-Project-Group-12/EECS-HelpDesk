@@ -1,14 +1,23 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+</head>
+
 <header>
-    <nav>
+    <nav class = 'navContainer'>
+        <div class = 'navImage'>
+            <img src="{% static 'img/QMLogo.png' %}" alt="QM Logo">
+        </div>
         
-       
-        <ul id="navoptions">
+        <ul class="navOptions">
             <li><a href="{% url 'viewServiceStatus' %}">View Service Status</a></li> 
             {% if userType == None %}
             <li><a href="{% url 'Login' %}">Login</a></li>
             {% else %}
             {% if userType == 'Admin' and userType != 'Student'%}
             <li><a href="{% url 'Create New User' %}">Create New User</a></li> 
+            <li><a href="{% url 'listAllUsers' %}">List All Users</a></li> 
             {% endif %}
             {% if userType != 'TechnicalFaultHandler' and userType != 'Student' %}
             <li><a href="{% url 'ListECs' %}">List All ECs</a></li> 
@@ -23,12 +32,10 @@
             <li><a href="{% url 'FindPersonalTickets' username=username %}">Find Personal Tickets</a></li> 
 
             {% endif %}
-            <li><a href="{% url 'Logout' %}">Log Out</a></li>
+            <li id = 'logout'><a href="{% url 'Logout' %}">Log Out</a></li>
            
             {% endif %}
 
-            
-            
         </ul>
     </nav>
 </header>
