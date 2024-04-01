@@ -11,44 +11,43 @@
 </head>
 
 <body>
-  {% include 'navbar.html' %}
-  <div class="grid-container">
-      <div class="left-box">
-          <h2>ECs</h2>
-          <table>
-              <thead>
-                  <tr>
-                      <th>Username</th>
-                      <th>Title</th>
-                      <th>Date</th>
-                      <th>Status</th>
-                  </tr>
-              </thead>
-              <tbody>
-              {% for ec in ec_list %}
-                  <tr>
-                    <td>{{ ec.username.username }}</td>
-                    <td>{{ ec.title }}</td>
-                    <td>{{ ec.dateCreated }}</td>
-                    <td> {% if ec.status == 'PENDING' %} 
-                        <span style="color: orange;"> {{ ec.status }} </span> 
-                        {% elif ec.status == 'VOID' %} <span style="color: red;"> {{ ec.status }} 
-                        </span> {% elif ec.status == 'UPDATED' %} <span style="color: green;"> 
-                            {{ ec.status }} </span> {% else %} {{ ec.status }} {% endif %} 
-                    </td>
-                    <td>
-                        <a href="{% url 'ManageEC' ticketID=ec.ticketID %}">Manage</a>
-                    </td>
-                  </tr>
-                  {% empty %} 
-                  <tr> 
-                      <td colspan="5">No ECs found.</td> 
-                  </tr> 
-              {% endfor %} 
-              </tbody> 
-          </table>
-      </div>
-  </div>
-</body>
+    {% include 'navbar.html' %}
+    <div class="grid-container">
+        <div class="left-box">
+            <h2>ECs</h2>
+            <div class="ec-container">
+                <div class="ec-item ec-heading">
+                    <div class="ec-username">Username</div>
+                    <div class="ec-title">Title</div>
+                    <div class="ec-date">Date</div>
+                    <div class="ec-status">Status</div>
+                    <div class="ec-manage">Manage</div>
+                </div>
+                {% for ec in ec_list %}
+                    <div class="ec-item">
+                      <div class="ec-username">{{ ec.username.username }}</div>
+                      <div class="ec-title">{{ ec.title }}</div>
+                      <div class="ec-date">{{ ec.dateCreated }}</div>
+                      <div class="ec-status"> {% if ec.status == 'Pending' %} 
+                          <span style="color: orange;"><small>{{ ec.status }}</small></span> 
+                          {% elif ec.status == 'Rejected' %} <span style="color: red;"><small>{{ ec.status }}</small></span> 
+                          {% elif ec.status == 'Resolved' %} <span style="color: green;"><small>{{ ec.status }}</small></span> 
+                          {% else %}<small>{{ ec.status }}</small>{% endif %} 
+                      </div>
+                      <div class="ec-manage">
+                          <a href="{% url 'ManageEC' ticketID=ec.ticketID %}">Manage</a>
+                      </div>
+                    </div>
+                    {% empty %} 
+                    <div class="ec-item"> 
+                        <div class="ec-username ec-empty" colspan="4">No ECs found.</div> 
+                    </div> 
+                {% endfor %} 
+            </div>
+        </div>
+    </form>
+  </body>
+
+</html>
 
 </html>
