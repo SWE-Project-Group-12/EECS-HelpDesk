@@ -1,38 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 
 <head>
     <meta charset="UTF-8">
     <title>View Service Status</title>
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/e.css' %}">
 </head>
 
 <body>
     {% include 'navbar.html' %}
+    <div class="viewServiceStatusContainer">
+        
+        <h1 align = 'center'> Current EECS Service Status</h1>
+
+        {% csrf_token %}
     
-    <h1> Current EECS Service Status</h1>
+        {% if services %}
+        <div class="topBorder"></div>
 
-    {% csrf_token %}
- 
-    {% if services %}
+        {% for service in services %}
+        <div class="serviceBox">
+            <p class="service_name">{{service.service_name}}</p>
+            <p class="service_status {% if service.status == 'Good Service' %}goodService{% elif service.status == 'No Service' %}noService{% else %}partialService{% endif %}">
+                Current Status: {{ service.status }}
+            </p>
+            {% if service.status_description %}
+            <p class="status_description">Description: {{service.status_description}}</p>
+            {% endif %}
+            {% if userType == 'Admin' %}
+            <a href="{% url 'editServiceStatus' service_name=service.service_name %}"><button class = 'serviceButton'>Manage Status</button></a>
+            {% endif %}
+        </div>
 
-    {% for service in services %}
+        {% endfor %}
 
-    <p class="service_name">{{service.service_name}}</p>
-    <p class="service_status">{{service.status}}</p>
-    {% if service.status_description %}
-    <p class="status_description">{{service.status_description}}</p>
-    {% endif %}
-    {% if userType == 'Admin' %}
-    <a href="{% url 'editServiceStatus' service_name=service.service_name %}"><button>Manage Status</button></a>
-    {% endif %}
+        {% else %}
 
-    {% endfor %}
+        <h2>Your system has no added any services yet, please check back later</h2>
 
-    {% else %}
-
-    <h2>Your system has no added any services yet, please check back later</h2>
-
-    {% endif %}
+        {% endif %}
+    </div>
 </body>
 
 </html>

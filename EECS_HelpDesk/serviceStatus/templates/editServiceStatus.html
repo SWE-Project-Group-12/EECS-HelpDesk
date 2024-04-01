@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 
 <head>
     <meta charset="UTF-8">
     <title>Edit Service Status</title>
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/e.css' %}">
 </head>
 
 <body>
     {% include 'navbar.html' %}
-    
-    <h1> Edit Service Status: {{service_name}} </h1>
+    <div class="editServiceStatusContainer">
+        
+        <h1 align = 'center'> Edit Service Status: {{service_name}} </h1>
 
-    <form action="" method="post">
-        {% csrf_token %}
- 
-        {{form.status.label}}
-        {{form.status}}
-        {{form.status_description.label}}
-        {{form.status_description}}
-
-       
-        <input type="submit" value="Submit">
-    </form>
+        <form class ="editServiceStatusBox" action="" method="post">
+            <div class="topBorder"></div>
+            {% csrf_token %}
+            <div class="statusLabel">{{form.status.label}}</div>
+            <div class="statusInput">{{form.status}}</div>
+            <div class="topBorder"></div>
+            <div class="descriptionLabel">{{form.status_description.label}}</div>
+            <div class="descriptionInput">{{form.status_description}}</div>
+            <div class="topBorder"></div>
+            <input id="editServiceStatusButton" type="submit" value="Submit">
+        </form>
+    </div>
 </body>
 
 </html>
