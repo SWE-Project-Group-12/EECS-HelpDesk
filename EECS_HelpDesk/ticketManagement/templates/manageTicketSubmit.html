@@ -1,9 +1,12 @@
-<form action="" method="post">
+<form action="" method="post" class="manage_form">
     {% csrf_token %}
-    <label for="reason">Reason for the Update of Status</label>
-    <textarea name="reason"></textarea>
+        <label for="reason" class="reason_label">Update Reason:</label>
+        <textarea name="reason" id="reason"></textarea>
 
-    {% for choice in STATUS_CHOICES %}
+    <div class="status-choices">
+        {% for choice in STATUS_CHOICES %}
         <input type="submit" name="status_decision" value="{{choice}}" />
-    {% endfor %}
+        {% endfor %}
+    </div>
+
 </form>
