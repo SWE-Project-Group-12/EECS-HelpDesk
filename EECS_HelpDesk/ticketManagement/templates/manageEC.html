@@ -3,27 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Manage Ticket</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/manage.css">
 </head>
 <body>
     {% include 'navbar.html' %}
 
+    <div class="manage-ticket-container">
+        <div class="manage-ticket-inner-container">
+            {% for ticketDetail in ticketDetails %}
+            <h4 class="ec-student-username">Student: <span class="mini-text">{{ticketDetail.username_id}}</span></h4>
+            <h3 class="ec-ticket-id">TicketID: {{ticketDetail.id}}</h3>
+            <h4 class="ec-date">Date: <span class="mini-text">{{ticketDetail.dateCreated}}</span></h4>
+            <h4 class="ec-module">Module: <span class="mini-text">{{ticketDetail.module}}</span></h4>
+            <h4 class="ec-status">Status: <span class="mini-text">{{ticketDetail.status}}</span></h4>
+            <h4 class="ec-component">Component: <span class="mini-text">{{ticketDetail.component}}</span></h4>
+            <hr>
+            <div class="ec-title">
+                <h4 class="ec-title">Title: </h4>
+                <p>{{ticketDetail.title}}</p>
+            </div>
+            <div class="ec-desc">
+                <h4>Description: </h4>
+                <p>{{ticketDetail.description}}</p>
+            </div>
 
-    {% for ticketDetail in ticketDetails %}
+            {% endfor %}
+            {% include 'manageTicketSubmit.html' %}
+        </div>
+    </div>
 
-    <h2>Managing TicketID: {{ticketDetail.id}}</h2>
-    <p>Title: {{ticketDetail.title}}</p>
-    <p>Description: {{ticketDetail.description}}</p>
-    <p>Status: {{ticketDetail.status}}</p>
-    <p>Date: {{ticketDetail.dateCreated}}</p>
-    {% if ticketDetail.status_update_reason %}
-    <p>Status Update Reason: {{ticketDetail.status_update_reason}}</p>
-    {% endif %}
-    <p>Student: {{ticketDetail.username_id}}</p>
-    <p>module: {{ticketDetail.module}}</p>
-    <p>Student: {{ticketDetail.component}}</p>
-    
-    {% endfor %}
 
-    {% include 'manageTicketSubmit.html' %}
 </body>
 </html>
