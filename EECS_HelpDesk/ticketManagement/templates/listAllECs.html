@@ -32,18 +32,19 @@
                         <span style="color: orange;">{{ ec.status }}</span> 
                         {% elif ec.status == 'Rejected' %} <span style="color: red;">{{ ec.status }}</span> 
                         {% elif ec.status == 'Resolved' %} <span style="color: green;">{{ ec.status }}</span> 
-                        {% else %}<small>{{ ec.status }}</small>{% endif %} 
+                        {% else %}{{ ec.status }}{% endif %} 
                     </div>
                     <div class="ec-manage">
                         <button class="manage-button">
                             <a href="{% url 'ManageEC' ticketID=ec.ticketID %}">Manage</a>
                         </button>
                     </div>
-                    {% empty %} 
-                    <div class="ec-item"> 
-                        <div class="ec-username ec-empty" colspan="4">No ECs found.</div> 
-                    </div> 
-                {% endfor %} 
+                </div>
+            {% empty %} 
+                <div class="ec-item"> 
+                    <div class="ec-username ec-empty" colspan="4">No ECs found.</div> 
+                </div> 
+            {% endfor %} 
             </div>
         </div>
     </div>

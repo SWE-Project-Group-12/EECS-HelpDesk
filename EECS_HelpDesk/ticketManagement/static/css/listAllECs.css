@@ -1,83 +1,91 @@
 body {
-    background-color: #D9D9D9;
+  background-color: #D9D9D9;
 }
-  
+
 #heading {
-  text-decoration: underline;
-  font-family: 'Inter';
-  font-size: 25px;
-  color: #0d3273;
+text-decoration: underline;
+font-family: 'Inter';
+font-size: 25px;
+color: #0d3273;
 }
 
 .grid-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 10px;
-  width: 95%; 
-  margin-left: 2%;
+display: grid;
+grid-template-columns: 1fr;
+grid-gap: 10px;
+width: 95%; 
+margin-left: 2%;
 }
-  
+
 .left-box {
-  height: 50vh;
-  background-color: #fff;
-  padding: 12px;
-  padding-left: 2%;
-  width: 98%;
+height: 50vh;
+background-color: #fff;
+padding: 12px;
+padding-left: 2%;
+width: 98%;
 }
-  
+
 .ec-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+display: flex;
+justify-content: space-between;
+padding: 8px;
+text-align: left;
+border-bottom: 1px solid #ddd;
 }
 
 .ec-username,.ec-title,.ec-date,.ec-status,.ec-manage {
-  padding: 8px;
-  font-family: 'Inter';
-  font-size: 20px;
-  color: #0d3273;
+padding: 8px;
+font-family: 'Inter';
+font-size: 20px;
+color: #0d3273;
 }
 
 .ec-status {
-  font-family: 'Inter';
-  font-size: 22px;
+font-family: 'Inter';
+font-size: 22px;
 }
-  
-.ec-item:nth-child(even) {
-  background-color: #f2f2f2;
-}
-  
+
 .grid-container {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+padding-top: 1rem;
+padding-bottom: 1rem;
 }
 
 .ec-heading > * {
-  font-weight: bold;
+font-weight: bold;
 }
 
-.ec-item:not(.ec-heading) {
-  font-weight: normal;
+.ec-item {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+.ec-item:nth-child(n+2) {
+  background-color: #D9D9D9;
+}
+
+.ec-item:not(:last-child) {
+  border-bottom: 2px solid #ccc;
 }
 
 .manage-button,
 .manage-button:hover,
 .manage-button:focus {
-  background-color: #0d3273;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 8px;
-  font-family: 'Inter';
-  font-size: 20px;
-  cursor: pointer;
-  text-decoration: none;
-  display: block;
+background-color: #0d3273;
+color: white;
+border: none;
+border-radius: 5px;
+padding: 8px;
+font-family: 'Inter';
+font-size: 20px;
+cursor: pointer;
+text-decoration: none;
+display: block;
 }
 
 .ec-manage a {
-  color: white;
-  text-decoration: none;
+color: white;
+text-decoration: none;
 }
