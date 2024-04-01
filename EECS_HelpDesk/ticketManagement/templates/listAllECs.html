@@ -14,7 +14,7 @@
     {% include 'navbar.html' %}
     <div class="grid-container">
         <div class="left-box">
-            <h2>ECs</h2>
+            <h2 id="heading">ECs</h2>
             <div class="ec-container">
                 <div class="ec-item ec-heading">
                     <div class="ec-username">Username</div>
@@ -24,19 +24,20 @@
                     <div class="ec-manage">Manage</div>
                 </div>
                 {% for ec in ec_list %}
-                    <div class="ec-item">
-                      <div class="ec-username">{{ ec.username.username }}</div>
-                      <div class="ec-title">{{ ec.title }}</div>
-                      <div class="ec-date">{{ ec.dateCreated }}</div>
-                      <div class="ec-status"> {% if ec.status == 'Pending' %} 
-                          <span style="color: orange;"><small>{{ ec.status }}</small></span> 
-                          {% elif ec.status == 'Rejected' %} <span style="color: red;"><small>{{ ec.status }}</small></span> 
-                          {% elif ec.status == 'Resolved' %} <span style="color: green;"><small>{{ ec.status }}</small></span> 
-                          {% else %}<small>{{ ec.status }}</small>{% endif %} 
-                      </div>
-                      <div class="ec-manage">
-                          <a href="{% url 'ManageEC' ticketID=ec.ticketID %}">Manage</a>
-                      </div>
+                <div class="ec-item">
+                    <div class="ec-username">{{ ec.username.username }}</div>
+                    <div class="ec-title">{{ ec.title }}</div>
+                    <div class="ec-date">{{ ec.dateCreated }}</div>
+                    <div class="ec-status"> {% if ec.status == 'Pending' %} 
+                        <span style="color: orange;"><small>{{ ec.status }}</small></span> 
+                        {% elif ec.status == 'Rejected' %} <span style="color: red;"><small>{{ ec.status }}</small></span> 
+                        {% elif ec.status == 'Resolved' %} <span style="color: green;"><small>{{ ec.status }}</small></span> 
+                        {% else %}<small>{{ ec.status }}</small>{% endif %} 
+                    </div>
+                    <div class="ec-manage">
+                        <button class="manage-button">
+                            <a href="{% url 'ManageEC' ticketID=ec.ticketID %}">Manage</a>
+                        </button>
                     </div>
                     {% empty %} 
                     <div class="ec-item"> 
@@ -45,9 +46,6 @@
                 {% endfor %} 
             </div>
         </div>
-    </form>
-  </body>
-
-</html>
-
+    </div>
+</body>
 </html>

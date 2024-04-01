@@ -1,73 +1,83 @@
 body {
-    background-color: #f2f2f2;
-  }
+    background-color: #D9D9D9;
+}
   
-  .grid-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 10px;
-    width: 95%; /* Set the width of the grid container */
-    margin-left: 2%;
-  }
-  
-  .left-box {
-    height: 50vh;
-    background-color: #fff;
-    padding: 12px;
-    padding-left: 2%;
-    width: 98%;
-  }
-  
-  .ec-container {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .ec-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .ec-item, .ec-heading {
-    font-weight: bold;
-  }
+#heading {
+  text-decoration: underline;
+  font-family: 'Inter';
+  font-size: 25px;
+  color: #0d3273;
+}
 
-  .ec-username,.ec-title,.ec-date,.ec-status,.ec-manage {
-    padding: 8px;
-    font-family: 'Inter';
-    font-size: 22px;
-    color: #0d3273;
-  }
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+  width: 95%; 
+  margin-left: 2%;
+}
   
-  .ec-item:nth-child(even) {
-    background-color: #f2f2f2;
-  }
+.left-box {
+  height: 50vh;
+  background-color: #fff;
+  padding: 12px;
+  padding-left: 2%;
+  width: 98%;
+}
   
-  .ec-heading.ec-username,.ec-heading.ec-title,.ec-heading.ec-date,.ec-heading.ec-status {
-    font-weight: bold;
-  }
-  
-  .ec-item.ec-status small {
-    font-size: 18px;
-  }
-  
-  /* Add some space around the grid container */
-  .grid-container {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
-  
-  .ec-empty {
-    text-align: center;
-  }
+.ec-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
 
-  .ec-heading > * {
-    font-weight: bold;
+.ec-username,.ec-title,.ec-date,.ec-status,.ec-manage {
+  padding: 8px;
+  font-family: 'Inter';
+  font-size: 20px;
+  color: #0d3273;
+}
+
+.ec-status {
+  font-family: 'Inter';
+  font-size: 22px;
+}
+  
+.ec-item:nth-child(even) {
+  background-color: #f2f2f2;
+}
+  
+.grid-container {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.ec-heading > * {
+  font-weight: bold;
 }
 
 .ec-item:not(.ec-heading) {
-    font-weight: normal;
+  font-weight: normal;
+}
+
+.manage-button,
+.manage-button:hover,
+.manage-button:focus {
+  background-color: #0d3273;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  font-family: 'Inter';
+  font-size: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+}
+
+.ec-manage a {
+  color: white;
+  text-decoration: none;
 }
