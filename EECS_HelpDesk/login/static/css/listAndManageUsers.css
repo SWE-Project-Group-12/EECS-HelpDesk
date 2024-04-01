@@ -1,0 +1,91 @@
+
+.listAllUsersContainer, .manageUserContainer{
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+    position: relative;
+    background-color: white;
+    margin-top: 1rem;
+    padding: 1rem;
+    height: fit-content;
+}
+
+.listAllUsersContainer h1, .manageUserContainer h1{
+    font-family: 'Inter'; font-size: 28px; color: #0d3273;
+    text-decoration: underline;
+}
+
+.manageUserContainer .manageUserForm{
+    font-family: 'Inter'; font-size: 18px; color: #0d3273;
+    font-weight: bold;
+}
+
+.listAllUsersContainer .topBorder, .manageUserContainer .topBorder{
+    border-bottom: solid;
+    color: #0d3273;
+}
+
+.listAllUsersContainer p, .listAllUsersContainer button{
+    display: inline;
+}
+
+.listAllUsersContainer #account{
+    margin: 0.5rem;
+    border-bottom: solid #0d3273 thin;
+}
+
+.listAllUsersContainer h2{
+    font-family: 'Inter'; font-size: 20px; color: #0d3273;
+    text-decoration: underline;
+}
+
+.listAllUsersContainer p{
+    font-family: 'Inter'; font-size: 16px; color: #0d3273;
+    font-weight: bold;
+}
+
+.listAllUsersContainer a{
+    text-decoration: none;
+    width: 30%;
+}
+
+.listAllUsersContainer button{
+    width: 40%;
+    background-color: #0d3273;
+    border: none;
+    color: white;
+    margin-left: 60%;
+    margin-bottom: 0.2rem;
+    border-radius: 4px;
+    padding: 0.2rem;
+}
+
+.listAllUsersContainer button:hover{
+    color: aqua;
+    text-decoration: underline;
+}
+
+.manageUserContainer .manageUserForm #manageUserSection{
+    margin: 0.6rem;
+}
+
+.manageUserContainer .manageUserForm input{
+    border:none;
+    border-bottom: solid #0d3273;
+    font-family: 'Inter'; font-size: 16px; color: #0d3273;
+}
+
+.manageUserContainer .manageUserForm #button{
+    width: 40%;
+    background-color: #0d3273;
+    border: none;
+    color: white;
+    margin-left: 60%;
+    border-radius: 4px;
+    margin-top: 0.2rem;
+}
+
+.manageUserContainer .manageUserForm #button:hover{
+    color: aqua;
+    text-decoration: underline;
+}

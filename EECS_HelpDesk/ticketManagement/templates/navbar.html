@@ -1,6 +1,6 @@
 {% load static %}
 <head>
-    <link rel="stylesheet" href="{% static 'css/c.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 
@@ -10,7 +10,6 @@
             <img src="{% static 'img/QMLogo.png' %}" alt="QM Logo">
         </div>
         
-       
         <ul class="navOptions">
             <li><a href="{% url 'viewServiceStatus' %}">View Service Status</a></li> 
             {% if userType == None %}
@@ -36,8 +35,6 @@
            
             {% endif %}
 
-            
-            
         </ul>
     </nav>
 </header>
