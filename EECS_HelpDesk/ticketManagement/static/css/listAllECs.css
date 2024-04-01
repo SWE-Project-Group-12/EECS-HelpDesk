@@ -24,15 +24,7 @@ body {
   display: flex;
   flex-direction: column;
   margin-left: 2.5%;
-  min-height: 80vh; /* Add this line */
-}
-
-.ec-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+  min-height: 80vh; 
 }
 
 .ec-username,.ec-title,.ec-date,.ec-status,.ec-manage {
@@ -40,11 +32,6 @@ body {
   font-family: 'Inter';
   font-size: 20px;
   color: #0d3273;
-}
-
-.ec-status {
-  font-family: 'Inter';
-  font-size: 22px;
 }
 
 .grid-container {
@@ -56,20 +43,18 @@ body {
   font-weight: bold;
 }
 
+.ec-item:first-child {
+  background-color: #D9D9D9;
+}
+
 .ec-item {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   padding: 10px;
   background-color: #ffffff;
   border-radius: 5px;
-}
-
-.ec-item:nth-child(n+2) {
-  background-color: #D9D9D9;
-}
-
-.ec-item:not(:last-child) {
   border-bottom: 2px solid #ccc;
+  border-color: #0d3273;
 }
 
 .manage-button,
@@ -91,3 +76,4 @@ body {
   color: white;
   text-decoration: none;
 }
+
