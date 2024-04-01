@@ -28,10 +28,13 @@
                     <div class="fault-username">{{ fault.username.username }}</div>
                     <div class="fault-title">{{ fault.title }}</div>
                     <div class="fault-date">{{ fault.dateCreated }}</div>
-                    <div class="fault-status"> {% if fault.status == 'Pending' %} 
+                    <div class="fault-status"> 
+                        {% if fault.status == 'Pending' %} 
                         <span style="color: orange;">{{ fault.status }}</span> 
-                        {% elif fault.status == 'Rejected' %} <span style="color: red;">{{ fault.status }}</span> 
-                        {% elif fault.status == 'Resolved' %} <span style="color: green;">{{ fault.status }}</span> 
+                        {% elif fault.status == 'Rejected' %} 
+                        <span style="color: red;">{{ fault.status }}</span> 
+                        {% elif fault.status == 'Resolved' %} 
+                        <span style="color: green;">{{ fault.status }}</span> 
                         {% else %}{{ fault.status }}{% endif %} 
                     </div>
                     <div class="fault-manage">
