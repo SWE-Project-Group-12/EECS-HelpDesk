@@ -63,3 +63,11 @@ body {
   .ec-empty {
     text-align: center;
   }
+
+  .ec-heading > * {
+    font-weight: bold;
+}
+
+.ec-item:not(.ec-heading) {
+    font-weight: normal;
+}
