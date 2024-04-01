@@ -37,6 +37,8 @@ body {
     grid-row: 3;
     grid-column: 1 / -1; /* the -1 means span all columns*/
     height: 2px;
+    width: 85%;
+    justify-self: center;
     background-color: #0D3273;
     margin: 0 0 0.5em 0; /* Remove default margin */
 }
@@ -101,6 +103,7 @@ body {
 
 .manage_form textarea {
     height: 100px;
+    margin-top: 0.4em;
 }
 
 .status-choices {
@@ -132,7 +135,7 @@ input[value="Rejected" i] {
 
 /* The i stands for ignore case sensitivity*/
 input[value="Pending" i] {
-    background-color: #F29339 !important;
+    background-color: #faac0a !important;
 }
 
 
