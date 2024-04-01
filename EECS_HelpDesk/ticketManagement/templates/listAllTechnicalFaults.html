@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
+{%load static%}
+
 <head>
     <meta charset="UTF-8">
     <title>List All Technical Faults</title>
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/listAllTechnicalFaults.css' %}">
 </head>
-<body>
+
+<!-- <body>
     {% include 'navbar.html' %}
-    <h1> List All Technical Faults </h1>
+    <h1> Technical Faults </h1>
     {% if technical_fault_list %}
         <table>
             <thead>
@@ -43,4 +49,44 @@
         <p>No technical faults found.</p> 
         {% endif %} 
 </body> 
+</html> -->
+
+<body>
+    {% include 'navbar.html' %}
+    <div class="grid-container">
+        <div class="left-box">
+            <h2 id="heading">Technical Faults</h2>
+            <div class="fault-container">
+                <div class="fault-item fault-heading">
+                    <div class="fault-username">Username</div>
+                    <div class="fault-title">Title</div>
+                    <div class="fault-date">Date</div>
+                    <div class="fault-status">Status</div>
+                    <div class="fault-manage">Manage</div>
+                </div>
+                {% for fault in technical_fault_list %}
+                <div class="fault-item">
+                    <div class="fault-username">{{ fault.username.username }}</div>
+                    <div class="fault-title">{{ fault.title }}</div>
+                    <div class="fault-date">{{ fault.dateCreated }}</div>
+                    <div class="fault-status"> {% if fault.status == 'Pending' %} 
+                        <span style="color: orange;">{{ fault.status }}</span> 
+                        {% elif fault.status == 'Rejected' %} <span style="color: red;">{{ fault.status }}</span> 
+                        {% elif fault.status == 'Resolved' %} <span style="color: green;">{{ fault.status }}</span> 
+                        {% else %}{{ fault.status }}{% endif %} 
+                    </div>
+                    <div class="fault-manage">
+                        <button class="manage-button">
+                            <a href="{% url 'ManageTechnicalFault' ticketID=fault.ticketID %}">Manage</a>
+                        </button>
+                    </div>
+                    {% empty %} 
+                    <div class="fault-item"> 
+                        <div class="ec-username ec-empty" colspan="4">No Technical Faults found.</div> 
+                    </div> 
+                {% endfor %} 
+            </div>
+        </div>
+    </div>
+</body>
 </html>

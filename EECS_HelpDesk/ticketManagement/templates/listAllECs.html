@@ -29,9 +29,9 @@
                     <div class="ec-title">{{ ec.title }}</div>
                     <div class="ec-date">{{ ec.dateCreated }}</div>
                     <div class="ec-status"> {% if ec.status == 'Pending' %} 
-                        <span style="color: orange;"><small>{{ ec.status }}</small></span> 
-                        {% elif ec.status == 'Rejected' %} <span style="color: red;"><small>{{ ec.status }}</small></span> 
-                        {% elif ec.status == 'Resolved' %} <span style="color: green;"><small>{{ ec.status }}</small></span> 
+                        <span style="color: orange;">{{ ec.status }}</span> 
+                        {% elif ec.status == 'Rejected' %} <span style="color: red;">{{ ec.status }}</span> 
+                        {% elif ec.status == 'Resolved' %} <span style="color: green;">{{ ec.status }}</span> 
                         {% else %}<small>{{ ec.status }}</small>{% endif %} 
                     </div>
                     <div class="ec-manage">
