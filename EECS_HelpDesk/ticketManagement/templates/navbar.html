@@ -17,6 +17,7 @@
             {% else %}
             {% if userType == 'Admin' and userType != 'Student'%}
             <li><a href="{% url 'Create New User' %}">Create New User</a></li> 
+            <li><a href="{% url 'listAllUsers' %}">List All Users</a></li> 
             {% endif %}
             {% if userType != 'TechnicalFaultHandler' and userType != 'Student' %}
             <li><a href="{% url 'ListECs' %}">List All ECs</a></li> 
