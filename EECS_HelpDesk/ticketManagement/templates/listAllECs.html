@@ -36,6 +36,9 @@
                         </span> {% elif ec.status == 'UPDATED' %} <span style="color: green;"> 
                             {{ ec.status }} </span> {% else %} {{ ec.status }} {% endif %} 
                     </td>
+                    <td>
+                        <a href="{% url 'ManageEC' ticketID=ec.ticketID %}">Manage</a>
+                    </td>
                   </tr>
                   {% empty %} 
                   <tr> 
