@@ -13,10 +13,16 @@
   <div class="login-container">
     <form class="login-form" method="post">
       {% csrf_token %}
-      {{ form }}
+      <div class="form-title">Login</div>
+      <div class="form-label">Username</div>
+      {{ form.username }}
+      <div class="form-label">Password</div>
+      {{ form.password }}
       <button type="submit">Login</button>
     </form>
     <div class="image-container">
+      <img src="{% static 'images/qmul.png' %}">
+      <h1>Queen Mary University London</h1>
     </div>
   </div>
 </body>

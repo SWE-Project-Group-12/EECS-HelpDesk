@@ -1,27 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/viewTicketDetails.css' %}">
     <title>View {{ticketType}} Details</title>
 </head>
+
 <body>
-    {% include "navbar.html" %}
-    <h1>View {{ticketType}} Details</h1>
-    {% for key, value in ticket.items %}
-        {% if key == "dateCreated" %}
-            <p>Date Created: {{value}}</p>
-
-        {% elif key == "status_update_reason" %}
+    {% include 'navbar.html' %}
+    <div class="container">
+        <div class="ticket-details">
+            <h1>View {{ticketType}} Details</h1>
+            {% for key, value in ticket.items %}
+            {% if key == "dateCreated" %}
+            <div class="ticket-detail">
+                <span class="ticket-detail-label">Date Created:</span>
+                <span class="ticket-detail-value">{{value}}</span>
+            </div>
+            {% elif key == "status_update_reason" %}
             {% if value %}
-            <p>Response: {{value}}</p>
+            <div class="ticket-detail">
+                <span class="ticket-detail-label">Response:</span>
+                <span class="ticket-detail-response">{{value}}</span>
+            </div>
             {% endif %}
+            {% elif key != "username_id" %}
+            <div class="ticket-detail">
+                <span class="ticket-detail-label">{{key|capfirst}}:</span>
+                <span class="ticket-detail-value">{{value}}</span>
+                {% if value == "Pending" or value == "Resolved" or value == "Rejected" %}
+                <div class="status-circle {{value}}">
 
-        {% elif key == "username_id" %}
-
-        {% else %}
-            <p>{{key|capfirst}}: {{value}}</p>
-        {% endif %}
-    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
 </body>
+
 </html>
