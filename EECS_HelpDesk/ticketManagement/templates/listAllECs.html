@@ -4,70 +4,48 @@
 {%load static%}
 
 <head>
-    <meta charset="UTF-8">
-    <title>List All ECs</title>
-    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-    <link rel="stylesheet" href="{% static 'css/listAllECs.css' %}">
+  <meta charset="UTF-8">
+  <title>List All ECs</title>
+  <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+  <link rel="stylesheet" href="{% static 'css/listAllECs.css' %}">
 </head>
 
 <body>
   {% include 'navbar.html' %}
   <div class="grid-container">
-    <div class="left-box">
-      <h2>ECs</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Username</th>
-            <th>Title</th>
-            <th>Status</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for ec in ec_list %}
-            <tr>
-              <td>{{ ec.username.username }}</td>
-              <td>{{ ec.title }}</td>
-              <td> {% if ec.status == 'PENDING' %} 
-                <span style="color: orange;"> {{ ec.status }} </span> 
-                {% elif ec.status == 'VOID' %} <span style="color: red;"> {{ ec.status }} 
-                </span> {% elif ec.status == 'UPDATED' %} <span style="color: green;"> 
-                  {{ ec.status }} </span> {% else %} {{ ec.status }} {% endif %} 
-              </td> 
-              <td>{{ ec.dateCreated }}</td>
-              <td><a href="/manageEC/{{ec.ticketID}}">Manage Technical Fault</a></td>
-            </tr>
-            {% empty %} 
-            <tr> 
-              <td colspan="5">No ECs found.</td> 
-            </tr> 
-            {% endfor %} 
-        </tbody> 
-      </table>
-    </div>
-    <div class="right-box">
-      <h2>Hello, {{ user.username }}</h2>
-      <p>{{ user.description }}</p>
-      <table>
-        <thead>
-          <tr>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for ec in ec_list %}
-            <tr>
-              <td>{{ ec.description }}</td>
-            </tr>
-          {% empty %} 
-            <tr> 
-              <td>No description found.</td> 
-            </tr> 
-          {% endfor %} 
-        </tbody> 
-      </table>
-    </div>
+      <div class="left-box">
+          <h2>ECs</h2>
+          <table>
+              <thead>
+                  <tr>
+                      <th>Username</th>
+                      <th>Title</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                  </tr>
+              </thead>
+              <tbody>
+              {% for ec in ec_list %}
+                  <tr>
+                    <td>{{ ec.username.username }}</td>
+                    <td>{{ ec.title }}</td>
+                    <td>{{ ec.dateCreated }}</td>
+                    <td> {% if ec.status == 'PENDING' %} 
+                        <span style="color: orange;"> {{ ec.status }} </span> 
+                        {% elif ec.status == 'VOID' %} <span style="color: red;"> {{ ec.status }} 
+                        </span> {% elif ec.status == 'UPDATED' %} <span style="color: green;"> 
+                            {{ ec.status }} </span> {% else %} {{ ec.status }} {% endif %} 
+                    </td>
+                  </tr>
+                  {% empty %} 
+                  <tr> 
+                      <td colspan="5">No ECs found.</td> 
+                  </tr> 
+              {% endfor %} 
+              </tbody> 
+          </table>
+      </div>
   </div>
 </body>
+
 </html>

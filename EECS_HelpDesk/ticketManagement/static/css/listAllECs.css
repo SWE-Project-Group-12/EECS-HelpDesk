@@ -1,49 +1,46 @@
 body {
     background-color: #f2f2f2;
-  }
-  
-  .grid-container {
+}
+
+.grid-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-gap: 10px;
-  }
-  
-  .left-box {
-    grid-column: 1 / 2;
+    width: 95%; /* Set the width of the grid container */
+    margin-left: 2%;
+}
+
+.left-box {
     height: 50vh;
-    overflow-y: auto;
     background-color: #fff;
-    padding: 10px;
-    margin-right: 10px;
-  }
-  
-  .right-box {
-    grid-column: 2 / 3;
-    background-color: #fff;
-    padding: 10px;
-  }
-  
-  .right-box h2 {
-    margin-top: 'hello'
-  }
-  
-  table {
+    padding: 12px;
+    padding-left: 2%;
+    width: 98%;
+}
+
+table {
     width: 100%;
     border-collapse: collapse;
-  }
-  
-  th,
-  td {
+}
+
+th,
+td {
     padding: 8px;
     text-align: left;
     border-bottom: 1px solid #ddd;
-  }
-  
-  tbody tr:nth-child(even) {
+}
+
+tbody tr:nth-child(even) {
     background-color: #f2f2f2;
-  }
-  
-  th {
+}
+
+th {
     background-color: #f2f2f2;
     font-weight: bold;
-  }
+}
+
+/* Add some space around the grid container */
+.grid-container {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
