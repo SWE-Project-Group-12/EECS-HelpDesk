@@ -8,13 +8,17 @@ class TechnicalFault(Ticket):
     ITL = "ITL"
     ITS = "ITS"
     Library = "Library"
-    NONE ="NONE"
+    QMplus = "QMplus"
+    Mysis = "Mysis"
+    Other = "Other"
 
     LOCATION_CHOICES = {
         ITL: "ITL",
         ITS: "ITS",
         Library: "Library",
-        NONE: "None",
+        QMplus: "QMplus",
+        Mysis: "Mysis",
+        Other: "Other",
     }
 
     location = models.CharField(max_length=10, choices=LOCATION_CHOICES)
