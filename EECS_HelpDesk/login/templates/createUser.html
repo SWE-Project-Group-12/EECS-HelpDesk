@@ -6,10 +6,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/create-user.css">
-    <!-- ARE WE USING THIS?, the usual django way -->
-    <!--  load static  -->
-    <!-- <link rel="stylesheet" href=' static polls/style.cc '> -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/create-user.css' %}">
 </head>
 <body>
     {% include 'navbar.html' %}
