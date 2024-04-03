@@ -11,4 +11,4 @@ class serviceStatus(models.Model):
 
     service_name = models.CharField(max_length = 35, primary_key = True)
     status = models.CharField(max_length = 20, choices=SERVICE_STATUS_CHOICES, default=SERVICE_STATUS_CHOICES['Good Service'])
-    status_description = models.CharField(max_length = 128, default="", null = True, blank= True) 
+    status_description = models.TextField(default="", null=True, blank=True) 

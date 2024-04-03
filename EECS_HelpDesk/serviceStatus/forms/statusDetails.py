@@ -7,6 +7,6 @@ class statusDetails(forms.Form):
 
     status = forms.ChoiceField(choices=SERVICE_STATUS_CHOICES)
 
-    status_description = forms.CharField(initial="" ,max_length= 200,
+    status_description = forms.CharField(initial="" ,
                                          help_text="Must be at least 5 characters long",
-                                         label="Status Description", required=False)
+                                         label="Status Description", required=False, widget=forms.Textarea)
