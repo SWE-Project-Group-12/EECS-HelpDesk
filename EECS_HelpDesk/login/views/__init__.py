@@ -5,3 +5,4 @@ from .logout import logout
 from .getUserType import getUserType
 from .listAllUsers import listAllUsers
 from .manageUser import manageUser
+from .resetPassword import ResetPasswordview
