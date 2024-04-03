@@ -42,7 +42,10 @@ class createUser(CreateView):
             return HttpResponseRedirect("/login")
 
         f = CreateUserForm(request.POST)
-        success = False
+        success = True
+        
+        model = None
+        models_list = [Student, ECHandler, TechnicalFaultHandler, Admin]
 
         # Validates the details
         if f.is_valid():
@@ -53,24 +56,26 @@ class createUser(CreateView):
             surname = cleaned_f["surname"]
             user_type = cleaned_f["user_type"]
 
-            models_list = [Student, ECHandler, TechnicalFaultHandler, Admin]
             for userType in models_list:
+
+                if len(userType.objects.filter(pk=username)) == 1:
+                    success = False
+                    f.add_error("username", "Username already exists.")
+                    return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user")})
+
+
                 if user_type == userType.__name__:
-                    if len(userType.objects.filter(pk=username)) == 1:
-                        f.add_error("username", "Username already exists.")
+                    model = userType
 
-                    else:
-                        newUser = userType.objects.create(
-                            name=name,
-                            username=username,
-                            surname=surname,
-                            password=bcrypt.hashpw(str(password).encode("utf-8"), bcrypt.gensalt()).decode("utf-8"),
-                        )
-                        newUser.save()
-                        success = True
+        if not success:
+            return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user")})
 
-        if success:
-            return render(request, self.success_template_name, {"username": request.session.get("user"), "userType": getUserType(request.session.get("user")), "message": USER_TYPES[user_type] + " Created."})
+        newUser = model.objects.create(
+            name=name,
+            username=username,
+            surname=surname,
+            password=bcrypt.hashpw(str(password).encode("utf-8"), bcrypt.gensalt()).decode("utf-8"),
+        )
+        newUser.save()
 
-
-        return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user")})
+        return render(request, self.success_template_name, {"username": request.session.get("user"), "userType": getUserType(request.session.get("user")), "message": USER_TYPES[user_type] + " Created."})
