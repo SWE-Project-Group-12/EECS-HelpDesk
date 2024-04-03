@@ -14,16 +14,15 @@ body {
   grid-template-columns: 1fr;
   grid-gap: 10px;
   width: 95%; 
-  margin-left: 2%;
+  margin: 0 auto;
 }
-
+  
 .left-box {
   background-color: #fff;
-  padding: 12px;
-  padding-left: 2%;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  margin-left: 2.5%;
+  margin: 2%;
   min-height: 80vh; 
 }
 

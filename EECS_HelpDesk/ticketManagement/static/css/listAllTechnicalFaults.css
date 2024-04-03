@@ -1,8 +1,7 @@
 body {
   background-color: #D9D9D9;
 }
-
-
+  
 #heading {
   text-decoration: underline;
   font-family: 'Inter';
@@ -10,51 +9,43 @@ body {
   color: #0d3273;
 }
 
-
 .grid-container {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 10px;
-  width: 95%;
-  margin-left: 2%;
+  width: 95%; 
+  margin: 0 auto;
 }
-
-
+  
 .left-box {
   background-color: #fff;
-  padding: 12px;
-  padding-left: 2%;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  margin-left: 2.5%;
-  min-height: 80vh;
+  margin: 2%;
+  min-height: 80vh; 
 }
-
-
+  
 .fault-username,.fault-title,.fault-date,.fault-status,.fault-manage {
   padding: 8px;
   font-family: 'Inter';
   font-size: 20px;
   color: #0d3273;
 }
-
-
+  
 .grid-container {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
-
-
+  
 .fault-heading > * {
   font-weight: bold;
 }
-
-
+  
 .fault-item:first-child {
   background-color: #D9D9D9;
 }
-
-
+  
 .fault-item {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -64,8 +55,7 @@ body {
   border-bottom: 2px solid #ccc;
   border-color: #0d3273;
 }
-
-
+  
 .manage-button,
 .manage-button:hover,
 .manage-button:focus {
@@ -80,11 +70,11 @@ body {
   text-decoration: none;
   display: block;
 }
-
-
+  
 .fault-manage a {
   color: white;
   text-decoration: none;
 }
-
-
+  
+  
+  
