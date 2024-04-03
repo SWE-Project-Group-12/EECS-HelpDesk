@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "login",
     "ticketManagement",
     "serviceStatus",
+    "FAQs",
 ]
 
 MIDDLEWARE = [
@@ -61,6 +62,7 @@ TEMPLATES = [
             os.path.dirname(BASE_DIR / "login/templates"),
             os.path.dirname(BASE_DIR / "ticketManagement/templates"),
             os.path.dirname(BASE_DIR / "serviceStatus/templates"),
+            os.path.dirname(BASE_DIR / "FAQs/templates"),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -127,6 +129,7 @@ STATICFILES_DIRS = [
     os.path.dirname(BASE_DIR / "login/static"),
     os.path.dirname(BASE_DIR / "ticketManagement/static"),
     os.path.dirname(BASE_DIR / "serviceStatus/static"),
+    os.path.dirname(BASE_DIR / "FAQs/static"),
 ]
 
 # Default primary key field type
