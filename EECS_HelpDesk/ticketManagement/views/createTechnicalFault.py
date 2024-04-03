@@ -111,7 +111,8 @@ class createTechnicalFault(FormView):
                 # status = form.cleaned_data["status"],             # pls look at baseTicketDetails for why i did this
                 # dateCreated = form.cleaned_data["dateCreated"],   # pls look at baseTicketDetails for why i did this
                 username = Student.objects.get(username=username),  # form says needs to be of Student instance
-                location = form.cleaned_data['location']
+                location = form.cleaned_data['location'],
+                priority = form.cleaned_data['priority'],
             )
             TechFault_ticket.save()
 

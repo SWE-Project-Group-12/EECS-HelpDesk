@@ -6,6 +6,13 @@ STATUS_CHOICES = {
 		"Rejected": "Rejected",
         "Pending": "Pending",
 	}
+
+PRIORITY_CHOICES = {
+    "Normal": "Normal",
+    "High": "High",
+    "Urgent": "Urgent",
+}
+
 class Ticket(models.Model):
     # Abstract Model (See https://docs.djangoproject.com/en/5.0/topics/db/models/#model-inheritance).
     # Contains the common attributes for ECs and Technical Faults.
@@ -16,6 +23,7 @@ class Ticket(models.Model):
     dateCreated = models.DateField(auto_now_add=True)
     status_update_reason = models.CharField(max_length=150, default="")
     username = models.ForeignKey(to="login.Student", on_delete=models.CASCADE)
+    priority = models.CharField(max_length=7, choices=PRIORITY_CHOICES, default=PRIORITY_CHOICES['Normal'])
 
 
     class Meta:

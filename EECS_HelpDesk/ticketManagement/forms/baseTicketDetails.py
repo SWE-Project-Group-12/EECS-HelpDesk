@@ -1,5 +1,6 @@
 from django import forms
-from ..models import STATUS_CHOICES
+from ..models import STATUS_CHOICES, PRIORITY_CHOICES
+from django.core.validators import ValidationError
 
 
 class BaseTicketDetails(forms.Form):
@@ -8,6 +9,7 @@ class BaseTicketDetails(forms.Form):
 
     title = forms.CharField(max_length=100, required=True)
     description = forms.CharField(widget=forms.Textarea, required=True)
+    priority = forms.ChoiceField(choices=PRIORITY_CHOICES, widget=forms.Select(attrs={"class": "form-control"}))
 
     # ////////////////////////////////////////////////////////////////
     # i commented these out otherwise the form will not work since it complains they are required
@@ -29,3 +31,12 @@ class BaseTicketDetails(forms.Form):
 
     class Meta: 
         abstract = True
+
+
+    def clean_priority(self):
+        priority = self.cleaned_data.get("priority")
+
+        if priority not in PRIORITY_CHOICES.keys():
+            raise ValidationError("You must choose one of the priortity values provided.")
+
+        return priority

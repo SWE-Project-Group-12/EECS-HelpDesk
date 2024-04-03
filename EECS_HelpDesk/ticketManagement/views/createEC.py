@@ -112,6 +112,7 @@ class createEC(FormView):
                 username = Student.objects.get(username=username),  # form says needs to be of Student instance
                 module = form.cleaned_data["module"],
                 component = form.cleaned_data["component"],
+                priority = form.cleaned_data['priority'],
             )
             EC_ticket.save()
 
