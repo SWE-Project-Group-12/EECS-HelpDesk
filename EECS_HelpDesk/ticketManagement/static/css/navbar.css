@@ -34,3 +34,16 @@ body{
 .navContainer .navOptions #logout {
     margin-left: 45px;
 }
+
+@media screen and (max-width: 780px) {
+    .navContainer {
+        flex-direction: column;
+    }
+    .navContainer .navOptions {
+        align-items: center;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+
+}

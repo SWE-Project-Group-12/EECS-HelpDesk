@@ -89,3 +89,12 @@
     color: aqua;
     text-decoration: underline;
 }
+
+@media screen and (max-width: 750px) {
+    .listAllUsersContainer, .manageUserContainer{
+        margin-left: 10%;
+        margin-right: 10%;
+        width: 80%;
+    }
+}
+

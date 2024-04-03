@@ -88,3 +88,11 @@
     text-decoration: underline;
     color: aqua;
 }
+
+@media screen and (max-width: 750px) {
+    .viewServiceStatusContainer, .editServiceStatusContainer{
+        margin-left: 10%;
+        margin-right: 10%;
+        width: 80%;
+    }
+}

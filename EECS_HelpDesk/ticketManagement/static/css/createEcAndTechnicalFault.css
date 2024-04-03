@@ -74,3 +74,17 @@
     padding-bottom: 0.3rem;
     border-radius: 6px;
 }
+
+@media screen and (max-width: 750px) {
+    .createEcContainer, .createTechContainer {
+        grid-template-columns: 100%;
+    }
+
+    .createEcContainer .createEcForm,.createTechContainer .createTechForm {
+        margin-right: 0;
+    }
+
+    .createEcContainer .createEcInfo,.createTechContainer .createTechInfo {
+        margin-left: 0;
+    }
+}

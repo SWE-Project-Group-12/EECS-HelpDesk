@@ -143,3 +143,10 @@ body {
     padding: 0.5em 1.5em;
     border-radius: 12px;
 }
+
+@media screen and (max-width: 750px) {
+    .create-user-container {
+        flex-direction: column;
+    }
+
+}
