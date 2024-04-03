@@ -10,4 +10,5 @@ urlpatterns = [
     path("listAllUsers", views.listAllUsers.as_view(), name="listAllUsers"),
     path("manageUser/<str:usernametomanage>", views.manageUser.as_view(), name="manageUser"),
     path("resetPassword", views.ResetPasswordview.as_view(), name="ResetPasswordView"),
+    path("deleteUser/<str:usernameToDelete>", views.DeleteUserView.as_view(), name="DeleteUser"),
 ]

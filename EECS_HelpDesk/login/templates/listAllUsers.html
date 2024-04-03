@@ -22,7 +22,7 @@
             <div class="student" id = 'account'>
                 <p>{{student.username}}</p>
                 <a href="{% url 'manageUser' usernametomanage=student.username %}"><button>Edit Student</button></a>
-            
+                <a href="{% url 'DeleteUser' usernameToDelete=student.username %}"><button>Delete Student</button></a>
             </div>
             {% endfor %}
 
@@ -36,7 +36,7 @@
             <div class="admin" id = 'account'>
                 <p>{{admin.username}}</p>
                 <a href="{% url 'manageUser' usernametomanage=admin.username %}"><button>Edit Admin</button></a>
-            
+                <a href="{% url 'DeleteUser' usernameToDelete=admin.username %}"><button>Delete Admin</button></a>
             </div>
             {% endfor %}
 
@@ -50,7 +50,7 @@
             <div class="echandlers" id = 'account'>
                 <p>{{echandler.username}}</p>
                 <a href="{% url 'manageUser' usernametomanage=echandler.username %}"><button>Edit ECHandler</button></a>
-                
+                <a href="{% url 'DeleteUser' usernameToDelete=echandler.username %}"><button>Delete ECHandler</button></a>
             </div>
             {% endfor %}
 
@@ -64,7 +64,7 @@
             <div class="technicalfaulthandler" id = 'account'>
                 <p>{{technicalfaulthandler.username}}</p>
                 <a href="{% url 'manageUser' usernametomanage=technicalfaulthandler.username %}"><button>Edit Technical Fault Handler</button></a>
-            
+                <a href="{% url 'DeleteUser' usernameToDelete=technicalfaulthandler.username %}"><button>Delete Technical Fault Handler</button></a>
             </div>
             {% endfor %}
 
