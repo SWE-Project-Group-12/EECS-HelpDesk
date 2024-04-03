@@ -23,4 +23,5 @@ urlpatterns = [
     path("", include("ticketManagement.urls")),
     path("", include("serviceStatus.urls")),
     path("", include("FAQs.urls")),
+    path("", include("feedbackSystem.urls")),
 ]
