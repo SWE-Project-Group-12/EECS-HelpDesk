@@ -55,6 +55,7 @@ body {
 .messages{
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .success{
@@ -76,6 +77,6 @@ body {
 
     padding: 1rem;
     border-radius: 0.325rem;
-    margin-inline: 5% ;
+
 
 }
