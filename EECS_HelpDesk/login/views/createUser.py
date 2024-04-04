@@ -7,6 +7,7 @@ from login.models import Admin, User, ECHandler, TechnicalFaultHandler, Student
 from django.apps import apps
 from .getUserType import getUserType
 import bcrypt
+from django.contrib import messages
 
 
 class createUser(CreateView):
@@ -110,5 +111,7 @@ class createUser(CreateView):
             password=bcrypt.hashpw(str(password).encode("utf-8"), bcrypt.gensalt()).decode("utf-8"),
         )
         newUser.save()
+        message = USER_TYPES[user_type] + " Created."
+        messages.success(request, message)
 
-        return render(request, self.success_template_name, {"username": request.session.get("user"), "userType": getUserType(request.session.get("user")), "message": USER_TYPES[user_type] + " Created."})
+        return HttpResponseRedirect("/listAllUsers")
