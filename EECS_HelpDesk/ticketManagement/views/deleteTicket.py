@@ -26,7 +26,7 @@ class DeleteTicketView(DeleteView):
         ticketID = kwargs['ticketID']
         if len(self.model.objects.filter(pk=ticketID)) <= 0:
             message = self.ticket_type + " with ID " + str(ticketID) + " was not found."
-            message.error(request, message)
+            messages.error(request, message)
             return HttpResponseRedirect("/findPersonalTickets/" + username)
         else:
             self.model.objects.filter(pk=ticketID).delete()
