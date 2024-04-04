@@ -30,17 +30,20 @@ body {
     position: relative;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 30px 30px 2fr 3fr 4fr 1fr;
+    grid-template-rows: 30px 30px 30px 100px 250px 250px;
+}
+
+/* Added to ensure gap between header of ticket and main details */
+.row-3 {
+    grid-row: 3;
+    grid-column: 1 / -1;
 }
 
 .manage-ticket-inner-container hr {
-    grid-row: 3;
-    grid-column: 1 / -1; /* the -1 means span all columns*/
     height: 2px;
-    width: 85%;
-    justify-self: center;
+    width: 90%;
+    margin: 5px auto 0 auto;
     background-color: #0D3273;
-    margin: 0 0 0.5em 0; /* Remove default margin */
 }
 
 .ec-student-username {
@@ -75,13 +78,22 @@ body {
 
 .ec-title {
     text-align: start;
-    grid-area: 3 / 1 / 4 / 2;
+    grid-area: 4 / 1 / 5 / 2;
     margin-top: 0.2em;
+}
+
+.title-format {
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.ec-priority {
+    grid-area: 4 / 3 / 5 / 4;
 }
 
 .ec-desc {
     text-align: start;
-    grid-area: 4 / 1 / 5 / 2;
+    grid-area: 5 / 1 / 6 / 2;
 }
 
 .reason_label, .ec-title, .ec-desc {
@@ -96,7 +108,7 @@ body {
 
 .manage_form {
     text-align: start;
-    grid-area: 5 / 1 / 7 / 4;
+    grid-area: 6 / 1 / 7 / 4;
     display: flex;
     flex-direction: column;
 }

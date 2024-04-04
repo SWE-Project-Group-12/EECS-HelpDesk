@@ -21,18 +21,18 @@
             <h4 class="ec-module">Module: <span class="mini-text">{{ticketDetail.module}}</span></h4>
             <h4 class="ec-status">Status: <span class="mini-text">{{ticketDetail.status}}</span></h4>
             <h4 class="ec-component">Component: <span class="mini-text">{{ticketDetail.component}}</span></h4>
-            <hr>
+            <div class="row-3">
+                <hr>
+            </div>
             <div class="ec-title">
-                <h4>Title: </h4>
-                <p>{{ticketDetail.title}}</p>
+                <h4>Title: <span class="title-format">{{ticketDetail.title}}</span></h4>
             </div>
             <div class="ec-desc">
                 <h4>Description: </h4>
                 <p>{{ticketDetail.description}}</p>
             </div>
-            <div>
-                <h4>Priority:</h4>
-                <p>{{ticketDetail.priority}}</p>
+            <div class="ec-priority">
+                <h4>Priority: <span class="mini-text">{{ticketDetail.priority}}</span></h4>
             </div>
 
             {% endfor %}
