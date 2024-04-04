@@ -4,6 +4,7 @@ from django.views.generic import DeleteView
 from ticketManagement.views import getUserType
 from ticketManagement.models import EC, TechnicalFault
 from ..models import Student, ECHandler, TechnicalFaultHandler, Admin
+from django.contrib import messages
 
 class DeleteUserView(DeleteView):
     model = None
@@ -22,6 +23,9 @@ class DeleteUserView(DeleteView):
                 user.delete()
                 EC.objects.filter(username=username).delete()
                 TechnicalFault.objects.filter(username=username).delete()
-                return render(request, self.template_name, {"username": username, "userType": getUserType(username), "message": "User Removed."})
+                messages.success(request,"User Removed")
+                return HttpResponseRedirect("/login")
+            
+        messages.error(request,"User Has Not Been Found.")
 
-        return render(request, self.template_name, {"username": username, "userType": getUserType(username), "message": "User Has Not Been Found."})
+        return HttpResponseRedirect("/login")
