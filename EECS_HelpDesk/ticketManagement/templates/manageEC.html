@@ -27,13 +27,14 @@
             <div class="ec-title">
                 <h4>Title: <span class="title-format">{{ticketDetail.title}}</span></h4>
             </div>
+            <div class="ec-priority">
+                <h4>Priority: <span class="mini-text">{{ticketDetail.priority}}</span></h4>
+            </div>
             <div class="ec-desc">
                 <h4>Description: </h4>
                 <p>{{ticketDetail.description}}</p>
             </div>
-            <div class="ec-priority">
-                <h4>Priority: <span class="mini-text">{{ticketDetail.priority}}</span></h4>
-            </div>
+
 
             {% endfor %}
             {% include 'manageTicketSubmit.html' %}

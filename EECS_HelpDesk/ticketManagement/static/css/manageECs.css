@@ -81,7 +81,7 @@ body {
 .ec-title {
     text-align: start;
     grid-area: 4 / 1 / 5 / 3;
-    min-height: 50px;
+    min-height: 60px;
 }
 
 .title-format {
@@ -99,20 +99,24 @@ body {
     min-height: 100px;
 }
 
+.ec-desc h4, .manage_form label {
+    margin-bottom: 0.4em;
+}
+
 .reason_label, .ec-title, .ec-desc {
     font-size: 20px;
     font-weight: bold;
 }
 
 .mini-text, p {
-    font-size: 16px;
+    font-size: 17px;
     font-weight: normal;
 }
 
 .manage_form {
     text-align: start;
     grid-area: 6 / 1 / 7 / 4;
-    margin-top: 0.5em;
+    margin-top: 0.2em;
     display: flex;
     flex-direction: column;
 }
