@@ -3,6 +3,7 @@ from django.views import View
 from django.http import HttpResponseRedirect
 from .getUserType import getUserType
 from ..models import STATUS_CHOICES
+from django.contrib import messages
 
 class manageTicket(View):
     template_name="manageTicket.html"
@@ -58,5 +59,6 @@ class manageTicket(View):
         ticket.status_update_reason = request.POST.get("reason", "")
         ticket.save()
         message = "Ticket ID: " + str(ticketID) + " Updated Successfully" 
+        messages.success(request,message)
         
-        return render(request,"successMessage.html", {"ticketID" : ticketID, "message" : message, "userType": getUserType(username), "username": username})
+        return HttpResponseRedirect("/login")
