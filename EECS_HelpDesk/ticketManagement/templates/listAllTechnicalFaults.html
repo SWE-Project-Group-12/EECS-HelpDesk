@@ -26,7 +26,7 @@
                 {% for fault in technical_fault_list %}
                 <div class="fault-item">
                     <div class="fault-username">{{ fault.username.username }}</div>
-                    <div class="fault-title">{{ fault.title }}</div>
+                    <div class="fault-title descriptionLimited" title="{{fault.title}}">{{ fault.title }}</div>
                     <div class="fault-date">{{ fault.dateCreated }}</div>
                     <div class="fault-status"> 
                         {% if fault.status == 'Pending' %} 
@@ -51,5 +51,7 @@
             </div>
         </div>
     </div>
+
+    <script src="{% static 'js/descriptionLimiter.js' %}"></script>
 </body>
 </html>

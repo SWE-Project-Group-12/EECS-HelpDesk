@@ -26,7 +26,7 @@
                 {% for ec in ec_list %}
                 <div class="ec-item">
                     <div class="ec-username">{{ ec.username.username }}</div>
-                    <div class="ec-title">{{ ec.title }}</div>
+                    <div class="ec-title descriptionLimited" title="{{ec.title}}">{{ ec.title }}</div>
                     <div class="ec-date">{{ ec.dateCreated }}</div>
                     <div class="ec-status"> {% if ec.status == 'Pending' %} 
                         <span style="color: orange;">{{ ec.status }}</span> 
@@ -48,5 +48,6 @@
             </div>
         </div>
     </div>
+    <script src="{% static 'js/descriptionLimiter.js' %}"></script>
 </body>
 </html>
