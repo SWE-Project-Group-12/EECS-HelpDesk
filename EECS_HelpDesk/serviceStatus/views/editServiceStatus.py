@@ -12,7 +12,6 @@ from django.contrib import messages
 class editServiceStatus(FormView):
     template_name = "editServiceStatus.html"
     form_class = statusDetails
-    success_template_name = "successMessage.html"
 
     def get(self, request,service_name):
        

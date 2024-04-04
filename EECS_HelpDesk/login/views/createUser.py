@@ -13,7 +13,6 @@ from django.contrib import messages
 class createUser(CreateView):
     """ Displays the form to create a new user. Only Admins can access this page. """
     template_name = 'createUser.html'
-    success_template_name = "successMessage.html"
     success_url = '/listAllECs'
 
     # If the request method is GET:
