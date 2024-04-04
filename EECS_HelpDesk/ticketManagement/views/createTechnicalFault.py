@@ -5,6 +5,7 @@ from ticketManagement.models import TechnicalFault
 from login.models import Student
 from django.views.generic.edit  import FormView
 from .getUserType import getUserType
+from django.contrib import messages
 
 # def createTechnicalFault(request, username):
 #     """ Displays the form to create a ticket for the student. """
@@ -65,7 +66,7 @@ from .getUserType import getUserType
 # class based version
 class createTechnicalFault(FormView):
     template_name = "createTechnicalFault.html"
-    success_template_name = "successMessage.html"
+
     form_class = TechnicalFaultForm
 
     def get(self, request, username):
@@ -115,7 +116,9 @@ class createTechnicalFault(FormView):
                 priority = form.cleaned_data['priority'],
             )
             TechFault_ticket.save()
-
-            return render(request, self.success_template_name, {"username": username, "userType": getUserType(username), "message": "Technical Fault Saved."})
+            message = "Technical Fault Saved."
+            messages.success(request,message)
+            
+            return HttpResponseRedirect("/login")
 
         return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "username": username})

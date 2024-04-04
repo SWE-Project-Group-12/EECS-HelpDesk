@@ -5,6 +5,7 @@ from ticketManagement.models import EC
 from login.models import Student
 from django.views.generic.edit  import FormView
 from .getUserType import getUserType
+from django.contrib import messages
 
 
 # def createEC(request, username):
@@ -116,7 +117,10 @@ class createEC(FormView):
             )
             EC_ticket.save()
 
-            return render(request, self.success_template_name, {"username": username, "userType": getUserType(username), "message": "EC Saved."})
+            message = "EC Saved."
+            messages.success(request,message)
+            
+            return HttpResponseRedirect("/login")
 
         return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "username": username})
         

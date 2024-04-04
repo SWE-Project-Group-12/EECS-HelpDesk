@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.views.generic import DeleteView
 from .getUserType import getUserType
+from django.contrib import messages
 
 
 class DeleteTicketView(DeleteView):
@@ -25,7 +26,11 @@ class DeleteTicketView(DeleteView):
         ticketID = kwargs['ticketID']
         if len(self.model.objects.filter(pk=ticketID)) <= 0:
             message = self.ticket_type + " with ID " + str(ticketID) + " was not found."
+            messages.error(request, message)
+            return HttpResponseRedirect("/findPersonalTickets/" + username)
         else:
             self.model.objects.filter(pk=ticketID).delete()
+            message = self.ticket_type + " with ID " + str(ticketID) + " Deleted."
+            messages.success(request,message)
 
-        return render(request, self.template_name, {"username": username, "ticketType": self.ticket_type, "userType": getUserType(username), "message": message})
+        return HttpResponseRedirect("/login")

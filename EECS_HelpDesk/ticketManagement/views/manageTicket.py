@@ -3,6 +3,7 @@ from django.views import View
 from django.http import HttpResponseRedirect
 from .getUserType import getUserType
 from ..models import STATUS_CHOICES
+from django.contrib import messages
 
 class manageTicket(View):
     template_name="manageTicket.html"
@@ -31,7 +32,9 @@ class manageTicket(View):
         ticketDetails = self.model.objects.filter(pk=ticketID).values() #gets the ticket details for the ticket with the ticketID from above
 
         if len(ticketDetails) <= 0:
-            return render(request, "successMessage.html", {"message": self.ticket_type + " with Ticket ID " + str(ticketID) + " does not exist.", "username": username})
+            message = self.ticket_type + " with Ticket ID " + str(ticketID) + " does not exist."
+            messages.error(request, message)
+            return HttpResponseRedirect("/login")
             
 
         return render(request, self.template_name , {"ticketDetails": ticketDetails, "ticketID" : ticketID, "userType" : getUserType(username), "STATUS_CHOICES" : STATUS_CHOICES.keys(), "username": username})
@@ -58,5 +61,6 @@ class manageTicket(View):
         ticket.status_update_reason = request.POST.get("reason", "")
         ticket.save()
         message = "Ticket ID: " + str(ticketID) + " Updated Successfully" 
+        messages.success(request,message)
         
-        return render(request,"successMessage.html", {"ticketID" : ticketID, "message" : message, "userType": getUserType(username), "username": username})
+        return HttpResponseRedirect("/login")
