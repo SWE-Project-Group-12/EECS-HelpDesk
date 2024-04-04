@@ -67,13 +67,12 @@ body {
 .error{
 
     color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-    
+    background-color: #ffa9b0;
+    border-color: #ff9da7;
     
 }
 
-.error,.success{
+.error, .success{
 
     padding: 1rem;
     border-radius: 0.325rem;
