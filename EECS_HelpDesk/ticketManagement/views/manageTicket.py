@@ -32,7 +32,9 @@ class manageTicket(View):
         ticketDetails = self.model.objects.filter(pk=ticketID).values() #gets the ticket details for the ticket with the ticketID from above
 
         if len(ticketDetails) <= 0:
-            return render(request, "successMessage.html", {"message": self.ticket_type + " with Ticket ID " + str(ticketID) + " does not exist.", "username": username})
+            message = self.ticket_type + " with Ticket ID " + str(ticketID) + " does not exist."
+            messages.error(request, message)
+            return HttpResponseRedirect("/login")
             
 
         return render(request, self.template_name , {"ticketDetails": ticketDetails, "ticketID" : ticketID, "userType" : getUserType(username), "STATUS_CHOICES" : STATUS_CHOICES.keys(), "username": username})
