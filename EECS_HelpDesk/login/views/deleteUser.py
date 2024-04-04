@@ -7,7 +7,6 @@ from ..models import Student, ECHandler, TechnicalFaultHandler, Admin
 
 class DeleteUserView(DeleteView):
     model = None
-    template_name = "successMessage.html"
 
     def get(self, request, usernameToDelete, *args, **kwargs):
         username = request.session.get("user")
