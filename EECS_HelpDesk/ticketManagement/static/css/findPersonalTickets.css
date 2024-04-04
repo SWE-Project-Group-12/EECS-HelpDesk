@@ -25,6 +25,7 @@ body {
     display: flex;
     justify-content: space-around;
     margin: 20px 0;
+    flex-direction: column;
   }
   
   main h1 {
