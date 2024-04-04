@@ -19,3 +19,11 @@ Once created, you must setup the virtual environment. Follow the instructions be
 <code> $ ./venv/Scripts/activate </code>
 
 <code> $ pip install -r requirements.txt </code>
+
+<h3> For Linux </h3>
+
+<code> $ python3 -m venv venv </code>
+
+<code> $ source env/bin/activate </code>
+
+<code> $ pip install -r requirements.txt </code>
