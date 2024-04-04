@@ -56,6 +56,39 @@ class createUser(CreateView):
             surname = cleaned_f["surname"]
             user_type = cleaned_f["user_type"]
 
+            for letter in range(0, len(name)):
+                if name[letter].isdigit():
+                    f.add_error("name", "Please do not enter numbers in this field")
+                    return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user")})
+                    
+            for letter in range(0, len(surname)):
+                if surname[letter].isdigit():
+                    f.add_error("surname", "Please do not enter numbers in this field")
+                    return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user")})
+
+
+            capital_letter = False
+            number = False
+
+            for letter in range(0, len(password_data)):
+                if capital_letter and number:
+                    break
+                if password_data[letter].isupper():
+                    capital_letter = True
+                if password_data[letter].isdigit():
+                    number = True
+
+            if not capital_letter:
+                f.add_error("password", "Password needs a captial letter")
+                return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user")})
+
+            
+            if not number:
+                f.add_error("password", "Password needs a number")
+                return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user")})
+
+            
+            
             for userType in models_list:
 
                 if len(userType.objects.filter(pk=username)) == 1:
