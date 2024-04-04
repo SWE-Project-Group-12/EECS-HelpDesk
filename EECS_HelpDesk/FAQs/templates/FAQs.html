@@ -14,7 +14,7 @@
 
             <div class="FAQ-section">
                 <h3 class="FAQ-question">{{q.question}}</h3>
-                <span class="FAQ-answer">{{q.answer}}</span>
+                <span class="FAQ-answer">{{q.answer|linebreaks}}</span>
             </div>
 
         {% endfor %}
