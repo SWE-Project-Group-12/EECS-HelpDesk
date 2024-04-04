@@ -30,19 +30,21 @@ body {
     position: relative;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 30px 30px 30px 100px 250px 250px;
+    grid-template-rows: auto auto 20px auto auto auto auto;
+    grid-row-gap: 10px;
 }
 
 /* Added to ensure gap between header of ticket and main details */
 .row-3 {
     grid-row: 3;
     grid-column: 1 / -1;
+    padding-top: 0.5em;
 }
 
 .manage-ticket-inner-container hr {
     height: 2px;
-    width: 90%;
-    margin: 5px auto 0 auto;
+    width: 85%;
+    margin: 0 auto;
     background-color: #0D3273;
 }
 
@@ -78,8 +80,8 @@ body {
 
 .ec-title {
     text-align: start;
-    grid-area: 4 / 1 / 5 / 2;
-    margin-top: 0.2em;
+    grid-area: 4 / 1 / 5 / 3;
+    min-height: 50px;
 }
 
 .title-format {
@@ -93,7 +95,8 @@ body {
 
 .ec-desc {
     text-align: start;
-    grid-area: 5 / 1 / 6 / 2;
+    grid-area: 5 / 1 / 6 / 4;
+    min-height: 100px;
 }
 
 .reason_label, .ec-title, .ec-desc {
@@ -109,6 +112,7 @@ body {
 .manage_form {
     text-align: start;
     grid-area: 6 / 1 / 7 / 4;
+    margin-top: 0.5em;
     display: flex;
     flex-direction: column;
 }
