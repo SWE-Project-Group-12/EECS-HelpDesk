@@ -70,12 +70,12 @@ class createUser(CreateView):
             capital_letter = False
             number = False
 
-            for letter in range(0, len(password_data)):
+            for letter in range(0, len(password)):
                 if capital_letter and number:
                     break
-                if password_data[letter].isupper():
+                if password[letter].isupper():
                     capital_letter = True
-                if password_data[letter].isdigit():
+                if password[letter].isdigit():
                     number = True
 
             if not capital_letter:
