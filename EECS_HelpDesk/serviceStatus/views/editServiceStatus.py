@@ -6,6 +6,7 @@ from login.models import Admin
 from ..forms import statusDetails
 from ..models import serviceStatus
 from ticketManagement.views import getUserType
+from django.contrib import messages
 
 
 class editServiceStatus(FormView):
@@ -49,8 +50,10 @@ class editServiceStatus(FormView):
             service.status = form.cleaned_data["status"]
             service.status_description = form.cleaned_data["status_description"]
             service.save()
-
-            return render(request, self.success_template_name, {"username": username, "userType": getUserType(username), "message": "Service Status Saved."})
-
+            message = "Service Status Saved."
+            messages.success(request, message)
+            return HttpResponseRedirect("/viewServiceStatus")
+        message = "Form Invalid."
+        messages.error(request, message)
         return render(request, self.template_name, {"form" : form, "userType": getUserType(username)})
         
