@@ -28,4 +28,4 @@ class DeleteUserView(DeleteView):
             
         messages.error(request,"User Has Not Been Found.")
 
-        return HttpResponseRedirect("/login")
+        return HttpResponseRedirect("/listAllUsers")
