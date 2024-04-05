@@ -27,6 +27,11 @@
                 <span class="ticket-detail-response">{{value}}</span>
             </div>
             {% endif %}
+            {% elif key == "evidence" %}
+            <div class="ticket-detail">
+                <span class="ticket-detail-label">Evidence:</span>
+                <a href="/media/{{value}}">{{value}}</a>
+            </div>
             {% elif key != "username_id" %}
             <div class="ticket-detail">
                 <span class="ticket-detail-label">{{key|capfirst}}:</span>
