@@ -39,6 +39,10 @@
     font-size: xx-small;
 }
 
+.evidence-title::after{
+    content: none !important;
+}
+
 .createEcContainer .createEcInfo,.createTechContainer .createTechInfo {
     background-color: white;
     margin-bottom: 0.5rem; margin-top: 0.5rem;
