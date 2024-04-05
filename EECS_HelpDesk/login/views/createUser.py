@@ -100,7 +100,11 @@ class createUser(CreateView):
                 if user_type == userType.__name__:
                     model = userType
 
+        else:
+            success = False
+
         if not success:
+            messages.error(request, "Invalid Details. Please Try Again.")
             return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user")})
 
         newUser = model.objects.create(
