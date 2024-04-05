@@ -27,7 +27,7 @@ body {
     gap: 15px;
 }
 
-.navContainer .navOptions li a {
+.navContainer .navOptions>li>a {
     font-family: 'Inter'; font-size: 16px; color: white; text-decoration: none;
     padding: 6px;
     font-weight: 500;
@@ -35,7 +35,7 @@ body {
     transition: 0.2s all;
 }
 
-.navContainer .navOptions li a:hover {
+.navContainer .navOptions>li>a:hover {
     text-decoration: none;
     background-color: rgba(255,255,255,15%);
 }
@@ -124,11 +124,37 @@ body {
 .submenu-container{
     display: none;
     position: absolute;
-    top: 10%;
+    top: 5%;
     background: white;
+    z-index: 3;
 }
 
-.submenu-header{
+.submenu-header, .submenu-options li a{
     color: black;
+}
 
+.submenu-header, .submenu-options li{
+    padding: 1rem;
+}
+
+.submenu-options{
+    padding: 0;
+}
+.submenu-options li{
+    list-style-type:none ;   
+}
+.submenu-options li a{
+    font-family: 'Inter'; font-size: 16px;
+    text-decoration: none;
+    padding: 6px;
+    font-weight: 500;
+    border-radius: 3px;
+    transition: 0.2s all;
+    margin: 0;
+
+}
+
+.submenu-options li a:hover {
+    text-decoration: none;
+    background-color: rgb(192, 192, 192);
 }
