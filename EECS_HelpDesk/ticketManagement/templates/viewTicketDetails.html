@@ -28,12 +28,14 @@
             </div>
             {% endif %}
             {% elif key == "evidence" %}
-            {% if value %}
             <div class="ticket-detail">
                 <span class="ticket-detail-label">Evidence:</span>
+                {% if value %}
                 <a href="/media/{{value}}" target="_blank" rel="noopener noreferrer">{{value}}</a>
+                {% else %}
+                <a class="ticket-detail-value">No evidence</a>
+                {% endif %}
             </div>
-            {% endif %}
             {% elif key != "username_id" %}
             <div class="ticket-detail">
                 <span class="ticket-detail-label">{{key|capfirst}}:</span>
