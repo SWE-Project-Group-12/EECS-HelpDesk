@@ -10,7 +10,11 @@
     <link rel="stylesheet" href="{% static 'css/create-user.css' %}">
 </head>
 <body>
+    <!-- TEST -->
     {% include 'navbar.html' %}
+    {% for message in messages %}
+    {% endfor %}
+
     <div class="create-user-container">
         <form method="post" class="create-user-form">
             {% csrf_token %}
