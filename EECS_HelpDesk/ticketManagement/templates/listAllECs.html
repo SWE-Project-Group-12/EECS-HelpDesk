@@ -14,25 +14,7 @@
     {% include 'navbar.html' %}
 
 
-    <form action="" method="get">
-        {% for choice in STATUS_CHOICES %}
-  
-          <input type="checkbox" name="statusFilters" value="{{choice}}" />{{choice}}
-          <br>
-  
-        {% endfor %}
-  
-        <br>
-  
-        {% for choice in PRIORITY_CHOICES %}
-  
-          <input type="checkbox" name="priorityFilters" value="{{choice}}" />{{choice}}
-          <br>
-  
-        {% endfor %}
-  
-        <button>Submit</button>
-      </form>
+    {% include "filters.html" %}
 
     <div class="grid-container">
         <div class="left-box">
