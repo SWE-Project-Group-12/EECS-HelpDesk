@@ -5,6 +5,16 @@
 
   .filter{
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.filter-options{
+  display: flex;
+  justify-content: center;
+}
+
+.filter-button{
+  margin: 5px 0 0 0;
 }
