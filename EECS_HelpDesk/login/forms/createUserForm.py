@@ -25,12 +25,12 @@ class CreateUserForm(BaseUserDetails):
         name_data = self.cleaned_data['name']
         number = False
 
-        for letter in range(0, len(name_data)):
-            if name_data[letter].isdigit():
-                number = True
+        # for letter in range(0, len(name_data)):
+        #     if name_data[letter].isdigit():
+        #         number = True
 
-        if number:
-            raise ValidationError(simpletranslate("Please do not include numbers in your name field"), code='invalid')
+        # if number:
+        #     raise ValidationError(simpletranslate("Please do not include numbers in your name field"), code='invalid')
 
         return name_data
 
@@ -38,12 +38,12 @@ class CreateUserForm(BaseUserDetails):
         surname_data = self.cleaned_data['surname']
         number = False
 
-        for letter in range(0, len(surname_data)):
-            if surname_data[letter].isdigit():
-                number = True
+        # for letter in range(0, len(surname_data)):
+        #     if surname_data[letter].isdigit():
+        #         number = True
 
-        if number:
-            raise ValidationError(simpletranslate("Please do not include numbers in your surname field"), code='invalid')
+        # if number:
+        #     raise ValidationError(simpletranslate("Please do not include numbers in your surname field"), code='invalid')
 
         return surname_data
 
@@ -52,26 +52,26 @@ class CreateUserForm(BaseUserDetails):
         capital_letter = False
         number = False
 
-        for letter in range(0, len(password_data)):
-            if capital_letter and number:
-                break
-            if password_data[letter].isupper():
-                capital_letter = True
-            if password_data[letter].isdigit():
-                number = True
+        # for letter in range(0, len(password_data)):
+        #     if capital_letter and number:
+        #         break
+        #     if password_data[letter].isupper():
+        #         capital_letter = True
+        #     if password_data[letter].isdigit():
+        #         number = True
 
-        if not capital_letter:
-            raise ValidationError(simpletranslate("Please add a capital letter"), code='invalid')
-        if not number:
-            raise ValidationError(simpletranslate("Please add a number", code='invalid'))
+        # if not capital_letter:
+        #     raise ValidationError(simpletranslate("Please add a capital letter"), code='invalid')
+        # if not number:
+        #     raise ValidationError(simpletranslate("Please add a number", code='invalid'))
 
         return password_data
 
     # Added to ensure it is included when accessing cleaned data in the view, it will be included
     def clean_user_type(self):
         selected_user_type = self.cleaned_data['user_type']
-        if selected_user_type not in USER_TYPES.keys():
-            raise ValidationError(simpletranslate("Please select an appropriate option"), code='invalid')
+        # if selected_user_type not in USER_TYPES.keys():
+        #     raise ValidationError(simpletranslate("Please select an appropriate option"), code='invalid')
 
         return selected_user_type
 
