@@ -84,7 +84,7 @@ body {
     border-radius: 4px;
   }
 
-  .filter-block h2{
+  /* .filter-block h2{
     text-align: center;
   }
 
@@ -92,7 +92,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
   @media screen and (max-width: 750px) {
     main {

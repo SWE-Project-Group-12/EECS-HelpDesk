@@ -8,31 +8,39 @@
   <title>List All ECs</title>
   <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
   <link rel="stylesheet" href="{% static 'css/listAllECs.css' %}">
+  <link rel="stylesheet" href="{% static 'css/filter.css' %}">
 </head>
 
 <body>
     {% include 'navbar.html' %}
 
 
-    <form action="" method="get">
-        {% for choice in STATUS_CHOICES %}
-  
-          <input type="checkbox" name="statusFilters" value="{{choice}}" />{{choice}}
+    <div class="filter-block">
+        <form class="filter" action="" method="get">
+          <div class="status-choice">
+          {% for choice in STATUS_CHOICES %}
+            <div>
+            <input type="checkbox" name="statusFilters" value="{{choice}}" />{{choice}}
+            <br>
+            </div>
+    
+          {% endfor %}
+          </div>
+    
           <br>
-  
-        {% endfor %}
-  
-        <br>
-  
-        {% for choice in PRIORITY_CHOICES %}
-  
-          <input type="checkbox" name="priorityFilters" value="{{choice}}" />{{choice}}
-          <br>
-  
-        {% endfor %}
-  
-        <button>Submit</button>
-      </form>
+    
+          <div class="priority-choice">
+          {% for choice in PRIORITY_CHOICES %}
+    
+            <input type="checkbox" name="priorityFilters" value="{{choice}}" />{{choice}}
+            <br>
+    
+          {% endfor %}
+        </div>
+    
+          <button>Filter</button>
+        </form>
+      </div>
 
     <div class="grid-container">
         <div class="left-box">
