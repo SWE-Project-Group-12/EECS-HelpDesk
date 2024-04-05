@@ -80,7 +80,7 @@ class manageUser(FormView):
             usertomanage.name = form.cleaned_data["name"]
             usertomanage.surname = form.cleaned_data["surname"]
             usertomanage.save()
-            return render(request, self.success_template_name, {"username": username, "userType": getUserType(username), "message": "Service Status Saved."})
+            return render(request, self.success_template_name, {"username": username, "userType": getUserType(username), "message": "User Details Updated"})
 
         return render(request, self.template_name, {"form" : form, "userType": getUserType(username)})
         
