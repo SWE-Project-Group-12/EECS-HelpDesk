@@ -4,20 +4,12 @@
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
-/>
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  
 </head>
 
 <header>
-    <style>
-        .material-symbols-outlined {
-          font-variation-settings:
-          'FILL' 0,
-          'wght' 400,
-          'GRAD' 0,
-          'opsz' 24
-        }
-        </style>
+  
     <nav class = 'navContainer'>
         <div class = 'navImage'>
             <img src="{% static 'img/QMLogo.png' %}" alt="QM Logo">
@@ -48,6 +40,9 @@
             <li><a href="{% url 'FindPersonalTickets' username=username %}">Find Personal Tickets</a></li> 
 
             {% endif %}
+            <li>
+                <span class="material-symbols-outlined account_box" onclick="location.href = '/viewProfile'"> account_box </span>
+            </li>
             <li id = 'logout'><a href="{% url 'Logout' %}">Log Out</a></li>
            
             {% endif %}
