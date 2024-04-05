@@ -114,7 +114,7 @@ class createTechnicalFault(FormView):
                 username = Student.objects.get(username=username),  # form says needs to be of Student instance
                 location = form.cleaned_data['location'],
                 priority = form.cleaned_data['priority'],
-                evidence = request.FILES['evidence'],
+                evidence = form.cleaned_data['evidence'],
             )
             TechFault_ticket.save()
             message = "Technical Fault Saved."

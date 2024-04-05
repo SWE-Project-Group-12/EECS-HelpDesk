@@ -114,7 +114,7 @@ class createEC(FormView):
                 module = form.cleaned_data["module"],
                 component = form.cleaned_data["component"],
                 priority = form.cleaned_data['priority'],
-                evidence = request.FILES['evidence'],
+                evidence = form.cleaned_data['evidence'],
             )
             EC_ticket.save()
 
