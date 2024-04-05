@@ -10,7 +10,6 @@ from django.contrib import messages
 class manageUser(FormView):
     template_name = "manageUser.html"
     form_class = CreateUserForm
-    success_template_name = "successMessage.html"
 
     def get(self, request,usernametomanage):
        
@@ -39,7 +38,8 @@ class manageUser(FormView):
         elif getUserType(usernametomanage) == "Admin":
             usertomanage = Admin.objects.filter(username=usernametomanage).values()
         else:
-            return render(request, "successMessage.html", {"username": username, "message": "Username has not been found"})
+            messages.error(request, "Username has not been found")
+            return HttpResponseRedirect("/listAllUsers")
 
         
         formdetails = [userdetails for userdetails in usertomanage]            
@@ -73,7 +73,8 @@ class manageUser(FormView):
             elif getUserType(usernametomanage) == "Admin":
                 usertomanage = Admin.objects.get(username=usernametomanage)
             else:
-                return render(request, "successMessage.html", {"username": username, "message": "Username has not been found"})
+                messages.error(request, "Username has not been found")
+                return render(request, self.template_name, {"form" : form, "userType": getUserType(username)})
         
             
 
@@ -91,7 +92,8 @@ class manageUser(FormView):
 
 
             usertomanage.save()
-            return render(request, self.success_template_name, {"username": username, "userType": getUserType(username), "message": "User Details Updated"})
+            messages.success(request,"User Details Updated")
+            return HttpResponseRedirect("/listAllUsers")
 
         return render(request, self.template_name, {"form" : form, "userType": getUserType(username)})
         
