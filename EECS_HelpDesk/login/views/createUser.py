@@ -58,12 +58,12 @@ class createUser(CreateView):
 
             for letter in range(0, len(name)):
                 if name[letter].isdigit():
-                    f.add_error("name", "Please do not enter numbers in this field")
+                    messages.error(request, "First name cannot contain numbers")
                     return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user")})
                     
             for letter in range(0, len(surname)):
                 if surname[letter].isdigit():
-                    f.add_error("surname", "Please do not enter numbers in this field")
+                    messages.error(request, "Surname cannot contain numbers")
                     return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user")})
 
 
@@ -79,12 +79,12 @@ class createUser(CreateView):
                     number = True
 
             if not capital_letter:
-                f.add_error("password", "Password needs a captial letter")
+                messages.error(request, "Password needs a captial letter")
                 return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user")})
 
             
             if not number:
-                f.add_error("password", "Password needs a number")
+                messages.error(request, "Password needs a number")
                 return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user")})
 
             
@@ -93,7 +93,7 @@ class createUser(CreateView):
 
                 if len(userType.objects.filter(pk=username)) == 1:
                     success = False
-                    f.add_error("username", "Username already exists.")
+                    messages.error(request, "Username already exists.")
                     return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user")})
 
 
