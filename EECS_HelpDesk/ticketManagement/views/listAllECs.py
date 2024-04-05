@@ -19,8 +19,9 @@
 
 from django.shortcuts import render, redirect
 from django.apps import apps
-from ticketManagement.models import EC
+from ticketManagement.models import EC, STATUS_CHOICES, PRIORITY_CHOICES
 from django.views.generic import ListView
+from .getFilteredTickets import getFilteredTickets
 
 # Import the getUserType function
 from .getUserType import getUserType
@@ -59,8 +60,16 @@ class ListAllECs(ListView):
             return redirect('/login')
         
         username = self.request.session.get("user")
-        if not (getUserType(username) == "ECHandler" or getUserType(username) == "Admin"):
-            queryset = queryset.filter(username=username)
+        if getUserType(username) == "ECHandler" or getUserType(username) == "Admin":
+            statusFilters = list(self.request.GET.getlist("statusFilters")) if self.request.GET.get("statusFilters") is not None else STATUS_CHOICES.keys()
+            priorityFilters = list(self.request.GET.getlist("priorityFilters")) if self.request.GET.get("priorityFilters") is not None else PRIORITY_CHOICES.keys()
+
+            filters = []
+            for x in statusFilters:
+                for y in priorityFilters:
+                    filters.append({"status": x, "priority": y})
+            
+            queryset = getFilteredTickets(EC, filters)
         return queryset
 
 # maps variable names to python objects
@@ -69,6 +78,8 @@ class ListAllECs(ListView):
         Override the get_context_data method to add the username variable to the context.
         """
         context = super().get_context_data(**kwargs)
+        context['STATUS_CHOICES'] = STATUS_CHOICES
+        context['PRIORITY_CHOICES'] = PRIORITY_CHOICES
         context['username'] = self.request.session.get("user")
         context['userType'] = getUserType(self.request.session.get('user'))
         context['ec_list'] = [
@@ -79,6 +90,6 @@ class ListAllECs(ListView):
                 'description': ec.description,
                 'status': ec.status,
                 'dateCreated': ec.dateCreated,
-            } for ec in context['ec_list']
+            } for ec in self.get_queryset()
         ]
         return context

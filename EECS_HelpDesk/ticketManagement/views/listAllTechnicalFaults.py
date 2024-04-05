@@ -15,8 +15,9 @@
 
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
-from ticketManagement.models import TechnicalFault
+from ticketManagement.models import TechnicalFault, STATUS_CHOICES, PRIORITY_CHOICES
 from .getUserType import getUserType
+from .getFilteredTickets import getFilteredTickets
 
 # Similar to the ListAllECs class, create a ListAllTechnicalFaults class
 class ListAllTechnicalFaults(ListView):
@@ -51,8 +52,17 @@ class ListAllTechnicalFaults(ListView):
             return redirect('/login')
 
         username = self.request.session.get("user")
-        if not (getUserType(username) == "TechnicalFaultHandler" or getUserType(username) == "Admin"):
-            queryset = queryset.filter(pk=username)
+        if getUserType(username) == "TechnicalFaultHandler" or getUserType(username) == "Admin":
+            statusFilters = list(self.request.GET.getlist("statusFilters")) if self.request.GET.get("statusFilters") is not None else STATUS_CHOICES.keys()
+            priorityFilters = list(self.request.GET.getlist("priorityFilters")) if self.request.GET.get("priorityFilters") is not None else PRIORITY_CHOICES.keys()
+
+            filters = []
+            for x in statusFilters:
+                for y in priorityFilters:
+                    filters.append({"status": x, "priority": y})
+
+            queryset = getFilteredTickets(TechnicalFault, filters)
+
         return queryset
 
     def get_context_data(self, **kwargs):
@@ -60,6 +70,8 @@ class ListAllTechnicalFaults(ListView):
         Override the get_context_data method to add the username variable to the context.
         """
         context = super().get_context_data(**kwargs)
+        context['STATUS_CHOICES'] = STATUS_CHOICES
+        context['PRIORITY_CHOICES'] = PRIORITY_CHOICES
         context['username'] = self.request.session.get("user")
         context['userType'] = getUserType(self.request.session.get('user'))
         context['technical_fault_list'] = [
@@ -70,6 +82,6 @@ class ListAllTechnicalFaults(ListView):
                 'description': ticket.description,
                 'status': ticket.status,
                 'dateCreated': ticket.dateCreated,
-            } for ticket in context['technical_fault_list']
+            } for ticket in self.get_queryset()
         ]
         return context
