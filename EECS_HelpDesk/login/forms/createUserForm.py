@@ -21,6 +21,9 @@ class CreateUserForm(BaseUserDetails):
     surname = forms.CharField(max_length=25)
     user_type = forms.ChoiceField(widget=forms.RadioSelect, choices=USER_TYPES)
 
+    # cannot throw ValidationError if you want to show specific error msg otherwise it will skip to else statement for is_vald() 
+    # done the validation within the view instead to get over this issue
+
     def clean_name(self):
         name_data = self.cleaned_data['name']
         number = False

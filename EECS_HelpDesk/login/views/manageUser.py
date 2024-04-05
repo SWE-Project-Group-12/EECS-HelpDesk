@@ -5,7 +5,7 @@ from login.models import Admin
 from ..forms import CreateUserForm
 from ..models import Student,ECHandler,Admin,TechnicalFaultHandler
 from ticketManagement.views import getUserType
-
+from django.contrib import messages
 
 class manageUser(FormView):
     template_name = "manageUser.html"
@@ -79,6 +79,17 @@ class manageUser(FormView):
 
             usertomanage.name = form.cleaned_data["name"]
             usertomanage.surname = form.cleaned_data["surname"]
+
+            # validating name and surname inputs 
+            if any(chr.isdigit() for chr in form.cleaned_data["name"]):
+                messages.error(request, "First name cannot contain numbers")
+                return render(request, self.template_name, {"form" : form, "userType": getUserType(username)})
+
+            if any(chr.isdigit() for chr in form.cleaned_data["surname"]):
+                messages.error(request, "Surname cannot contain numbers")
+                return render(request, self.template_name, {"form" : form, "userType": getUserType(username)})
+
+
             usertomanage.save()
             return render(request, self.success_template_name, {"username": username, "userType": getUserType(username), "message": "User Details Updated"})
 
