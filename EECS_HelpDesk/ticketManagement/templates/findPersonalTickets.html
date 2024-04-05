@@ -26,8 +26,7 @@
           <table>
             <thead>
               <tr>
-                <th>Title</th>
-                <th>Description</th>
+                <th class="title-column">Title</th>
                 <th>Date</th>
                 <th>Status</th>
               </tr>
@@ -36,7 +35,6 @@
               {% for ticket in ECs %}
               <tr>
                 <td class="descriptionLimited" title="{{ticket.title}}">{{ ticket.title }}</td>
-                <td class="ticketDescription descriptionLimited" title="{{ticket.description}}">{{ ticket.description }}</td>
                 <td>{{ ticket.dateCreated }}</td>
                 <td>
                   {% if ticket.status == 'Pending' %}
@@ -74,8 +72,7 @@
           <table>
             <thead>
               <tr>
-                <th>Title</th>
-                <th>Description</th>
+                <th class="title-column">Title</th>
                 <th>Date</th>
                 <th>Status</th>
               </tr>
@@ -84,7 +81,6 @@
               {% for techFault in techFaults %}
               <tr>
                 <td class="descriptionLimited" title="{{techFault.title}}">{{ techFault.title }}</td>
-                <td class="ticketDescription descriptionLimited" title="{{techFault.description}}">{{ techFault.description }}</td>
                 <td>{{ techFault.dateCreated }}</td>
                 <td>
                   {% if techFault.status == 'Pending' %}

@@ -47,6 +47,10 @@ body {
     border-collapse: collapse;
   }
   
+  .title-column {
+    width: 43%;
+  }
+  
   th,td {
     text-align: left;
     padding: 8px;
