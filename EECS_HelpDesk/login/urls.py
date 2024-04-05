@@ -11,4 +11,5 @@ urlpatterns = [
     path("manageUser/<str:usernametomanage>", views.manageUser.as_view(), name="manageUser"),
     path("resetPassword", views.ResetPasswordview.as_view(), name="ResetPasswordView"),
     path("deleteUser/<str:usernameToDelete>", views.DeleteUserView.as_view(), name="DeleteUser"),
+    path("viewProfile", views.viewProfile.as_view(), name="viewProfile"),
 ]
