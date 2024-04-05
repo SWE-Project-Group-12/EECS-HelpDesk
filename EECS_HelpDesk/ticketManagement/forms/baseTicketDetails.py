@@ -10,6 +10,7 @@ class BaseTicketDetails(forms.Form):
     title = forms.CharField(max_length=100, required=True)
     description = forms.CharField(widget=forms.Textarea, required=True)
     priority = forms.ChoiceField(choices=PRIORITY_CHOICES, widget=forms.Select(attrs={"class": "form-control"}))
+    evidence = forms.FileField(required=False)
 
     # ////////////////////////////////////////////////////////////////
     # i commented these out otherwise the form will not work since it complains they are required

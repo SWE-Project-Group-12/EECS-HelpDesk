@@ -90,7 +90,7 @@ class createEC(FormView):
         return render(request, self.template_name, {"username": username,"form": form, "userType": getUserType(username)})
 
     def post(self, request, username):
-        form = self.form_class(request.POST)
+        form = self.form_class(request.POST, request.FILES)
 
         if request.session.get("user") is None:
             return HttpResponseRedirect("/login")
@@ -114,6 +114,7 @@ class createEC(FormView):
                 module = form.cleaned_data["module"],
                 component = form.cleaned_data["component"],
                 priority = form.cleaned_data['priority'],
+                evidence = request.FILES['evidence'],
             )
             EC_ticket.save()
 

@@ -89,7 +89,7 @@ class createTechnicalFault(FormView):
 
 
     def post(self, request, username):
-        form = self.form_class(request.POST)
+        form = self.form_class(request.POST, request.FILES)
 
         if request.session.get("user") is None:
             return HttpResponseRedirect("/login")
@@ -114,6 +114,7 @@ class createTechnicalFault(FormView):
                 username = Student.objects.get(username=username),  # form says needs to be of Student instance
                 location = form.cleaned_data['location'],
                 priority = form.cleaned_data['priority'],
+                evidence = request.FILES['evidence'],
             )
             TechFault_ticket.save()
             message = "Technical Fault Saved."
