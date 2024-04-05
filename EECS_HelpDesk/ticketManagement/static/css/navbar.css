@@ -65,6 +65,12 @@ body {
 
 }
 
+.messages>*{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .error{
 
     color: #721c24;
