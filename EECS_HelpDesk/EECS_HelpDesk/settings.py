@@ -135,6 +135,10 @@ STATICFILES_DIRS = [
     os.path.dirname(BASE_DIR / "feedbackSystem/static")
 ]
 
+MEDIA_ROOT = [
+    os.path.dirname(BASE_DIR / "evidenceFiles"),
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
