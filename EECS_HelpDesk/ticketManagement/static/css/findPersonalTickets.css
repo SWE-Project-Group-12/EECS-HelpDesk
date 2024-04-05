@@ -12,6 +12,10 @@ body {
     text-align: center;
   }
   
+  #table2 {
+    margin-top: 5%;;
+  }
+
   header h1 {
     text-align: center;
     padding: 20px;
