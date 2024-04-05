@@ -8,13 +8,15 @@
     <title>List All Technical Faults</title>
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     <link rel="stylesheet" href="{% static 'css/listAllTechnicalFaults.css' %}">
+    <link rel="stylesheet" href="{% static 'css/filter.css' %}">
 </head>
 
 <body>
     {% include 'navbar.html' %}
 
-
-    {% include "filters.html" %}
+    <div class="filter-block">
+        {% include "filters.html" %}
+      </div>
 
     <div class="grid-container">
         <div class="left-box">
