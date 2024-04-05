@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/manageTechFaults.css' %}">
+    <link rel="stylesheet" media="screen and (max-width: 600px)" href="{% static 'css/manageTechFaultsMobile.css' %}">
 </head>
 <body>
     {% include 'navbar.html' %}
@@ -22,7 +23,7 @@
                 <h4 class="techfault-status">Status: <span class="mini-text">{{ticketDetail.status}}</span></h4>
                 <h4 class="techfault-location">Location: <span class="mini-text">{{ticketDetail.location}}</span></h4>
             </div>
-            <div class="row-3">
+            <div class="gap-row">
                 <hr>
             </div>
             <div class="techfault-title">

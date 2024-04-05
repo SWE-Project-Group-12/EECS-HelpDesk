@@ -35,7 +35,7 @@ body {
 }
 
 /* Added to ensure gap between header of ticket and main details */
-.row-3 {
+.gap-row {
     grid-row: 3;
     grid-column: 1 / -1;
     padding-top: 0.5em;

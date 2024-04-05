@@ -35,7 +35,7 @@ body {
 }
 
 /* Added to ensure gap between header of ticket and main details */
-.row-3 {
+.gap-row {
     grid-row: 3;
     grid-column: 1 / -1;
     padding-top: 0.5em;
@@ -78,7 +78,9 @@ body {
     min-height: 60px;
 }
 
-.tech-priority {
+.techfault-priority {
+    text-align: end;
+    padding-right: 0.8em;
     grid-area: 4 / 3 / 5 / 4;
 }
 
