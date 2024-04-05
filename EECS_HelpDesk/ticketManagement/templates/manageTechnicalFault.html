@@ -22,19 +22,18 @@
                 <h4 class="techfault-status">Status: <span class="mini-text">{{ticketDetail.status}}</span></h4>
                 <h4 class="techfault-location">Location: <span class="mini-text">{{ticketDetail.location}}</span></h4>
             </div>
-            <hr>
+            <div class="row-3">
+                <hr>
+            </div>
             <div class="techfault-title">
-                <h4>Title: </h4>
-                <p>{{ticketDetail.title}}</p>
+                <h4>Title: <span class="title-format">{{ticketDetail.title}}</span></h4>
+            </div>
+            <div class="techfault-priority">
+                <h4>Priority: <span class="mini-text">{{ticketDetail.priority}}</span></h4>
             </div>
             <div class="techfault-desc">
                 <h4>Description: </h4>
                 <p>{{ticketDetail.description}}</p>
-            </div>
-
-            <div>
-                <h4>Priority:</h4>
-                <p>{{ticketDetail.priority}}</p>
             </div>
 
             {% endfor %}

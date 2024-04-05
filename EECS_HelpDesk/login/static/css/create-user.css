@@ -58,11 +58,11 @@ body {
     border: none;
     border-bottom: 3px solid #0D3273;
     margin-left: 0.6em;
-    margin-top: 0.2em;
+    margin-top: 0.4em;
 }
 
 .cu-firstname-field, .cu-surname-field, .cu-username-field, .cu-password-field {
-    margin-bottom: 0.8em;
+    margin-bottom: 1.8em;
 }
 
 .cu-firstname-field {
