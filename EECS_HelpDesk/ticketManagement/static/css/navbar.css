@@ -109,7 +109,8 @@ body {
 
 .material-symbols-outlined.account_box{
     /* style profile button here */
-    padding-top: 20%;
+    font-size: 1.25em;
+
 
 }
 
