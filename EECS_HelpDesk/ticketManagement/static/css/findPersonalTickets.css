@@ -12,6 +12,10 @@ body {
     text-align: center;
   }
   
+  #table2 {
+    margin-top: 5%;;
+  }
+
   header h1 {
     text-align: center;
     padding: 20px;
@@ -45,6 +49,10 @@ body {
   table {
     width: 100%;
     border-collapse: collapse;
+  }
+  
+  .title-column {
+    width: 43%;
   }
   
   th,td {
