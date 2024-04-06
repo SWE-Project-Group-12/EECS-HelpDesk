@@ -43,4 +43,4 @@ class GraphTickets(ListView):
             "totalLast30days": totalLast30days,
         }
 
-        return render(request, self.template_name, {"data": json.dumps(data), "username": username, "userType": getUserType(username), "ticketType": self.ticket_type_display})
+        return render(request, self.template_name, {"data": json.dumps(data), "username": username, "userType": getUserType(username), "ticketType": self.ticket_type_display, "name": request.session.get("name"), "surname": request.session.get("surname")})

@@ -24,4 +24,4 @@ class listAllUsers(ListView):
         echandlers = ECHandler.objects.all()
         technicalfaulthandlers = TechnicalFaultHandler.objects.all()
     
-        return render(request, self.template_name, {"userType": getUserType(username), "students" : students,"admins": admins,"echandlers":echandlers, "technicalfaulthandlers":technicalfaulthandlers, "username" : username})
+        return render(request, self.template_name, {"userType": getUserType(username), "students" : students,"admins": admins,"echandlers":echandlers, "technicalfaulthandlers":technicalfaulthandlers, "username" : username, "name": request.session.get("name"), "surname": request.session.get("surname")})

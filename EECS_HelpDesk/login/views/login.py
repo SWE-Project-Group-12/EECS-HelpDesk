@@ -55,6 +55,8 @@ class login(View):
 
             if success:
                 request.session['user'] = user.pk
+                request.session['name'] = user.name
+                request.session['surname'] = user.surname
                 redirect_url = self.get_redirect_url(user)
                 return redirect(redirect_url)
             else:

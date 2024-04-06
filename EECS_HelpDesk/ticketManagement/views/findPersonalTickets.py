@@ -55,4 +55,4 @@ class FindPersonalTickets(ListView):
         ECs = getFilteredTickets(EC, filters)
         techFault = getFilteredTickets(TechnicalFault, filters)
 
-        return render(request, self.template_name, {"ECs" : ECs, "techFaults" : techFault, "username" : self.request.session.get("user"), "userType" : getUserType(username), "STATUS_CHOICES": STATUS_CHOICES, "PRIORITY_CHOICES": PRIORITY_CHOICES})
+        return render(request, self.template_name, {"ECs" : ECs, "techFaults" : techFault, "username" : self.request.session.get("user"), "userType" : getUserType(username), "STATUS_CHOICES": STATUS_CHOICES, "PRIORITY_CHOICES": PRIORITY_CHOICES, "name": request.session.get("name"), "surname": request.session.get("surname")})
