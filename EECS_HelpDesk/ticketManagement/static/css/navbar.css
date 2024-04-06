@@ -122,11 +122,12 @@ body {
 .submenu-container{
     display: none;
     position: absolute;
-    top: 7.75vh;
+    top: 5.75vh;
     right: 0%;
     background: white;
     z-index: 3;
     border-style: groove;
+    margin: 0 4px 0 0;
 }
 
 

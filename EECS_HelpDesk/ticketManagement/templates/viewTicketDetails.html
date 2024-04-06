@@ -21,11 +21,12 @@
                 <span class="ticket-detail-value">{{value}}</span>
             </div>
             {% elif key == "dateResolved" %}
-
+            {% if value %}
             <div class="ticket-detail">
                 <span class="ticket-detail-label">Date Resolved:</span>
                 <span class="ticket-detail-response">{{value}}</span>
             </div>
+            {% endif %}
 
             {% elif key == "status_update_reason" %}
             {% if value %}
