@@ -57,6 +57,8 @@ body {
         align-items: flex-start;
     }
 
+   
+
 
 }
 
@@ -180,4 +182,18 @@ body {
 .profile{
     margin-left: auto;
     
+}
+
+@media screen and (max-width: 780px) {
+    .submenu-container{
+     
+        margin: 0 0 0 0;
+        position: relative;
+        top: 0;
+        right: 100px;
+    }
+    .submenu{
+        flex-direction: row;
+        
+    }
 }
