@@ -89,6 +89,14 @@
     color: aqua;
 }
 
+.serviceBox{
+    transition: 0.2s all;
+}
+.serviceBox:hover{
+    text-decoration: none;
+    background-color: rgba(93, 93, 93, 0.15);
+}
+
 @media screen and (max-width: 750px) {
     .viewServiceStatusContainer, .editServiceStatusContainer{
         margin-left: 10%;
