@@ -12,10 +12,6 @@ class manageUser(FormView):
     form_class = CreateUserForm
 
     def get(self, request,usernametomanage):
-        print("**************************************")
-        print(request.session["name"])
-        print("**************************************")
-       
        
         username = request.session.get("user")
         if request.session.get("user") is None:
