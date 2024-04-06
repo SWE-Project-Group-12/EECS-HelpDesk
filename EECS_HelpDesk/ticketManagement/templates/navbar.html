@@ -41,7 +41,22 @@
 
             {% endif %}
             <li>
-                <span class="material-symbols-outlined account_box" onclick="location.href = '/viewProfile'"> account_box </span>
+                <span class="material-symbols-outlined account_box" onclick="submenuHandler(event)"> account_box </span>
+                <div class="submenu-container">
+                    <div class="submenu"> 
+                        <div class="submenu-header">
+                            {{name}} {{surname}}
+                        </div> 
+                        <hr>
+
+                        <ul class="submenu-options">
+                            <li> <a href="/viewProfile">viewProfile</a></li>
+                            <li  id="logout" > <a href="{% url 'Logout' %}">Logout</a></li>
+                            
+                        </ul>
+                                         
+                    </div>
+                </div>
             </li>
             <li id = 'logout'><a href="{% url 'Logout' %}">Log Out</a></li>
            
@@ -69,3 +84,4 @@
 </header>
 
 <script src="{% static 'js/messageClose.js' %}"></script>
+<script src="{% static 'js/submenuHandler.js' %}"></script>
