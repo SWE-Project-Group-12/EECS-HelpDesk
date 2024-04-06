@@ -40,14 +40,16 @@
             <li><a href="{% url 'FindPersonalTickets' username=username %}">Find Personal Tickets</a></li> 
 
             {% endif %}
-            <li>
+            <li class="profile">
                 <span class="material-symbols-outlined account_box" onclick="submenuHandler(event)"> account_box </span>
                 <div class="submenu-container">
                     <div class="submenu"> 
                         <div class="submenu-header">
                             {{name}} {{surname}}
+                            <hr>
                         </div> 
-                        <hr>
+                        
+                    
 
                         <ul class="submenu-options">
                             <li> <a href="/viewProfile">viewProfile</a></li>
@@ -58,7 +60,6 @@
                     </div>
                 </div>
             </li>
-            <li id = 'logout'><a href="{% url 'Logout' %}">Log Out</a></li>
            
             {% endif %}
             

@@ -12,6 +12,7 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
+
 }
 
 .navContainer .navImage img {
@@ -25,6 +26,7 @@ body {
     margin: 0; padding: 0;
     width: 100%;
     gap: 15px;
+    align-items: center;
 }
 
 .navContainer .navOptions>li>a {
@@ -125,19 +127,32 @@ body {
 .submenu-container{
     display: none;
     position: absolute;
-    top: 5%;
+    top: 8%;
+    right: 0%;
     background: white;
     z-index: 3;
+    border-style: groove;
 }
+
 
 .submenu-header, .submenu-options li a{
     color: black;
 }
 
-.submenu-header, .submenu-options li{
+.submenu-options li{
     padding: 1rem;
 }
 
+.submenu-header{
+    padding-inline: 1rem ;
+    padding-top: 1rem ;
+}
+
+.submenu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .submenu-options{
     padding: 0;
 }
@@ -158,4 +173,14 @@ body {
 .submenu-options li a:hover {
     text-decoration: none;
     background-color: rgb(192, 192, 192);
+}
+
+.material-symbols-outlined.account_box{
+    font-size: 2rem;
+    
+}
+
+.profile{
+    margin-left: auto;
+    
 }
