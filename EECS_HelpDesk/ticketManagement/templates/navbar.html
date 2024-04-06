@@ -45,13 +45,13 @@
                 <div class="submenu-container">
                     <div class="submenu"> 
                         <div class="submenu-header">
-                            {{username}}
+                            {{name}} {{surname}}
                         </div> 
                         <hr>
 
                         <ul class="submenu-options">
                             <li> <a href="/viewProfile">viewProfile</a></li>
-                            <li> <a href="{% url 'Logout' %}">Logout</a></li>
+                            <li  id="logout" > <a href="{% url 'Logout' %}">Logout</a></li>
                             
                         </ul>
                                          
