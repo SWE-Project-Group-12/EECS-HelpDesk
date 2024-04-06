@@ -13,7 +13,6 @@ class manageUser(FormView):
 
     def get(self, request,usernametomanage):
        
-       
         username = request.session.get("user")
         if request.session.get("user") is None:
             return HttpResponseRedirect("/login")
@@ -46,6 +45,12 @@ class manageUser(FormView):
         formdetails[0]['user_type'] = getUserType(usernametomanage)
         form = self.form_class(formdetails[0])
         form.fields.get('username').widget.attrs['readonly'] = True
+
+        print("********************************************")
+        # print(usernametomanage)
+        print("session= ", request.session["user"])
+        print("usrenmae ", usernametomanage)
+        print("********************************************")
 
         return render(request, self.template_name, {"form": form, "userType": getUserType(username), "usernametomanage" : usernametomanage, "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
 
@@ -92,6 +97,13 @@ class manageUser(FormView):
 
 
             usertomanage.save()
+
+            # changing the sessions variables to match the update
+            if request.session["user"] == usernametomanage:
+                request.session["name"] = form.cleaned_data["name"]
+                request.session["surname"] = form.cleaned_data["surname"]
+
+
             messages.success(request,"User Details Updated")
             return HttpResponseRedirect("/listAllUsers")
 

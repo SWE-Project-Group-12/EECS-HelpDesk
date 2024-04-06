@@ -65,4 +65,4 @@ class manageTicket(View):
         message = "Ticket ID: " + str(ticketID) + " Updated Successfully" 
         messages.success(request,message)
         
-        return HttpResponseRedirect("/login")
+        return HttpResponseRedirect("/listAll" + self.ticket_type + "s")
