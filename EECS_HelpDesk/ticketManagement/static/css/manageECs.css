@@ -96,7 +96,7 @@ body {
 .ec-evidence {
     grid-area: 6 / 1 / 7 / 2;
     padding: 20px 0 15px 0;
-    text-align: justify;
+    text-align: left;
 }
 
 .ec-desc {
