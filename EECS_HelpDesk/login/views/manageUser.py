@@ -46,6 +46,12 @@ class manageUser(FormView):
         form = self.form_class(formdetails[0])
         form.fields.get('username').widget.attrs['readonly'] = True
 
+        print("********************************************")
+        # print(usernametomanage)
+        print("session= ", request.session["user"])
+        print("usrenmae ", usernametomanage)
+        print("********************************************")
+
         return render(request, self.template_name, {"form": form, "userType": getUserType(username), "usernametomanage" : usernametomanage, "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
 
     def post(self, request, usernametomanage):
@@ -93,8 +99,9 @@ class manageUser(FormView):
             usertomanage.save()
 
             # changing the sessions variables to match the update
-            request.session["name"] = form.cleaned_data["name"]
-            request.session["surname"] = form.cleaned_data["surname"]
+            if request.session["user"] == usernametomanage:
+                request.session["name"] = form.cleaned_data["name"]
+                request.session["surname"] = form.cleaned_data["surname"]
 
 
             messages.success(request,"User Details Updated")
