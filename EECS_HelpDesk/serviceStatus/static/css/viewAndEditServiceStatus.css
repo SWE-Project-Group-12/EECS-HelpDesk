@@ -89,6 +89,10 @@
     color: aqua;
 }
 
+.editServiceStatusContainer .editServiceStatusBox .statusLabel,.editServiceStatusContainer .editServiceStatusBox .descriptionLabel  {
+    margin-bottom: 0.3rem;
+}
+
 .serviceBox{
     transition: 0.2s all;
 }

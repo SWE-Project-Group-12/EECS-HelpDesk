@@ -36,7 +36,7 @@
 .createEcContainer .createEcForm .formFields h2:after,.createTechContainer .createTechForm .formFields h2:after {
     content: "  *Required";
     color: red;
-    font-size: xx-small;
+    font-size: small;
 }
 
 .evidence-title::after{
@@ -52,7 +52,7 @@
 
 .createEcContainer h2,.createTechContainer h2{
     padding: 0;
-    margin: 0;
+    margin: 0.3rem;
     font-family: 'Inter'; font-size: 22px; color: #0d3273;
 }
 
