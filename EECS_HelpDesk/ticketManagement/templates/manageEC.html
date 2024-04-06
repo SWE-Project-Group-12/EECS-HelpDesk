@@ -36,6 +36,14 @@
                 <h4>Description: </h4>
                 <p>{{ticketDetail.description}}</p>
             </div>
+            <div class="ec-evidence">
+                <h4>Uploaded Evidence</h4>
+                {% if ticketDetail.evidence %}
+                    <a href="/media/{{ticketDetail.evidence}}" target="_blank" rel="noopener noreferrer">{{ticketDetail.evidence}}</a>
+                {% else %}
+                    <p>No evidence uploaded.</p>
+                {% endif %}
+            </div>
 
 
             {% endfor %}

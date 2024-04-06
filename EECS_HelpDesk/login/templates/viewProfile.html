@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>View Profile: {{username}}</title>
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/viewProfile.css' %}">
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="viewProfileContainer">
+        <h2 align = 'center'>User: {{username}}</h2>
+        <div class="profileDetailsContainer" >
+            {% for user in userDetails %}
+            <h3>Name</h3>
+            <p>{{user.name}}</p>
+
+            <h3>Surname</h3>
+            <p>{{user.surname}}</p>
+
+            <a href="{% url 'ResetPasswordView' %}"><button>Reset Password</button></a>
+            {% endfor %}
+        </div>
+        
+    </div>
+</body>
+</html>

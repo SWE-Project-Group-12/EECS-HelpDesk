@@ -15,7 +15,7 @@
 
         <div class="createEcForm">
 
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="formFields">
                     <h2>Title</h2><div class="title">{{form.title}}</div>
@@ -23,6 +23,7 @@
                     <h2>Module</h2><div class="module">{{form.module}}</div>
                     <h2>Component</h2><div class="component">{{form.component}}</div>
                     <h2>Priority</h2><div class="priority">{{form.priority}}</div>
+                    <h2 class="evidence-title">Upload Evidence</h2><div class="evidence">{{form.evidence}}</div>
                 </div>
                 <input class= 'button' type="submit" value="Submit">
             </form>

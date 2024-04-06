@@ -85,11 +85,11 @@ class createTechnicalFault(FormView):
         if len(student) <= 0:
             return HttpResponseRedirect("/listAllTechnicalFaults")
 
-        return render(request, self.template_name, {"username": username, "form": form, "userType": getUserType(username)})
+        return render(request, self.template_name, {"username": username, "form": form, "userType": getUserType(username), "name": request.session.get("name"), "surname": request.session.get("surname")})
 
 
     def post(self, request, username):
-        form = self.form_class(request.POST)
+        form = self.form_class(request.POST, request.FILES)
 
         if request.session.get("user") is None:
             return HttpResponseRedirect("/login")
@@ -114,6 +114,7 @@ class createTechnicalFault(FormView):
                 username = Student.objects.get(username=username),  # form says needs to be of Student instance
                 location = form.cleaned_data['location'],
                 priority = form.cleaned_data['priority'],
+                evidence = form.cleaned_data['evidence'],
             )
             TechFault_ticket.save()
             message = "Technical Fault Saved."
@@ -121,4 +122,4 @@ class createTechnicalFault(FormView):
             
             return HttpResponseRedirect("/login")
 
-        return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "username": username})
+        return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})

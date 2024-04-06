@@ -87,10 +87,10 @@ class createEC(FormView):
         if len(student) <= 0:
             return HttpResponseRedirect("/listAllECs")
 
-        return render(request, self.template_name, {"username": username,"form": form, "userType": getUserType(username)})
+        return render(request, self.template_name, {"username": username,"form": form, "userType": getUserType(username), "name": request.session.get("name"), "surname": request.session.get("surname")})
 
     def post(self, request, username):
-        form = self.form_class(request.POST)
+        form = self.form_class(request.POST, request.FILES)
 
         if request.session.get("user") is None:
             return HttpResponseRedirect("/login")
@@ -114,6 +114,7 @@ class createEC(FormView):
                 module = form.cleaned_data["module"],
                 component = form.cleaned_data["component"],
                 priority = form.cleaned_data['priority'],
+                evidence = form.cleaned_data['evidence'],
             )
             EC_ticket.save()
 
@@ -122,5 +123,5 @@ class createEC(FormView):
             
             return HttpResponseRedirect("/login")
 
-        return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "username": username})
+        return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
         

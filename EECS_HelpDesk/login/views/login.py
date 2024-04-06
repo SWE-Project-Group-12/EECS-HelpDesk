@@ -3,7 +3,7 @@ from django.views import View
 from ..forms import LoginForm 
 from ..models import TechnicalFaultHandler, Student, ECHandler, Admin
 import bcrypt
-
+from django.contrib import messages
 
 class login(View):
 
@@ -55,10 +55,14 @@ class login(View):
 
             if success:
                 request.session['user'] = user.pk
+                request.session['name'] = user.name
+                request.session['surname'] = user.surname
                 redirect_url = self.get_redirect_url(user)
                 return redirect(redirect_url)
-
-        form.add_error("password", "Invalid username and password combination.")
+            else:
+                messages.error(request, "Invalid username or password.")
+        else:
+            messages.error(request, "Form is invalid.")
 
         return render(request, "login.html", {'form': form})
     

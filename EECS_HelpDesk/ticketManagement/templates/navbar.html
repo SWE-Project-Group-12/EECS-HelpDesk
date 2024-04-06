@@ -4,20 +4,12 @@
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
-/>
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  
 </head>
 
 <header>
-    <style>
-        .material-symbols-outlined {
-          font-variation-settings:
-          'FILL' 0,
-          'wght' 400,
-          'GRAD' 0,
-          'opsz' 24
-        }
-        </style>
+  
     <nav class = 'navContainer'>
         <div class = 'navImage'>
             <img src="{% static 'img/QMLogo.png' %}" alt="QM Logo">
@@ -46,9 +38,28 @@
             <li><a href="{% url 'CreateEC' username=username %}">Create EC</a></li>
             <li><a href="{% url 'CreateTechnicalFault' username=username %}">Create Technical Fault</a></li>
             <li><a href="{% url 'FindPersonalTickets' username=username %}">Find Personal Tickets</a></li> 
-            <li><a href="{% url 'ResetPasswordView' %}">Reset Password</a></li>
+
             {% endif %}
-            <li id = 'logout'><a href="{% url 'Logout' %}">Log Out</a></li>
+            <li class="profile">
+                <span class="material-symbols-outlined account_box" onclick="submenuHandler(event)"> account_box </span>
+                <div class="submenu-container">
+                    <div class="submenu"> 
+                        <div class="submenu-header">
+                            {{name}} {{surname}}
+                            <hr>
+                        </div> 
+                        
+                    
+
+                        <ul class="submenu-options">
+                            <li> <a href="/viewProfile">View Profile</a></li>
+                            <li  id="logout" > <a href="{% url 'Logout' %}">Log Out</a></li>
+                            
+                        </ul>
+                                         
+                    </div>
+                </div>
+            </li>
            
             {% endif %}
             
@@ -74,3 +85,4 @@
 </header>
 
 <script src="{% static 'js/messageClose.js' %}"></script>
+<script src="{% static 'js/submenuHandler.js' %}"></script>

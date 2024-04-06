@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from .getUserType import getUserType
 from ..models import STATUS_CHOICES
 from django.contrib import messages
+from datetime import datetime
 
 class manageTicket(View):
     template_name="manageTicket.html"
@@ -37,7 +38,7 @@ class manageTicket(View):
             return HttpResponseRedirect("/login")
             
 
-        return render(request, self.template_name , {"ticketDetails": ticketDetails, "ticketID" : ticketID, "userType" : getUserType(username), "STATUS_CHOICES" : STATUS_CHOICES.keys(), "username": username})
+        return render(request, self.template_name , {"ticketDetails": ticketDetails, "ticketID" : ticketID, "userType" : getUserType(username), "STATUS_CHOICES" : STATUS_CHOICES.keys(), "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
 
     def post(self, request, *args, **kwargs):
 
@@ -59,8 +60,9 @@ class manageTicket(View):
         ticket = self.model.objects.get(pk=ticketID)
         ticket.status = status_decision
         ticket.status_update_reason = request.POST.get("reason", "")
+        ticket.dateResolved = datetime.now().strftime("%Y-%m-%d")
         ticket.save()
         message = "Ticket ID: " + str(ticketID) + " Updated Successfully" 
         messages.success(request,message)
         
-        return HttpResponseRedirect("/login")
+        return HttpResponseRedirect("/listAll" + self.ticket_type + "s")

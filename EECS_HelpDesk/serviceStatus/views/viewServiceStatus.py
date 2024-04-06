@@ -19,4 +19,4 @@ class viewServiceStatus(DetailView):
 
         services = self.model.objects.all()
     
-        return render(request, self.template_name, {"userType": getUserType(username), "services" : services, "username" : username})
+        return render(request, self.template_name, {"userType": getUserType(username), "services" : services, "username" : username, "name": request.session.get("name"), "surname": request.session.get("surname")})

@@ -12,6 +12,10 @@ body {
     text-align: center;
   }
   
+  #table2 {
+    margin-top: 5%;;
+  }
+
   header h1 {
     text-align: center;
     padding: 20px;
@@ -47,6 +51,10 @@ body {
     border-collapse: collapse;
   }
   
+  .title-column {
+    width: 43%;
+  }
+  
   th,td {
     text-align: left;
     padding: 8px;
@@ -75,6 +83,16 @@ body {
     cursor: pointer;
     border-radius: 4px;
   }
+
+  /* .filter-block h2{
+    text-align: center;
+  }
+
+  .filter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
 
   @media screen and (max-width: 750px) {
     main {

@@ -4,6 +4,7 @@ from django.core.validators import ValidationError
 
 class PasswordResetForm(forms.Form):
     newPassword = forms.CharField(
+        label="New Password:",
         min_length=8,
         max_length=128,
         widget=forms.PasswordInput(),
@@ -14,6 +15,7 @@ class PasswordResetForm(forms.Form):
     )
 
     verifyPassword = forms.CharField(
+        label="Verify Password:",
         min_length=8,
         max_length=128,
         widget=forms.PasswordInput(),

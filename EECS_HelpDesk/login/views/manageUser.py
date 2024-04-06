@@ -10,10 +10,8 @@ from django.contrib import messages
 class manageUser(FormView):
     template_name = "manageUser.html"
     form_class = CreateUserForm
-    success_template_name = "successMessage.html"
 
     def get(self, request,usernametomanage):
-       
        
         username = request.session.get("user")
         if request.session.get("user") is None:
@@ -39,7 +37,8 @@ class manageUser(FormView):
         elif getUserType(usernametomanage) == "Admin":
             usertomanage = Admin.objects.filter(username=usernametomanage).values()
         else:
-            return render(request, "successMessage.html", {"username": username, "message": "Username has not been found"})
+            messages.error(request, "Username has not been found")
+            return HttpResponseRedirect("/listAllUsers")
 
         
         formdetails = [userdetails for userdetails in usertomanage]            
@@ -47,7 +46,13 @@ class manageUser(FormView):
         form = self.form_class(formdetails[0])
         form.fields.get('username').widget.attrs['readonly'] = True
 
-        return render(request, self.template_name, {"form": form, "userType": getUserType(username), "usernametomanage" : usernametomanage})
+        print("********************************************")
+        # print(usernametomanage)
+        print("session= ", request.session["user"])
+        print("usrenmae ", usernametomanage)
+        print("********************************************")
+
+        return render(request, self.template_name, {"form": form, "userType": getUserType(username), "usernametomanage" : usernametomanage, "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
 
     def post(self, request, usernametomanage):
         form = self.form_class(request.POST)
@@ -73,7 +78,8 @@ class manageUser(FormView):
             elif getUserType(usernametomanage) == "Admin":
                 usertomanage = Admin.objects.get(username=usernametomanage)
             else:
-                return render(request, "successMessage.html", {"username": username, "message": "Username has not been found"})
+                messages.error(request, "Username has not been found")
+                return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
         
             
 
@@ -83,15 +89,23 @@ class manageUser(FormView):
             # validating name and surname inputs 
             if any(chr.isdigit() for chr in form.cleaned_data["name"]):
                 messages.error(request, "First name cannot contain numbers")
-                return render(request, self.template_name, {"form" : form, "userType": getUserType(username)})
+                return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
 
             if any(chr.isdigit() for chr in form.cleaned_data["surname"]):
                 messages.error(request, "Surname cannot contain numbers")
-                return render(request, self.template_name, {"form" : form, "userType": getUserType(username)})
+                return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
 
 
             usertomanage.save()
-            return render(request, self.success_template_name, {"username": username, "userType": getUserType(username), "message": "User Details Updated"})
 
-        return render(request, self.template_name, {"form" : form, "userType": getUserType(username)})
+            # changing the sessions variables to match the update
+            if request.session["user"] == usernametomanage:
+                request.session["name"] = form.cleaned_data["name"]
+                request.session["surname"] = form.cleaned_data["surname"]
+
+
+            messages.success(request,"User Details Updated")
+            return HttpResponseRedirect("/listAllUsers")
+
+        return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
         

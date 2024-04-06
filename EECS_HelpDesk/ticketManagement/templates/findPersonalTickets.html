@@ -7,6 +7,7 @@
   <title>{% block title %}My Tickets{% endblock %}</title>
   <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
   <link rel="stylesheet" href="{% static 'css/findPersonalTickets.css' %}">
+  <link rel="stylesheet" href="{% static 'css/filter.css' %}">
 </head>
 
 <body>
@@ -15,6 +16,13 @@
     <header>
       <h1>Welcome {{ username }}!</h1>
     </header>
+    
+    <div class="filter-block">
+      {% include "filters.html" %}
+    </div>
+
+    </form>
+  </div>
 
     <main>
       {% block content %}
@@ -26,8 +34,7 @@
           <table>
             <thead>
               <tr>
-                <th>Title</th>
-                <th>Description</th>
+                <th class="title-column">Title</th>
                 <th>Date</th>
                 <th>Status</th>
               </tr>
@@ -36,7 +43,6 @@
               {% for ticket in ECs %}
               <tr>
                 <td class="descriptionLimited" title="{{ticket.title}}">{{ ticket.title }}</td>
-                <td class="ticketDescription descriptionLimited" title="{{ticket.description}}">{{ ticket.description }}</td>
                 <td>{{ ticket.dateCreated }}</td>
                 <td>
                   {% if ticket.status == 'Pending' %}
@@ -67,15 +73,14 @@
 
       {% block content2 %}
       <div class="ticket-box">
-        <div class="title-container">
+        <div class="title-container" id="table2">
           <h1>My Technical Faults</h1>
         </div>
         <div class="right-box">
           <table>
             <thead>
               <tr>
-                <th>Title</th>
-                <th>Description</th>
+                <th class="title-column">Title</th>
                 <th>Date</th>
                 <th>Status</th>
               </tr>
@@ -84,7 +89,6 @@
               {% for techFault in techFaults %}
               <tr>
                 <td class="descriptionLimited" title="{{techFault.title}}">{{ techFault.title }}</td>
-                <td class="ticketDescription descriptionLimited" title="{{techFault.description}}">{{ techFault.description }}</td>
                 <td>{{ techFault.dateCreated }}</td>
                 <td>
                   {% if techFault.status == 'Pending' %}

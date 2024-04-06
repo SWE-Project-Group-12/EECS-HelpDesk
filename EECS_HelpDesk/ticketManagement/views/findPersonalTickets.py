@@ -16,11 +16,12 @@
 
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
-from ticketManagement.models import EC
+from ticketManagement.models import EC, STATUS_CHOICES, PRIORITY_CHOICES
 from ticketManagement.models import TechnicalFault
 from login.models import Student
 from .getUserType import getUserType
 from django.http import HttpResponseRedirect
+from .getFilteredTickets import getFilteredTickets
 
 
 class FindPersonalTickets(ListView):
@@ -42,7 +43,16 @@ class FindPersonalTickets(ListView):
         if len(student) <= 0:
             return HttpResponseRedirect("/login")
 
-        ECs = EC.objects.filter(username=username)
-        techFault = TechnicalFault.objects.filter(username=username)
+        statusFilters = list(request.GET.getlist("statusFilters")) if request.GET.get("statusFilters") is not None else STATUS_CHOICES.keys()
+        priorityFilters = list(request.GET.getlist("priorityFilters")) if request.GET.get("priorityFilters") is not None else PRIORITY_CHOICES.keys()
 
-        return render(request, self.template_name, {"ECs" : ECs, "techFaults" : techFault, "username" : self.request.session.get("user"), "userType" : getUserType(username)})
+        filters = []
+        for x in statusFilters:
+            for y in priorityFilters:
+                filters.append({"status": x, "priority": y, "username": username})
+
+
+        ECs = getFilteredTickets(EC, filters)
+        techFault = getFilteredTickets(TechnicalFault, filters)
+
+        return render(request, self.template_name, {"ECs" : ECs, "techFaults" : techFault, "username" : self.request.session.get("user"), "userType" : getUserType(username), "STATUS_CHOICES": STATUS_CHOICES, "PRIORITY_CHOICES": PRIORITY_CHOICES, "name": request.session.get("name"), "surname": request.session.get("surname")})

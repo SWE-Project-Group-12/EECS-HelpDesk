@@ -12,3 +12,6 @@ from .manageEC import manageEC
 from .viewTicketDetails import viewTicketDetails
 from .viewTechnicalFaultDetails import viewTechnicalFaultDetails
 from .viewECDetails import viewECDetails
+from .graphTickets import GraphTickets
+from .graphECs import GraphECs
+from .graphTechnicalFaults import GraphTechnicalFaults

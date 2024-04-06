@@ -20,7 +20,7 @@ class ResetPasswordview(FormView):
 
         form = self.form_class()
 
-        return render(request, self.template_name, {'form': form, "username": username, "userType": getUserType(username)})
+        return render(request, self.template_name, {'form': form, "username": username, "userType": getUserType(username), "name": request.session.get("name"), "surname": request.session.get("surname")})
 
 
     def post(self, request, *args, **kwargs):
@@ -36,9 +36,9 @@ class ResetPasswordview(FormView):
                     user.password = bcrypt.hashpw(str(form.cleaned_data['newPassword']).encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
                     user.save()
 
-            return render(request, self.success_template_name, {"username": username, "userType": getUserType(username), "message": "Password Changed."})
+            return render(request, self.success_template_name, {"username": username, "userType": getUserType(username), "message": "Password Changed.", "name": request.session.get("name"), "surname": request.session.get("surname")})
 
-        return render(request, self.template_name, {'form': form, "username": username, "userType": getUserType(username)})
+        return render(request, self.template_name, {'form': form, "username": username, "userType": getUserType(username), "name": request.session.get("name"), "surname": request.session.get("surname")})
 
 
     def get_user(self, model, **kwargs):

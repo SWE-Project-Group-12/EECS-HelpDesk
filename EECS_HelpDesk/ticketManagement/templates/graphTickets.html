@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .chart-container {
+        min-width: 750px;
+        min-height: 750px;
+    }
+</style>
+
+<body>
+
+    {% include 'navbar.html' %}
+    
+    <!-- DO NOT EDIT ANYTHING UNDER THIS COMMENT -->
+    <div style="display: flex; column-gap: 100px; justify-content: center;">
+        <div class="chart-container">
+            <canvas id="myChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="myChart2"></canvas>
+        </div>
+    </div>
+    <!-- DO NOT EDIT ANYTHING ABOVE THIS COMMENT -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+
+    <!-- JS must not be put in separate file or it doesn't work. -->
+    <script>
+
+        const statistics = JSON.parse('{{data|escapejs}}')
+
+        const labels = ["7 Day Total", "30 Day Total"]
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: "Number of {{ticketType}}s",
+                data: [statistics.totalLast7days, statistics.totalLast30days],
+            }],
+        }
+
+        const config = {
+            type: "bar",
+            data: data,
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '{{ticketType}}s Opened in the Last 7 And 30 Days'
+                    }
+                }
+            }
+        }
+
+        Chart.defaults.font.size = 16;
+        new Chart(document.getElementById("myChart"), config)
+
+
+        const labels2 = statistics.eachDayForlasy7Days
+        const data2 = {
+            labels: labels2,
+            datasets: [{
+                label: 'Number of {{ticketType}}s',
+                data: statistics.totalEachDayForLast7Days,
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        }
+
+        const config2 = {
+            type: "line",
+            data: data2,
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Number of {{ticketType}}s Opened Each Day for the Past 7 Days'
+                    }
+                }
+            }
+        }
+
+        new Chart(document.getElementById("myChart2"), config2)
+
+    </script>
+</body>
+</html>

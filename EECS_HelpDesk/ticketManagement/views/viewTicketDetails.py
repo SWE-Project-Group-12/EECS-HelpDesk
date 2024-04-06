@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views.generic import DetailView
 from django.http import HttpResponseRedirect
 from .getUserType import getUserType
+from datetime import datetime
+import re
 
 
 class viewTicketDetails(DetailView):
@@ -25,4 +27,13 @@ class viewTicketDetails(DetailView):
         if len(ticketDetails) <= 0:
             return render(request, "successMessage.html", {"username": username, "message": self.ticket_type + " with Ticket ID " + str(ticketID) + " has not been found."})
 
-        return render(request, self.template_name, {"username": username, "userType": getUserType(username), "ticket": ticketDetails[0], "ticketType": self.ticket_type})
+        ticketDetails = ticketDetails[0]
+
+        if re.match("[0-9]{4}-[0-9]{2}-[0-9]{2}", ticketDetails['dateResolved']):
+            year = ticketDetails['dateResolved'].split("-")[0]
+            month = ticketDetails['dateResolved'].split("-")[1]
+            day = ticketDetails['dateResolved'].split("-")[2]
+            ticketDetails['dateResolved'] = datetime(int(year), int(month), int(day)).strftime("%b %d, %Y")
+
+        
+        return render(request, self.template_name, {"username": username, "userType": getUserType(username), "ticket": ticketDetails, "ticketType": self.ticket_type, "name": request.session.get("name"), "surname": request.session.get("surname")})

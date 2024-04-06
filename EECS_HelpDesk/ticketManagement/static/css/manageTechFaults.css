@@ -84,6 +84,12 @@ body {
     grid-area: 4 / 3 / 5 / 4;
 }
 
+.techfault-evidence {
+    grid-area: 6 / 1 / 7 / 2;
+    padding: 20px 0 15px 0;
+    text-align: left;
+}
+
 .title-format {
     font-weight: normal;
     font-size: 18px;
@@ -111,7 +117,7 @@ body {
 
 .manage_form {
     text-align: start;
-    grid-area: 6 / 1 / 7 / 4;
+    grid-area: 7 / 1 / 8 / 4;
     margin-top: 0.2em;
     display: flex;
     flex-direction: column;
