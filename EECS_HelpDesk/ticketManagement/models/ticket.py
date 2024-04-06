@@ -25,6 +25,7 @@ class Ticket(models.Model):
     username = models.ForeignKey(to="login.Student", on_delete=models.CASCADE)
     priority = models.CharField(max_length=7, choices=PRIORITY_CHOICES, default=PRIORITY_CHOICES['Normal'])
     evidence = models.FileField(upload_to="evidence/", null=True, blank=True, default="")
+    dateResolved = models.CharField(max_length=10, null=True, blank=True, default="")
 
     class Meta:
         abstract = True
