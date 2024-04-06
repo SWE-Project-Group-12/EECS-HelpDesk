@@ -45,8 +45,9 @@ body {
     font-weight: 400;
 }
 
-.navContainer .navOptions #logout a:hover {
+.submenu-options #logout a:hover {
     background-color: rgba(255,0,0,80%);
+    color: white;
 }
 
 @media screen and (max-width: 780px) {
