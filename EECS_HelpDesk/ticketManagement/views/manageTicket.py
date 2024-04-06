@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from .getUserType import getUserType
 from ..models import STATUS_CHOICES
 from django.contrib import messages
+from datetime import datetime
 
 class manageTicket(View):
     template_name="manageTicket.html"
@@ -59,6 +60,7 @@ class manageTicket(View):
         ticket = self.model.objects.get(pk=ticketID)
         ticket.status = status_decision
         ticket.status_update_reason = request.POST.get("reason", "")
+        ticket.dateResolved = datetime.now().strftime("%Y-%m-%d")
         ticket.save()
         message = "Ticket ID: " + str(ticketID) + " Updated Successfully" 
         messages.success(request,message)
