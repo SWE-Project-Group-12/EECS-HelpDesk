@@ -202,22 +202,3 @@ body {
 
 
 }
-
-@media screen and (max-width: 780px) {
-    .profile{
-        margin-left: 0;
-    }
-
-    .submenu-container{
-        width: 100%;
-        top: 290px;
-        margin: 0 0 0 0;
-    }
-
-
-    .navOptions>li{
-        align-self: center;
-    }
-
-
-}
