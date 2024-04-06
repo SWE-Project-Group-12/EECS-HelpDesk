@@ -31,7 +31,7 @@ class editServiceStatus(FormView):
         if len(service) <=0:
             return HttpResponseRedirect("/login")
     
-        return render(request, self.template_name, {"form": form, "userType": getUserType(username), "service_name" : service_name})
+        return render(request, self.template_name, {"form": form, "userType": getUserType(username), "service_name" : service_name, "name": request.session.get("name"), "surname": request.session.get("surname")})
 
     def post(self, request, service_name):
         form = self.form_class(request.POST)
@@ -54,5 +54,5 @@ class editServiceStatus(FormView):
             return HttpResponseRedirect("/viewServiceStatus")
         message = "Form Invalid."
         messages.error(request, message)
-        return render(request, self.template_name, {"form" : form, "userType": getUserType(username)})
+        return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "name": request.session.get("name"), "surname": request.session.get("surname")})
         

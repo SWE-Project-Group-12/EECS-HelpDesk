@@ -37,7 +37,7 @@ class manageTicket(View):
             return HttpResponseRedirect("/login")
             
 
-        return render(request, self.template_name , {"ticketDetails": ticketDetails, "ticketID" : ticketID, "userType" : getUserType(username), "STATUS_CHOICES" : STATUS_CHOICES.keys(), "username": username})
+        return render(request, self.template_name , {"ticketDetails": ticketDetails, "ticketID" : ticketID, "userType" : getUserType(username), "STATUS_CHOICES" : STATUS_CHOICES.keys(), "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
 
     def post(self, request, *args, **kwargs):
 

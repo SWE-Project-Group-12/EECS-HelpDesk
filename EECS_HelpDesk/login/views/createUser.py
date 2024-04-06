@@ -26,7 +26,7 @@ class createUser(CreateView):
         elif len(Admin.objects.filter(pk=username)) != 1:
             return HttpResponseRedirect("/login")
 
-        return render(request, "createUser.html", {"CreateUserForm": CreateUserForm, "userType": getUserType(username), "username": username})
+        return render(request, "createUser.html", {"CreateUserForm": CreateUserForm, "userType": getUserType(username), "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
 
     # If the request method is POST:
     # Check that the user is authenticated and is of type Admin.
@@ -59,12 +59,12 @@ class createUser(CreateView):
             for letter in range(0, len(name)):
                 if name[letter].isdigit():
                     messages.error(request, "First name cannot contain numbers")
-                    return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user")})
+                    return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user"), "name": request.session.get("name"), "surname": request.session.get("surname")})
                     
             for letter in range(0, len(surname)):
                 if surname[letter].isdigit():
                     messages.error(request, "Surname cannot contain numbers")
-                    return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user")})
+                    return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user"), "name": request.session.get("name"), "surname": request.session.get("surname")})
 
 
             capital_letter = False
@@ -80,12 +80,12 @@ class createUser(CreateView):
 
             if not capital_letter:
                 messages.error(request, "Password needs a captial letter")
-                return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user")})
+                return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user"), "name": request.session.get("name"), "surname": request.session.get("surname")})
 
             
             if not number:
                 messages.error(request, "Password needs a number")
-                return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user")})
+                return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user"), "name": request.session.get("name"), "surname": request.session.get("surname")})
 
             
             
@@ -94,7 +94,7 @@ class createUser(CreateView):
                 if len(userType.objects.filter(pk=username)) == 1:
                     success = False
                     messages.error(request, "Username already exists.")
-                    return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user")})
+                    return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user"), "name": request.session.get("name"), "surname": request.session.get("surname")})
 
 
                 if user_type == userType.__name__:
@@ -105,7 +105,7 @@ class createUser(CreateView):
 
         if not success:
             messages.error(request, "Invalid Details. Please Try Again.")
-            return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user")})
+            return render(request, self.template_name, {"CreateUserForm": f, "userType": getUserType(request.session.get("user")), "username": request.session.get("user"), "name": request.session.get("name"), "surname": request.session.get("surname")})
 
         newUser = model.objects.create(
             name=name,

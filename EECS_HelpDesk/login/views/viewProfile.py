@@ -31,4 +31,4 @@ class viewProfile(ListView):
             return HttpResponseRedirect("/login")
         
     
-        return render(request, self.template_name, {"userType": getUserType(username),"userDetails": userDetails  ,"username" : username})
+        return render(request, self.template_name, {"userType": getUserType(username),"userDetails": userDetails  ,"username" : username, "name": request.session.get("name"), "surname": request.session.get("surname")})

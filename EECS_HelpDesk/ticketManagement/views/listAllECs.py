@@ -82,6 +82,8 @@ class ListAllECs(ListView):
         context['PRIORITY_CHOICES'] = PRIORITY_CHOICES
         context['username'] = self.request.session.get("user")
         context['userType'] = getUserType(self.request.session.get('user'))
+        context['name'] = self.request.session.get("name")
+        context['surname'] = self.request.session.get("surname")
         context['ec_list'] = [
             {
                 "ticketID": ec.id,

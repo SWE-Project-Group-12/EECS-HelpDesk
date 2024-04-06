@@ -28,7 +28,7 @@ class FeedbackEntryView(FormView):
 
         form = self.form_class()
 
-        return render(request, self.template_name, {"form": form, "username": username, "userType": getUserType(username)})
+        return render(request, self.template_name, {"form": form, "username": username, "userType": getUserType(username), "name": request.session.get("name"), "surname": request.session.get("surname")})
 
     def post(self, request, username, *args, **kwargs):
         if request.session.get("user") is None:
@@ -46,6 +46,6 @@ class FeedbackEntryView(FormView):
         if form.is_valid():
             newFeedback = Feedback.objects.create(feature=form.cleaned_data['feature'], rating=form.cleaned_data['rating'], description=form.cleaned_data['description'], username=Student.objects.get(pk=username))
             newFeedback.save()
-            return render(request, self.success_template_name, {"username": username, "userType": getUserType(username), "message": "Feedback Saved."})
+            return render(request, self.success_template_name, {"username": username, "userType": getUserType(username), "message": "Feedback Saved.", "name": request.session.get("name"), "surname": request.session.get("surname")})
 
-        return render(request, self.template_name, {"form": form, "username": username, "userType": getUserType(username)})
+        return render(request, self.template_name, {"form": form, "username": username, "userType": getUserType(username), "name": request.session.get("name"), "surname": request.session.get("surname")})

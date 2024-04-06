@@ -25,4 +25,4 @@ class viewTicketDetails(DetailView):
         if len(ticketDetails) <= 0:
             return render(request, "successMessage.html", {"username": username, "message": self.ticket_type + " with Ticket ID " + str(ticketID) + " has not been found."})
 
-        return render(request, self.template_name, {"username": username, "userType": getUserType(username), "ticket": ticketDetails[0], "ticketType": self.ticket_type})
+        return render(request, self.template_name, {"username": username, "userType": getUserType(username), "ticket": ticketDetails[0], "ticketType": self.ticket_type, "name": request.session.get("name"), "surname": request.session.get("surname")})

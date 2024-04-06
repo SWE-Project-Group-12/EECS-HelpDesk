@@ -85,7 +85,7 @@ class createTechnicalFault(FormView):
         if len(student) <= 0:
             return HttpResponseRedirect("/listAllTechnicalFaults")
 
-        return render(request, self.template_name, {"username": username, "form": form, "userType": getUserType(username)})
+        return render(request, self.template_name, {"username": username, "form": form, "userType": getUserType(username), "name": request.session.get("name"), "surname": request.session.get("surname")})
 
 
     def post(self, request, username):
@@ -122,4 +122,4 @@ class createTechnicalFault(FormView):
             
             return HttpResponseRedirect("/login")
 
-        return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "username": username})
+        return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
