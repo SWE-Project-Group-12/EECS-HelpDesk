@@ -39,7 +39,7 @@
         const data = {
             labels: labels,
             datasets: [{
-                label: "Number of Tickets",
+                label: "Number of {{ticketType}}s",
                 data: [statistics.totalLast7days, statistics.totalLast30days],
             }],
         }
@@ -51,7 +51,7 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Tickets Opened in the Last 7 And 30 Days'
+                        text: '{{ticketType}}s Opened in the Last 7 And 30 Days'
                     }
                 }
             }
@@ -65,7 +65,7 @@
         const data2 = {
             labels: labels2,
             datasets: [{
-                label: 'Number of Tickets',
+                label: 'Number of {{ticketType}}s',
                 data: statistics.totalEachDayForLast7Days,
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
@@ -80,7 +80,7 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Number of Ticket Each Day for the Past 7 Days'
+                        text: 'Number of {{ticketType}}s Opened Each Day for the Past 7 Days'
                     }
                 }
             }

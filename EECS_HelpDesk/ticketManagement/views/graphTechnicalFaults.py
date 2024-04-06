@@ -19,3 +19,4 @@ class GraphTechnicalFaults(GraphTickets):
     model = TechnicalFault
     authorised_users = ["TechnicalFaultHandler", "Admin"]
     ticket_type = "TechnicalFault"
+    ticket_type_display = "Technical Fault"

@@ -10,6 +10,8 @@ class GraphTickets(ListView):
     template_name = "graphTickets.html"
     model = None
     authorised_users = []
+    ticket_type = None
+    ticket_type_display = None
 
     def get(self, request, *args, **kwargs):
         if request.session.get("user") is None:
@@ -41,4 +43,4 @@ class GraphTickets(ListView):
             "totalLast30days": totalLast30days,
         }
 
-        return render(request, self.template_name, {"data": json.dumps(data), "username": username, "userType": getUserType(username)})
+        return render(request, self.template_name, {"data": json.dumps(data), "username": username, "userType": getUserType(username), "ticketType": self.ticket_type_display})

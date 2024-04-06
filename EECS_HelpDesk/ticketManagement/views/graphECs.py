@@ -16,3 +16,4 @@ class GraphECs(GraphTickets):
     model = EC
     authorised_users = ["ECHandler", "Admin"]
     ticket_type = "EC"
+    ticket_type_display = ticket_type
