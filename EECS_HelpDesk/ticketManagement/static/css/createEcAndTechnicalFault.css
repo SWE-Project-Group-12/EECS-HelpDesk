@@ -62,6 +62,12 @@
     font-family: 'Inter'; font-size: 16px; color: #0d3273;
     margin-bottom: 0.4rem;
 }
+
+.description{
+    font-family: 'Inter';
+    font-size: 16px; 
+    color: #0d3273;
+}
     
 .createEcContainer .createEcForm .button,.createTechContainer .createTechForm .button{
     position: absolute;
