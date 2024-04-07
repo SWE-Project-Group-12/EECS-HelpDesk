@@ -20,14 +20,14 @@ main {
 
 .FAQ-question {
     color: #0D3273;
-    text-align: center;
+    text-align: left;
     border-bottom: 2px solid #0D3273;
     font-size: x-large;
     font-weight: bold;
 }
 
 .FAQ-answer {
-    color: #666;
+    color: #0D3273;
 }
 
 @media screen and (max-width: 750px) {
