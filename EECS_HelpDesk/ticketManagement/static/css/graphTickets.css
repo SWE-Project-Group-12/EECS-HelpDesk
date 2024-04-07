@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+}
+
+.container .chart-container #myChart, .container .chart-container #myChart2 {
+    flex: 1;
+    margin: 10px;
+    margin-top: 2.5rem;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        justify-content: center
+    }
+    .container .chart-container #myChart, .container .chart-container #myChart2 {
+        flex: none;
+        width: 100%;
+        height: auto;
+        margin: 10px;
+    }
+    .container .chart-container{
+        min-width: 0;
+        min-height: 0;
+    }
+}
