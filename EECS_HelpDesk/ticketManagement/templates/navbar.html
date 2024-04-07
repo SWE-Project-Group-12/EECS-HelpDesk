@@ -53,10 +53,7 @@
 
                         <ul class="submenu-options">
                             <li> <a href="/viewProfile">View Profile</a></li>
-                            {% if userType == 'Student' %}
-                            <li  id="feedbackEntry" > <a href="{% url 'FeedbackEntry' username=username %}">Feedback Entry</a></li>
-                            {%  endif %}
-                           
+
                             <li  id="logout" > <a href="{% url 'Logout' %}">Log Out</a></li>
                           
                         </ul>
