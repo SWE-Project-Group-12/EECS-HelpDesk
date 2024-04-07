@@ -36,6 +36,33 @@
                     <div class="fault-manage">Manage</div>
                 </div>
                 {% for fault in technical_fault_list %}
+
+                <div class="fault-item-mobile">
+                    <div class="fault-item-heading-m">
+                        <h4 class="fault-title">Username: <span class="mini-text">{{ fault.username.username }}</span></h4>
+                        <h4 class="fault-date">Date: <span class="mini-text">{{ fault.dateCreated }}</span></h4>
+                    </div>
+                    <div class="fault-item-details-m">
+                        <h4 class="fault-title descriptionLimited">Title: <span class="mini-text">{{ fault.title }}</span></h4>
+                        <div class="fault-status fault-status-m">
+                            <h4>Status:
+                            {% if fault.status == 'Pending' %}
+                            <span class="mini-text" style="color: orange;">{{ fault.status }}</span>
+                            {% elif fault.status == 'Rejected' %}
+                            <span class="mini-text" style="color: red;">{{ fault.status }}</span>
+                            {% elif fault.status == 'Resolved' %}
+                            <span class="mini-text" style="color: green;">{{ fault.status }}</span>
+                            {% else %}{{ fault.status }}{% endif %}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="fault-manage">
+                        <button class="manage-button">
+                            <a href="{% url 'ManageEC' ticketID=fault.ticketID %}">Manage</a>
+                        </button>
+                    </div>
+                </div>
+
                 <div class="fault-item">
                     <div class="fault-username">{{ fault.username.username }}</div>
                     <div class="fault-title descriptionLimited" title="{{fault.title}}">{{ fault.title }}</div>
@@ -57,7 +84,7 @@
                 </div>
                 {% empty %}
                 <div class="fault-item">
-                    <div class="ec-username ec-empty" colspan="4">No Technical Faults found.</div>
+                    <div class="fault-username fault-empty" colspan="4">No Technical Faults found.</div>
                 </div>
                 {% endfor %}
             </div>
