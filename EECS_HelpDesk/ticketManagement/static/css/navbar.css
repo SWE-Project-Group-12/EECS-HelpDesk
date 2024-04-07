@@ -5,6 +5,8 @@ body {
   font-family: "Inter", sans-serif;
   display: flex;
   flex-direction: column;
+  /* Changes */
+  max-width: 100vw;
 } 
 
 .navContainer {
