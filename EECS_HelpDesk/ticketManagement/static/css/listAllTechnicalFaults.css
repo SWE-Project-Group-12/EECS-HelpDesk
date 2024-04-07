@@ -58,7 +58,7 @@ body {
   
 .manage-button,
 .manage-button:hover,
-.manage-button:focus {
+.manage-button:focus, .viewGraph {
   background-color: #0d3273;
   color: white;
   border: none;
@@ -71,7 +71,7 @@ body {
   display: block;
 }
   
-.fault-manage a {
+.fault-manage a, .viewGraph a {
   color: white;
   text-decoration: none;
 }
