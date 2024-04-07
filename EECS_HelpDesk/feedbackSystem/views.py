@@ -5,11 +5,11 @@ from .forms import FeedbackForm
 from django.views.generic import FormView
 from login.models import Student
 from login.views import getUserType
+from django.contrib import messages
 
 
 class FeedbackEntryView(FormView):
     template_name = "feedbackEntry.html"
-    success_template_name = "successMessage.html"
     model = Feedback
     form_class = FeedbackForm
 
@@ -46,6 +46,7 @@ class FeedbackEntryView(FormView):
         if form.is_valid():
             newFeedback = Feedback.objects.create(feature=form.cleaned_data['feature'], rating=form.cleaned_data['rating'], description=form.cleaned_data['description'], username=Student.objects.get(pk=username))
             newFeedback.save()
-            return render(request, self.success_template_name, {"username": username, "userType": getUserType(username), "message": "Feedback Saved.", "name": request.session.get("name"), "surname": request.session.get("surname")})
-
+            messages.success(request,"Feedback Saved.")
+            return HttpResponseRedirect("/login")
+        messages.error(request,"Form Invalid.")
         return render(request, self.template_name, {"form": form, "username": username, "userType": getUserType(username), "name": request.session.get("name"), "surname": request.session.get("surname")})
