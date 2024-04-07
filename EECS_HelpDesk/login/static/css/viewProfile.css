@@ -34,6 +34,13 @@
     padding: 0.2rem;
     width: 30%;
     margin-left: 70%;
+    transition: 0.2s all;
+}
+
+
+.viewProfileContainer button:hover {
+    text-decoration: none;
+    background-color: rgba(255,255,255,15%);
 }
 
 @media screen and (max-width: 750px) {
@@ -43,9 +50,4 @@
         padding: 1rem;
         width: 80%;
     }
-}
-
-.viewProfileContainer button:hover {
-    text-decoration: underline;
-    color: aqua;
 }
