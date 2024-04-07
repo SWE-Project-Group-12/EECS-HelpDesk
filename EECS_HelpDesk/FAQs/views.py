@@ -8,4 +8,13 @@ class FAQView(ListView):
     model = FAQ
 
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {"FAQs": self.model.objects.all(), "username": request.session.get("user"), "userType": getUserType(request.session.get("user"))})
+
+        context = {
+            "FAQs": self.model.objects.all(),
+            "username": request.session.get("user"),
+            "userType": getUserType(request.session.get("user")),
+            "name": request.session.get("name") if request.session.get("name") is not None else "",
+            "surname": request.session.get("surname") if request.session.get("surname") is not None else ""
+        }
+
+        return render(request, self.template_name, context)
