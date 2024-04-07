@@ -1,0 +1,50 @@
+.manage-ticket-inner-container {
+    background-color: #ffffff;
+    padding: 1em;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto auto 10px auto auto auto;
+}
+
+.techfault-ticket-id {
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+.techfault-student-username {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.techfault-date {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+.techfault-row2-header {
+    grid-row: 3 / 4;
+    grid-column: 1 / -1;
+    justify-content: space-around;
+    padding: 0;
+}
+
+.techfault-priority {
+    text-align: end;
+    grid-area: 5 / 2 / 6 / 3;
+    padding-right: 0.6em;
+}
+
+.gap-row {
+    grid-row: 4;
+    padding-top: 0.2em;
+}
+
+.techfault-title {
+    grid-area: 5 / 1 / 6 / 2;
+}
+
+.techfault-desc {
+    grid-area: 6 / 1 / 7 / -1;
+}
+
+.manage_form {
+    grid-area: 7 / 1 / 8 / -1;
+}
