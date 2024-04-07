@@ -46,12 +46,6 @@ class manageUser(FormView):
         form = self.form_class(formdetails[0])
         form.fields.get('username').widget.attrs['readonly'] = True
 
-        print("********************************************")
-        # print(usernametomanage)
-        print("session= ", request.session["user"])
-        print("usrenmae ", usernametomanage)
-        print("********************************************")
-
         return render(request, self.template_name, {"form": form, "userType": getUserType(username), "usernametomanage" : usernametomanage, "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
 
     def post(self, request, usernametomanage):
