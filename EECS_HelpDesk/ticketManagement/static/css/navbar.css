@@ -107,6 +107,14 @@ body {
   'opsz' 24
 }
 
+.material-symbols-outlined {
+    cursor: pointer;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
 .material-symbols-outlined.account_box{
     /* style profile button here */
     font-size: 1.25em;
