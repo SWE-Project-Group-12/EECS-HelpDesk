@@ -12,11 +12,22 @@
 
 .filter-options{
   background-color: #0d3273;
-  padding: 0.5rem;
+  padding: 1rem;
   border-radius: 4px;
   display: flex;
   justify-content: center;
+  column-gap: 1.25rem;
   color: white;
+}
+
+.filter-choice {
+  display: flex;
+  flex-flow: column;
+  row-gap: 0.5rem;
+}
+
+.filter-header {
+  align-self: center;
 }
 
 .filter-button{
@@ -34,4 +45,8 @@
 .filter-button:hover {
   text-decoration: underline;
   color: aqua;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
 }

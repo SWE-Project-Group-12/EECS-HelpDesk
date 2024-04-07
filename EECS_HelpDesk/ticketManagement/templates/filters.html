@@ -9,21 +9,36 @@
 <form class="filter" action="" method="get">
   <div class="filter-options">
 
-    <div class="status-choice">
+    <div class="status-choice filter-choice">
       {% for choice in STATUS_CHOICES %}
-      <input type="checkbox" name="statusFilters" value="{{choice}}" />{{choice}}
-      <br>
+
+      {% if forloop.counter == 1%}
+
+        <span class="filter-header">Status:</span>
+      
+      {% endif %}
+
+      <span>
+        <input type="checkbox" name="statusFilters" value="{{choice}}" />
+        <label for="statusFilters">{{choice}}</label>
+      </span>
 
       {% endfor %}
     </div>
 
-    <br>
-
-    <div class="priority-choice">
+    <div class="priority-choice filter-choice">
       {% for choice in PRIORITY_CHOICES %}
 
-      <input type="checkbox" name="priorityFilters" value="{{choice}}" />{{choice}}
-      <br>
+      {% if forloop.counter == 1%}
+
+        <span class="filter-header">Priority:</span>
+      
+      {% endif %}
+
+      <span>
+        <input type="checkbox" name="priorityFilters" value="{{choice}}" />
+        <label for="priorityFilters">{{choice}}</label>
+      </span>
 
       {% endfor %}
     </div>
