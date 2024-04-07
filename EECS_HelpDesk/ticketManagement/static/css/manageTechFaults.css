@@ -144,6 +144,7 @@ body {
     padding: 0.5em 1.5em;
     border-radius: 12px;
     cursor: pointer;
+    transition: 0.25s all;
 }
 
 /* The i stands for ignore case sensitivity*/
@@ -159,4 +160,7 @@ input[value="Pending" i] {
     background-color: #faac0a !important;
 }
 
+.status-choices input[type=submit]:hover{
+    border: 0.25rem #0D3273 solid;
+} 
 
