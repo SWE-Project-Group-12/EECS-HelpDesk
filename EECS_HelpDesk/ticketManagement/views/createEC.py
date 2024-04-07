@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from ticketManagement.forms import ECForm
-from ticketManagement.models import EC
+from ticketManagement.models import EC, PRIORITY_CHOICES
 from login.models import Student
 from django.views.generic.edit  import FormView
 from .getUserType import getUserType
@@ -122,6 +122,10 @@ class createEC(FormView):
             messages.success(request,message)
             
             return HttpResponseRedirect("/login")
+
+        else:
+            messages.error(request, "Form Error. Please Try Again.")
+            return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
 
         return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
         

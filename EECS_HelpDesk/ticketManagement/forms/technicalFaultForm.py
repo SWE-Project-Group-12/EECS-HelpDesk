@@ -1,6 +1,6 @@
 from django import forms
 from .baseTicketDetails import BaseTicketDetails
-from ..models import TechnicalFault
+from ..models import TechnicalFault, LOCATION_CHOICES
 
 class TechnicalFaultForm(BaseTicketDetails):
     # ModelForm. Based on the Model TechnicalFault.
@@ -9,7 +9,7 @@ class TechnicalFaultForm(BaseTicketDetails):
 
 
     location = forms.ChoiceField(
-        choices=TechnicalFault.LOCATION_CHOICES,
+        choices=LOCATION_CHOICES,
         required=True,
         widget=forms.Select(attrs={
             'class' : 'form-control'

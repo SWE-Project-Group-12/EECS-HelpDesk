@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from ticketManagement.forms import TechnicalFaultForm
-from ticketManagement.models import TechnicalFault
+from ticketManagement.models import TechnicalFault, LOCATION_CHOICES, PRIORITY_CHOICES
 from login.models import Student
 from django.views.generic.edit  import FormView
 from .getUserType import getUserType
@@ -121,5 +121,9 @@ class createTechnicalFault(FormView):
             messages.success(request,message)
             
             return HttpResponseRedirect("/login")
+
+        else:
+            messages.error(request, "Form Error. Please Try Again.")
+            return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
 
         return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
