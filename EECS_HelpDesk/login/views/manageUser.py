@@ -73,7 +73,7 @@ class manageUser(FormView):
                 usertomanage = Admin.objects.get(username=usernametomanage)
             else:
                 messages.error(request, "Username has not been found")
-                return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
+                return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "usernametomanage" : usernametomanage, "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
         
             
 
@@ -83,11 +83,11 @@ class manageUser(FormView):
             # validating name and surname inputs 
             if any(chr.isdigit() for chr in form.cleaned_data["name"]):
                 messages.error(request, "First name cannot contain numbers")
-                return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
+                return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "usernametomanage" : usernametomanage, "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
 
             if any(chr.isdigit() for chr in form.cleaned_data["surname"]):
                 messages.error(request, "Surname cannot contain numbers")
-                return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
+                return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "usernametomanage" : usernametomanage, "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
 
 
             usertomanage.save()
@@ -101,5 +101,5 @@ class manageUser(FormView):
             messages.success(request,"User Details Updated")
             return HttpResponseRedirect("/listAllUsers")
 
-        return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
+        return render(request, self.template_name, {"form" : form, "userType": getUserType(username), "usernametomanage" : usernametomanage, "username": username, "name": request.session.get("name"), "surname": request.session.get("surname")})
         
