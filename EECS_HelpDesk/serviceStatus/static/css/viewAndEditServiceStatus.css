@@ -103,8 +103,9 @@
 
 @media screen and (max-width: 750px) {
     .viewServiceStatusContainer, .editServiceStatusContainer{
-        margin-left: 10%;
-        margin-right: 10%;
+        margin-left: calc(10% - 1rem);
+        margin-right: calc(10% - 1rem);
+        padding: 1rem;
         width: 80%;
     }
 }
