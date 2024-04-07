@@ -42,7 +42,8 @@
 }
 
 .viewServiceStatusContainer .serviceBox .serviceButton:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    border: solid #0d3273 0.25rem;
     color: aqua;
 }
 
