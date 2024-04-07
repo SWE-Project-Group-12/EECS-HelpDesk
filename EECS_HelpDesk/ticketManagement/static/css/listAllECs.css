@@ -1,5 +1,6 @@
 body {
   background-color: #D9D9D9;
+
 }
 
 #heading {
@@ -13,24 +14,23 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 10px;
-  width: 100%; 
+  width: 100%;
   margin: 0 auto;
   overflow-x: scroll;
 }
-  
+
 .left-box {
   background-color: #fff;
   padding: 20px;
   display: flex;
   flex-direction: column;
   margin: 2%;
-  min-height: 80vh; 
+  min-height: 80vh;
 }
 
 .ec-username,.ec-title,.ec-date,.ec-status,.ec-manage {
   padding: 8px;
   font-family: 'Inter';
-  font-size: 1rem;
   color: #0d3273;
 }
 
@@ -49,8 +49,7 @@ body {
 
 .ec-item {
   display: grid;
-  grid-template-rows: repeat(5, 1fr);
-
+  grid-template-columns: repeat(5, 1fr);
   padding: 10px;
   background-color: #ffffff;
   border-radius: 5px;
@@ -91,8 +90,84 @@ body {
 }
 
 @media screen and (max-width: 750px) {
-    .heading-container{
-      flex-direction: column;
-    }
-    
+  /* As a reset */
+  h1, h2, h3, h4, h5, h6, p {
+      margin: 0;
+  }
+
+  #heading {
+    margin-bottom: 0.2em;
+  }
+
+  .heading-container{
+    flex-direction: column;
+  }
+
+  .ec-heading, .ec-item {
+    display: none;
+  }
+
+  .ec-username, .ec-title, .ec-date, .ec-status, .ec-manage {
+    padding: 0;
+    font-family: 'Inter';
+    color: #0d3273;
+  }
+
+  .mini-text, p {
+    font-size: 1rem;
+    font-weight: normal;
+  }
+
+  h4 {
+    font-size: 1.1rem;
+  }
+
+  .ec-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .ec-item-mobile {
+    border-radius: 5px;
+    border-bottom: 2px solid #0d3273;
+  }
+
+  .ec-item-heading-m, .ec-item-details-m {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .ec-item-heading-m {
+    margin-bottom: 0.2em;
+  }
+
+  .ec-title {
+    flex: 1;
+  }
+
+  .ec-status-m {
+    flex: 1;
+    text-align: end;
+  }
+
+  .manage-button {
+    margin: 0.4rem auto;
+    font-size: 1rem;
+    padding: 0.4rem;
+  }
+}
+
+@media screen and (min-width: 751px) {
+  .ec-item-mobile {
+    display: none;
+  }
+
+  .ec-username,.ec-title,.ec-date,.ec-status,.ec-manage {
+    padding: 8px;
+    font-family: 'Inter';
+    font-size: 20px;
+    color: #0d3273;
+  }
 }

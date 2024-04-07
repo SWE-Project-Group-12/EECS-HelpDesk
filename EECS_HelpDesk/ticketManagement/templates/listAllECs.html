@@ -27,7 +27,6 @@
                 <button class="viewGraph"><a href="graphECs">View Statistics</a></button>
             </div>
             <div class="ec-container">
-                
                 <div class="ec-item ec-heading">
                     <div class="ec-username">Username</div>
                     <div class="ec-title">Title</div>
@@ -35,7 +34,34 @@
                     <div class="ec-status">Status</div>
                     <div class="ec-manage">Manage</div>
                 </div>
+
                 {% for ec in ec_list %}
+                <div class="ec-item-mobile">
+                    <div class="ec-item-heading-m">
+                        <h4 class="ec-title">Username: <span class="mini-text">{{ ec.username.username }}</span></h4>
+                        <h4 class="ec-date">Date: <span class="mini-text">{{ ec.dateCreated }}</span></h4>
+                    </div>
+                    <div class="ec-item-details-m">
+                        <h4 class="ec-title descriptionLimited">Title: <span class="mini-text">{{ ec.title }}</span></h4>
+                        <div class="ec-status ec-status-m">
+                            <h4>Status:
+                            {% if ec.status == 'Pending' %}
+                            <span class="mini-text" style="color: orange;">{{ ec.status }}</span>
+                            {% elif ec.status == 'Rejected' %}
+                            <span class="mini-text" style="color: red;">{{ ec.status }}</span>
+                            {% elif ec.status == 'Resolved' %}
+                            <span class="mini-text" style="color: green;">{{ ec.status }}</span>
+                            {% else %}{{ ec.status }}{% endif %}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="ec-manage">
+                        <button class="manage-button">
+                            <a href="{% url 'ManageEC' ticketID=ec.ticketID %}">Manage</a>
+                        </button>
+                    </div>
+                </div>
+
                 <div class="ec-item">
                     <div class="ec-username">{{ ec.username.username }}</div>
                     <div class="ec-title descriptionLimited" title="{{ec.title}}">{{ ec.title }}</div>
