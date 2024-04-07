@@ -5,7 +5,7 @@ body {
 #heading {
   text-decoration: underline;
   font-family: 'Inter';
-  font-size: 25px;
+  font-size: 2rem;
   color: #0d3273;
 }
 
@@ -29,7 +29,7 @@ body {
 .ec-username,.ec-title,.ec-date,.ec-status,.ec-manage {
   padding: 8px;
   font-family: 'Inter';
-  font-size: 20px;
+  font-size: 1rem;
   color: #0d3273;
 }
 
@@ -77,8 +77,6 @@ body {
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 1rem;
-    
-
 }
 
 .ec-manage a , .viewGraph a{

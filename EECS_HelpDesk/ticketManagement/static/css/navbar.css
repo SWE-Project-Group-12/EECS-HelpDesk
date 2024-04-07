@@ -3,6 +3,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Inter", sans-serif;
+  display: flex;
+  flex-direction: column;
 } 
 
 .navContainer {
@@ -47,20 +49,6 @@ body {
     font-weight: 400;
 }
 
-@media screen and (max-width: 750px) {
-    .navContainer {
-        flex-direction: column;
-    }
-    .navContainer .navOptions {
-        align-items: center;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-   
-
-
-}
 
 
 .messages{
@@ -192,7 +180,18 @@ body {
     
 }
 
+
+
 @media screen and (max-width: 750px) {
+    .navContainer {
+        flex-direction: column;
+    }
+    .navContainer .navOptions {
+        align-items: center;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
     .profile{
         margin-left: 0;
     }

@@ -149,4 +149,8 @@ body {
         flex-direction: column;
     }
 
+    .create-user-form {
+        min-height: 510px;
+    }
+
 }
