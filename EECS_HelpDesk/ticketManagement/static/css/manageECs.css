@@ -147,6 +147,7 @@ body {
     font-size: 18px;
     padding: 0.5em 1.5em;
     border-radius: 12px;
+    cursor: pointer;
 }
 
 /* The i stands for ignore case sensitivity*/

@@ -45,6 +45,10 @@
     grid-area: 6 / 1 / 7 / -1;
 }
 
+.techfault-evidence{
+    grid-area: 8 / 1 / 9 / 2;
+}
+
 .manage_form {
-    grid-area: 7 / 1 / 8 / -1;
+    grid-area: 9 / 1 / 10 / -1;
 }
