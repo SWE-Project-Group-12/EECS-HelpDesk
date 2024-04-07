@@ -89,6 +89,12 @@
     color: aqua;
 }
 
+.descriptionInput>*{
+    font-family: 'Inter';
+    font-size: 16px; 
+    color: #0d3273;
+}
+
 .editServiceStatusContainer .editServiceStatusBox .statusLabel,.editServiceStatusContainer .editServiceStatusBox .descriptionLabel  {
     margin-bottom: 0.3rem;
 }
