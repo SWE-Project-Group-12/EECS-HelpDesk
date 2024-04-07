@@ -58,7 +58,7 @@ body {
 
 .manage-button,
 .manage-button:hover,
-.manage-button:focus,.viewGraph {
+.manage-button:focus, .viewGraph{
   background-color: #0d3273;
   color: white;
   border: none;
@@ -71,6 +71,16 @@ body {
   display: block;
 }
 
+
+.heading-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    
+
+}
+
 .ec-manage a , .viewGraph a{
   color: white;
   text-decoration: none;
@@ -80,3 +90,9 @@ body {
   padding: 15px 0 0 0;
 }
 
+@media screen and (max-width: 750px) {
+    .heading-container{
+      flex-direction: column;
+    }
+    
+}

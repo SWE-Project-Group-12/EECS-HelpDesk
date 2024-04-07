@@ -70,7 +70,14 @@ body {
   text-decoration: none;
   display: block;
 }
-  
+
+.heading-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
 .fault-manage a, .viewGraph a {
   color: white;
   text-decoration: none;
@@ -80,5 +87,9 @@ body {
     padding: 15px 0 0 0;
   }
   
-  
-  
+  @media screen and (max-width: 750px) {
+    .heading-container{
+      flex-direction: column;
+    }
+    
+}  
