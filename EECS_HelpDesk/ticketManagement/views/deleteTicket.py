@@ -6,7 +6,6 @@ from django.contrib import messages
 
 
 class DeleteTicketView(DeleteView):
-    template_name = "successMessage.html"
     model = None
     ticket_type = None
 
