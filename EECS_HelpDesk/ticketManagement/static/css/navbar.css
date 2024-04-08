@@ -1,5 +1,5 @@
 *{
-    overflow-wrap: break-word ;
+    overflow-wrap: anywhere ;
 }
 body {
   background-color: #D9D9D9;
