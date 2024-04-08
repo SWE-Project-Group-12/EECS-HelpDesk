@@ -92,6 +92,6 @@ class ListAllECs(ListView):
                 'description': ec.description,
                 'status': ec.status,
                 'dateCreated': ec.dateCreated,
-            } for ec in self.get_queryset()
+            } for ec in context['ec_list']
         ]
         return context
