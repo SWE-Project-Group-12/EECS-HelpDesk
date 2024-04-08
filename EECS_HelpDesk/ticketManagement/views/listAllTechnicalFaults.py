@@ -84,6 +84,6 @@ class ListAllTechnicalFaults(ListView):
                 'description': ticket.description,
                 'status': ticket.status,
                 'dateCreated': ticket.dateCreated,
-            } for ticket in self.get_queryset()
+            } for ticket in context['technical_fault_list']
         ]
         return context
