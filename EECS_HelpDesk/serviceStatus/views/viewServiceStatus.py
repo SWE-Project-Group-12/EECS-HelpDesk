@@ -11,7 +11,6 @@ from ticketManagement.views import getUserType
 class viewServiceStatus(DetailView):
     template_name = "viewServiceStatus.html"
     model = serviceStatus
-    success_template_name = "successMessage.html"
 
     def get(self, request):
        

@@ -10,7 +10,6 @@ from django.contrib import messages
 
 class ResetPasswordview(FormView):
     template_name = "resetPassword.html"
-    success_template_name = "successMessage.html"
     form_class = PasswordResetForm
 
     def get(self, request, *args, **kwargs):
