@@ -8,7 +8,6 @@ from ticketManagement.views import getUserType
 
 class listAllUsers(ListView):
     template_name = "listAllUsers.html"
-    success_template_name = "successMessage.html"
 
     def get(self, request):
        

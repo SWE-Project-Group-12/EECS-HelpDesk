@@ -69,7 +69,6 @@ from django.contrib import messages
 class createEC(FormView):
     template_name = "createEC.html"
     form_class = ECForm
-    success_template_name = "successMessage.html"
 
     def get(self, request, username):
         form = self.form_class()
