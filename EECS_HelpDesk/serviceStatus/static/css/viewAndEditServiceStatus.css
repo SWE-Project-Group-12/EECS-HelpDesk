@@ -1,3 +1,7 @@
+body{
+    overflow-wrap: break-word;
+}
+
 .viewServiceStatusContainer, .editServiceStatusContainer{
     margin-left: 25%;
     margin-right: 25%;
@@ -94,6 +98,7 @@
     font-family: 'Inter';
     font-size: 16px; 
     color: #0d3273;
+    width: -webkit-fill-available;
 }
 
 .editServiceStatusContainer .editServiceStatusBox .statusLabel,.editServiceStatusContainer .editServiceStatusBox .descriptionLabel  {
