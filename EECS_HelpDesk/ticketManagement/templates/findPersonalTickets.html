@@ -120,18 +120,18 @@
               {% for techFault in techFaults %}
               <tr>
                 <div class="row-mobile">
-                  <h4 class="ticket-title" title="{{ticket.title}}">Title: <span class="mini-text descriptionLimited">{{ ticket.title }}</span></h4>
-                  <h4 class="ticket-date">Date: <span class="mini-text">{{ ticket.dateCreated }}</span></h4>
+                  <h4 class="ticket-title" title="{{ticket.title}}">Title: <span class="mini-text descriptionLimited">{{ techFault.title }}</span></h4>
+                  <h4 class="ticket-date">Date: <span class="mini-text">{{ techFault.dateCreated }}</span></h4>
                   <div class="ticket-status">
                     <h4>Status:
-                      {% if ticket.status == 'Pending' %}
-                      <span class="mini-text" style="color: orange;">{{ ticket.status }}</span>
-                      {% elif ticket.status == 'Rejected' %}
-                      <span class="mini-text" style="color: red;">{{ ticket.status }}</span>
-                      {% elif ticket.status == 'Resolved' %}
-                      <span class="mini-text" style="color: green;">{{ ticket.status }}</span>
-                      {% else %}{{ ticket.status }}{% endif %}
-                      </h4>
+                      {% if techFault.status == 'Pending' %}
+                      <span class="mini-text" style="color: orange;"> {{ techFault.status }} </span>
+                      {% elif techFault.status == 'Rejected' %}
+                      <span class="mini-text" style="color: red;">{{ techFault.status }} </span>
+                      {% elif techFault.status == 'Resolved' %}
+                      <span class="mini-text" style="color: green;"> {{ techFault.status }} </span>
+                      {% else %} {{ techFault.status }} {% endif %}
+                    </h4>
                   </div>
                   <div class="ticket-buttons-container">
                     <div class="view_button">
