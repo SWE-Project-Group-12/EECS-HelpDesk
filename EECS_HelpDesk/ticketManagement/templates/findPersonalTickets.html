@@ -30,7 +30,7 @@
           <h1>My ECs</h1>
         </div>
         <div class="left-box">
-          <table>
+          <table class="main-table">
             <thead class="thead">
               <tr>
                 <th class="title-column">Title</th>
@@ -66,11 +66,10 @@
                         <button class="ticket_button" onclick="confirmDelete(event)">Delete</button>
                       </form>
                     </div>
-
                   </div>
                 </div>
 
-                <div>
+                <div class="row-desktop">
                   <td class="descriptionLimited" title="{{ticket.title}}">{{ ticket.title }}</td>
                   <td>{{ ticket.dateCreated }}</td>
                   <td>
@@ -97,8 +96,10 @@
               {% endfor %}
             </tbody>
           </table>
+          <!-- END OF TABLE IN HTML FILE-->
         </div>
       </div>
+      <!-- HERE ENDING of content block 1 -->
       {% endblock %}
 
       {% block content2 %}
@@ -108,7 +109,7 @@
         </div>
         <div class="right-box">
           <table>
-            <thead>
+            <thead class="thead">
               <tr>
                 <th class="title-column">Title</th>
                 <th>Date</th>
@@ -118,7 +119,36 @@
             <tbody>
               {% for techFault in techFaults %}
               <tr>
-                <td class="descriptionLimited" title="{{techFault.title}}">{{ techFault.title }}</td>
+                <div class="row-mobile">
+                  <h4 class="ticket-title" title="{{ticket.title}}">Title: <span class="mini-text descriptionLimited">{{ ticket.title }}</span></h4>
+                  <h4 class="ticket-date">Date: <span class="mini-text">{{ ticket.dateCreated }}</span></h4>
+                  <div class="ticket-status">
+                    <h4>Status:
+                      {% if ticket.status == 'Pending' %}
+                      <span class="mini-text" style="color: orange;">{{ ticket.status }}</span>
+                      {% elif ticket.status == 'Rejected' %}
+                      <span class="mini-text" style="color: red;">{{ ticket.status }}</span>
+                      {% elif ticket.status == 'Resolved' %}
+                      <span class="mini-text" style="color: green;">{{ ticket.status }}</span>
+                      {% else %}{{ ticket.status }}{% endif %}
+                      </h4>
+                  </div>
+                  <div class="ticket-buttons-container">
+                    <div class="view_button">
+                      <form action="{% url 'ViewTechnicalFaultDetails' username=username ticketID=techFault.id %}" method="get">
+                        <button class="ticket_button">View</button>
+                      </form>
+                    </div>
+                    <div class="delete_button">
+                      <form action="{% url 'DeleteTechnicalFault' username=username ticketID=techFault.id %}" method="get">
+                        <button class="ticket_button" onclick="confirmDelete(event)">Delete</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row-desktop">
+                  <td class="descriptionLimited" title="{{techFault.title}}">{{ techFault.title }}</td>
                 <td>{{ techFault.dateCreated }}</td>
                 <td>
                   {% if techFault.status == 'Pending' %}
@@ -139,6 +169,7 @@
                     <button onclick="confirmDelete(event)">Delete</button>
                   </form>
                 </td>
+                </div>
               </tr>
               {% endfor %}
             </tbody>
