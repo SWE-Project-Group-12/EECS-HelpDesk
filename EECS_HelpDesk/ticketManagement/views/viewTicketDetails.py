@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from .getUserType import getUserType
 from datetime import datetime
 import re
+from django.contrib import messages
 
 
 class viewTicketDetails(DetailView):
@@ -25,7 +26,8 @@ class viewTicketDetails(DetailView):
         ticketDetails = [details for details in self.model.objects.filter(pk=ticketID).values()]
 
         if len(ticketDetails) <= 0:
-            return render(request, "successMessage.html", {"username": username, "message": self.ticket_type + " with Ticket ID " + str(ticketID) + " has not been found."})
+            messages.error(request,self.ticket_type + " with Ticket ID " + str(ticketID) + " has not been found.")
+            return HttpResponseRedirect("/findPersonalTickets/" + username)
 
         ticketDetails = ticketDetails[0]
 
@@ -35,5 +37,4 @@ class viewTicketDetails(DetailView):
             day = ticketDetails['dateResolved'].split("-")[2]
             ticketDetails['dateResolved'] = datetime(int(year), int(month), int(day)).strftime("%b %d, %Y")
 
-        
         return render(request, self.template_name, {"username": username, "userType": getUserType(username), "ticket": ticketDetails, "ticketType": self.ticket_type, "name": request.session.get("name"), "surname": request.session.get("surname")})

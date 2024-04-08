@@ -17,7 +17,7 @@ class CreateUserForm(BaseUserDetails):
     # Inherits from BaseUserDetails Form.
     # Form is used to create new users.
 
-    name = forms.CharField(min_length=4, max_length=25)
+    name = forms.CharField(min_length=2, max_length=25)
     surname = forms.CharField(max_length=25)
     user_type = forms.ChoiceField(widget=forms.RadioSelect, choices=USER_TYPES)
 

@@ -55,3 +55,7 @@
 .manage_form {
     grid-area: 9 / 1 / 10 / -1;
 }
+
+.status-choices input[type=submit] {
+    padding: 10px;
+}
