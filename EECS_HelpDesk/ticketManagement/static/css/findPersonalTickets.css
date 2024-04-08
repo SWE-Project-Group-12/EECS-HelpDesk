@@ -145,6 +145,12 @@ body {
   .ticket_button {
     font-size: 1.25rem;
   }
+  .ticket_button:hover, button:hover{
+    text-decoration: none;
+    background-color: hsla(218, 80%, 25%, 0.7) !important;
+    cursor: pointer;
+  }
+
 }
 
 @media screen and (min-width: 751px) {

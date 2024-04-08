@@ -40,7 +40,8 @@
 
 .viewProfileContainer button:hover {
     text-decoration: none;
-    color: aqua;
+    background-color: hsla(218, 80%, 25%, 0.7) !important;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 750px) {

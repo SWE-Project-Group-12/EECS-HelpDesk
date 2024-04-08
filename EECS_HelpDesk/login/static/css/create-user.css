@@ -143,7 +143,11 @@ body {
     padding: 0.5em 1.5em;
     border-radius: 12px;
 }
-
+.submit-button:hover{
+    text-decoration: none;
+    background-color: hsla(218, 80%, 25%, 0.7) !important;
+    cursor: pointer;
+}
 @media screen and (max-width: 750px) {
     .create-user-container {
         flex-direction: column;

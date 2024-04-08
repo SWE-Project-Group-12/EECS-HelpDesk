@@ -71,6 +71,12 @@ body {
   display: block;
 }
 
+.manage-button:hover, .viewGraph:hover{
+  text-decoration: none;
+  background-color: hsla(218, 80%, 25%, 0.7) !important;
+  cursor: pointer;
+}
+
 .heading-container{
   display: flex;
   flex-direction: row;

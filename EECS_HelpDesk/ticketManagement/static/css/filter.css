@@ -43,8 +43,9 @@
 }
 
 .filter-button:hover {
-  text-decoration: underline;
-  color: aqua;
+  text-decoration: none;
+  background-color: hsla(218, 80%, 25%, 0.7);
+  cursor: pointer;
 }
 
 input[type="checkbox"] {
