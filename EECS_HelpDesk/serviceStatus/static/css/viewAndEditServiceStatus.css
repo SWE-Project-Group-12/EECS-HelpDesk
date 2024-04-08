@@ -43,12 +43,14 @@ body{
     padding: 0.2rem;
     width: 30%;
     margin-left: 70%;
+    transition: 0.25s all;
 }
 
 .viewServiceStatusContainer .serviceBox .serviceButton:hover {
     text-decoration: none;
-    border: solid #0d3273 0.25rem;
-    color: aqua;
+    background-color: hsla(218, 80%, 25%, 0.7);
+    cursor: pointer;
+
 }
 
 .viewServiceStatusContainer .serviceBox .goodService {
@@ -108,10 +110,7 @@ body{
 .serviceBox{
     transition: 0.2s all;
 }
-.serviceBox:hover{
-    text-decoration: none;
-    background-color: rgba(93, 93, 93, 0.15);
-}
+
 
 @media screen and (max-width: 750px) {
     .viewServiceStatusContainer, .editServiceStatusContainer{
