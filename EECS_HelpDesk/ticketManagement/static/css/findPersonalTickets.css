@@ -106,6 +106,9 @@ body {
     font-family: 'Inter';
     color: #0d3273;
   }
+  .TechnicalFault-table, .EC-table {
+    display: none;
+  }
 
   .mini-text, p {
     font-size: 1.2rem;
@@ -147,5 +150,9 @@ body {
 @media screen and (min-width: 751px) {
   .row-mobile {
     display: none;
+  }
+
+  .TechnicalFault-table, .EC-table {
+    display: table;
   }
 }
