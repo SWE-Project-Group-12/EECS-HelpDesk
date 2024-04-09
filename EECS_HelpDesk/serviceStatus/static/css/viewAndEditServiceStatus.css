@@ -44,6 +44,7 @@ body{
     width: 30%;
     margin-left: 70%;
     transition: 0.25s all;
+    font-size: 1.25rem;
 }
 
 .viewServiceStatusContainer .serviceBox .serviceButton:hover {
@@ -118,5 +119,9 @@ body{
         margin-right: calc(10% - 1rem);
         padding: 1rem;
         width: 80%;
+    }
+
+    .serviceButton{
+        font-size: 1.5rem;
     }
 }

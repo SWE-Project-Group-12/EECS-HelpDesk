@@ -56,16 +56,14 @@ body {
   border-color: #0d3273;
 }
   
-.manage-button,
-.manage-button:hover,
-.manage-button:focus, .viewGraph {
+.manage-button, .viewGraph {
   background-color: #0d3273;
   color: white;
   border: none;
   border-radius: 5px;
   padding: 8px;
   font-family: 'Inter';
-  font-size: 20px;
+  font-size: 1.25rem;
   cursor: pointer;
   text-decoration: none;
   display: block;
@@ -160,9 +158,10 @@ body {
     text-align: end;
   }
 
-  .manage-button {
+  .manage-button,.manage-button:hover {
     margin: 0.4rem auto 0.8rem auto;
-    font-size: 1rem;
+    font-size: 1.5rem;
+    
     padding: 0.4rem;
   }
 } 
