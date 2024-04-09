@@ -54,11 +54,15 @@
     background-color: #0d3273;
     border: none;
     color: white;
-    margin-left: 60%;
     margin-bottom: 0.2rem;
     border-radius: 4px;
     padding: 0.2rem;
     font-size: 1.25rem;
+}
+.listAllUsersContainer a{
+    margin-left: 60%;
+    margin-bottom: 0.2rem;
+    border-radius: 4px;
 }
 
 .listAllUsersContainer button:hover{
