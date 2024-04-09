@@ -40,6 +40,7 @@
   padding-top: 0.3rem;
   padding-bottom: 0.3rem;
   border-radius: 4px;
+  font-size: 1.25rem;
 }
 
 .filter-button:hover {
@@ -50,4 +51,23 @@
 
 input[type="checkbox"] {
   cursor: pointer;
+}
+
+@media screen and (max-width: 750px){
+  .filter-button{
+    font-size: 2rem;
+  }
+
+  .filter-options{
+    font-size: 1.5rem;
+  }
+
+  .filter-choice>*{
+    padding: 0.5rem;
+  }
+
+  input[type='checkbox']{
+    height: 1.5rem;
+    width: 1.5rem;
+  }
 }

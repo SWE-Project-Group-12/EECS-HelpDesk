@@ -44,6 +44,7 @@ body {
     padding: 0.4em;
     border-radius: 4px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-inline: 4%;
   }
 
   table {
@@ -78,15 +79,19 @@ body {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 14px;
+    font-size: 1.25rem;
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 4px;
   }
 
+  .ticket_button{
+    transition: 0.25s all;
+  }
   .ticket_button:hover {
-    opacity: 0.8;
-    transition: 0.5s;
+    text-decoration: none;
+    background-color: hsla(218, 80%, 25%, 0.7) !important;
+    cursor: pointer;
   }
 
   /* .filter-block h2{
@@ -148,7 +153,7 @@ body {
   }
 
   .ticket_button {
-    font-size: 1.25rem;
+    font-size: 2rem;
   }
   .ticket_button:hover, button:hover{
     text-decoration: none;
