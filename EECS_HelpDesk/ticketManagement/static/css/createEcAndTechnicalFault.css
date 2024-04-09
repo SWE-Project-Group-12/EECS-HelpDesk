@@ -84,6 +84,7 @@
     padding-bottom: 0.3rem;
     border-radius: 6px;
     cursor: pointer;
+    font-size: 1.25rem;
 }
 
 .button:hover{
@@ -104,4 +105,9 @@
     .createEcContainer .createEcInfo,.createTechContainer .createTechInfo {
         margin-left: 0;
     }
+
+    .createEcContainer .createEcForm .button,.createTechContainer .createTechForm .button{
+        font-size: 1.5rem;
+    }
+
 }
