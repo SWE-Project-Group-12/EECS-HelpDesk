@@ -47,7 +47,7 @@ body{
     font-size: 1.25rem;
 }
 
-.viewServiceStatusContainer .serviceBox .serviceButton:hover {
+.viewServiceStatusContainer .serviceBox .serviceButton:hover{
     text-decoration: none;
     background-color: hsla(218, 80%, 25%, 0.7);
     cursor: pointer;
@@ -92,11 +92,6 @@ body{
     margin-left: 70%
 }
 
-.editServiceStatusContainer .editServiceStatusBox #editServiceStatusButton:hover {
-    text-decoration: underline;
-    color: aqua;
-}
-
 .descriptionInput>*{
     font-family: 'Inter';
     font-size: 16px; 
@@ -112,6 +107,18 @@ body{
     transition: 0.2s all;
 }
 
+#editServiceStatusButton{
+    font-size: 1.25rem;
+    transition: 0.25 all;
+}
+
+#editServiceStatusButton:hover{
+    text-decoration: none;
+    background-color: hsla(218, 80%, 25%, 0.7) !important;
+    cursor: pointer !important;
+
+}
+
 
 @media screen and (max-width: 750px) {
     .viewServiceStatusContainer, .editServiceStatusContainer{
@@ -121,7 +128,7 @@ body{
         width: 80%;
     }
 
-    .serviceButton{
+    .serviceButton, #editServiceStatusButto{
         font-size: 1.5rem;
     }
 }
