@@ -2,7 +2,6 @@
 .listAllUsersContainer, .manageUserContainer{
     margin-left: 25%;
     margin-right: 25%;
-    width: 50%;
     position: relative;
     background-color: white;
     margin-top: 1rem;
@@ -29,7 +28,7 @@
     display: inline;
 }
 
-.listAllUsersContainer #account{
+.listAllUsersContainer .account{
     margin: 0.5rem;
     border-bottom: solid #0d3273 thin;
 }
