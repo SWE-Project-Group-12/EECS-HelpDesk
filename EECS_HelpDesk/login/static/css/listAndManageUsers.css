@@ -44,13 +44,7 @@
     font-weight: bold;
 }
 
-.listAllUsersContainer a{
-    text-decoration: none;
-    width: 30%;
-}
-
 .listAllUsersContainer button{
-    width: 40%;
     background-color: #0d3273;
     border: none;
     color: white;
@@ -58,11 +52,7 @@
     border-radius: 4px;
     padding: 0.2rem;
     font-size: 1.25rem;
-}
-.listAllUsersContainer a{
-    margin-left: 60%;
-    margin-bottom: 0.2rem;
-    border-radius: 4px;
+    width: 50%;
 }
 
 .listAllUsersContainer button:hover{
@@ -82,19 +72,23 @@
 }
 
 .manageUserContainer .manageUserForm #button{
-    width: 40%;
     background-color: #0d3273;
     border: none;
     color: white;
-    margin-left: 60%;
     border-radius: 4px;
     margin-top: 0.2rem;
 }
 
 .manageUserContainer .manageUserForm #button:hover{
     text-decoration: none;
-    background-color: hsla(218, 80%, 25%, 0.7) !important;
+    background-color: hsla(218, 80%, 25%, 0.7);
     cursor: pointer;
+}
+
+.manageUserContainer .manageUserForm {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
 }
 
 @media screen and (max-width: 750px) {

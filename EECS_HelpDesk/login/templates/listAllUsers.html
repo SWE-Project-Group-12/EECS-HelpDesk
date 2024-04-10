@@ -22,10 +22,19 @@
         <div class="students">
             <h2>Students</h2>
             {% for student in students %}
-            <div class="student" id = 'account'>
+            <div class="student manageUserContainer" id = 'account'>
                 <p>{{student.username}}</p>
-                <a href="{% url 'manageUser' usernametomanage=student.username %}"><button>Edit Student</button></a>
-                <a href="{% url 'DeleteUser' usernameToDelete=student.username %}" onclick=""><button onclick="confirmUserDelete(event)">Delete Student</button></a>
+                <!-- <a href="{% url 'manageUser' usernametomanage=student.username %}"><button>Edit Student</button></a>
+                <a href="{% url 'DeleteUser' usernameToDelete=student.username %}" onclick=""><button onclick="confirmUserDelete(event)">Delete Student</button></a> -->
+
+                <form action="{% url 'manageUser' usernametomanage=student.username %}" class="manageUserForm" method="get">
+                    <button>Edit Student</button>
+                </form>
+
+                <form action="{% url 'DeleteUser' usernameToDelete=student.username %}" class="manageUserForm" method="get">
+                    <button onclick="confirmUserDelete(event)">Delete Student</button>
+                </form>
+
             </div>
             {% endfor %}
 
@@ -36,10 +45,18 @@
         <div class="admins">
             <h2>Admins</h2>
             {% for admin in admins %}
-            <div class="admin" id = 'account'>
+            <div class="admin manageUserContainer" id = 'account'>
                 <p>{{admin.username}}</p>
-                <a href="{% url 'manageUser' usernametomanage=admin.username %}"><button>Edit Admin</button></a>
-                <a href="{% url 'DeleteUser' usernameToDelete=admin.username %}"><button onclick="confirmUserDelete(event)">Delete Admin</button></a>
+                <!-- <a href="{% url 'manageUser' usernametomanage=admin.username %}"><button>Edit Admin</button></a>
+                <a href="{% url 'DeleteUser' usernameToDelete=admin.username %}"><button onclick="confirmUserDelete(event)">Delete Admin</button></a> -->
+
+                <form action="{% url 'manageUser' usernametomanage=admin.username %}" class="manageUserForm" method="get">
+                    <button>Edit Admin</button>
+                </form>
+
+                <form action="{% url 'DeleteUser' usernameToDelete=admin.username %}" class="manageUserForm" method="get">
+                    <button onclick="confirmUserDelete(event)">Delete Admin</button>
+                </form>
             </div>
             {% endfor %}
 
@@ -50,10 +67,18 @@
         <div class="echandlers">
             <h2>EC Handlers</h2>
             {% for echandler in echandlers %}
-            <div class="echandlers" id = 'account'>
+            <div class="echandlers manageUserContainer" id = 'account'>
                 <p>{{echandler.username}}</p>
-                <a href="{% url 'manageUser' usernametomanage=echandler.username %}"><button>Edit ECHandler</button></a>
-                <a href="{% url 'DeleteUser' usernameToDelete=echandler.username %}"><button onclick="confirmUserDelete(event)">Delete ECHandler</button></a>
+                <!-- <a href="{% url 'manageUser' usernametomanage=echandler.username %}"><button>Edit ECHandler</button></a>
+                <a href="{% url 'DeleteUser' usernameToDelete=echandler.username %}"><button onclick="confirmUserDelete(event)">Delete ECHandler</button></a> -->
+
+                <form action="{% url 'manageUser' usernametomanage=echandler.username %}" class="manageUserForm" method="get]">
+                    <button>Edit EC Handler</button>
+                </form>
+
+                <form action="{% url 'DeleteUser' usernameToDelete=echandler.username %}" class="manageUserForm" method="get">
+                    <button onclick="confirmUserDelete(event)">Delete ECHandler</button>
+                </form>
             </div>
             {% endfor %}
 
@@ -64,10 +89,18 @@
         <div class="technicalfaulthandlers">
             <h2>Technical Heads</h2>
             {% for technicalfaulthandler in technicalfaulthandlers %}
-            <div class="technicalfaulthandler" id = 'account'>
+            <div class="technicalfaulthandler manageUserContainer" id = 'account'>
                 <p>{{technicalfaulthandler.username}}</p>
-                <a href="{% url 'manageUser' usernametomanage=technicalfaulthandler.username %}"><button>Edit Technical Fault Handler</button></a>
-                <a href="{% url 'DeleteUser' usernameToDelete=technicalfaulthandler.username %}"><button onclick="confirmUserDelete(event)">Delete Technical Fault Handler</button></a>
+                <!-- <a href="{% url 'manageUser' usernametomanage=technicalfaulthandler.username %}"><button>Edit Technical Fault Handler</button></a>
+                <a href="{% url 'DeleteUser' usernameToDelete=technicalfaulthandler.username %}"><button onclick="confirmUserDelete(event)">Delete Technical Fault Handler</button></a> -->
+
+                <form action="{% url 'manageUser' usernametomanage=technicalfaulthandler.username %}" class="manageUserForm" method="get">
+                    <button>Edit Technical Fault Handler</button>
+                </form>
+
+                <form action="{% url 'DeleteUser' usernameToDelete=technicalfaulthandler.username %}" class="manageUserForm" method="get">
+                    <button onclick="confirmUserDelete(event)">Delete Technical Fault Handler</button>
+                </form>
             </div>
             {% endfor %}
 
