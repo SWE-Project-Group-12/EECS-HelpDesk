@@ -92,6 +92,9 @@
     background-color: hsla(218, 80%, 25%, 0.7) !important;
     cursor: pointer;
 }
+.form-control, .evidence>input{
+    font-size: 1.25rem;
+}
 
 @media screen and (max-width: 750px) {
     .createEcContainer, .createTechContainer {
@@ -108,6 +111,10 @@
 
     .createEcContainer .createEcForm .button,.createTechContainer .createTechForm .button{
         font-size: 1.5rem;
+    }
+
+    .form-control{
+        font-size: 1.25rem;
     }
 
 }

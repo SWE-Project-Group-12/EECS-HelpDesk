@@ -40,6 +40,19 @@
 						</tr>
 					</thead>
 					<tbody>
+						{% if not ECs %}
+						<tr class="ticket-row">
+							<div class="row-mobile">
+								<h4 class="ticket-title" >No ECs</h4>
+							</div>
+
+							<div class="row-desktop">
+								<td class="descriptionLimited">No ECs</td>
+							
+							</div>
+						</tr>
+
+						{% endif %}
 						{% for ticket in ECs %}
 						<tr class="ticket-row">
 							<div class="row-mobile">
@@ -124,6 +137,19 @@
 						</tr>
 					</thead>
 					<tbody>
+						{% if not techFaults %}
+						<tr class="ticket-row">
+							<div class="row-mobile">
+								<h4 class="ticket-title" >No Technical Faults</h4>
+							</div>
+
+							<div class="row-desktop">
+								<td class="descriptionLimited">No Technical Faults</td>
+							
+							</div>
+						</tr>
+
+						{% endif %}
 						{% for techFault in techFaults %}
 						<tr>
 							<div class="row-mobile">
