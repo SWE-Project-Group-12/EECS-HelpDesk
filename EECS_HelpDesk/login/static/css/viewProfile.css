@@ -33,7 +33,7 @@
     margin-bottom: 0.5rem;
     padding: 0.2rem;
     width: 30%;
-    margin-left: 70%;
+
     transition: 0.2s all;
 }
 
@@ -42,6 +42,11 @@
     text-decoration: none;
     background-color: hsla(218, 80%, 25%, 0.7) !important;
     cursor: pointer;
+}
+
+.profileDetailsContainer a{
+    margin-left: 70%;
+    padding-bottom: 1rem ;
 }
 
 @media screen and (max-width: 750px) {
